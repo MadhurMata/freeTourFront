@@ -12,7 +12,7 @@ class Login extends Component {
 
     this.props.login({ username, password })
       .then(() => {
-        this.props.history.push('/private')
+        this.props.history.push('/')
       })
       .catch( error => console.log(error) )
   }
