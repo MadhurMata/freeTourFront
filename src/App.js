@@ -14,11 +14,11 @@ class App extends Component {
     return (
       <AuthProvider>
         <div className="container">
-          <h1>Basic React Authentication</h1>
+          <h1>Welcome to Tour.me</h1>
           <Navbar data='data' />
           <Switch>
-            <AnonRoute path="/signup" component={Signup} />
-            <AnonRoute path="/login" component={Login} />
+            <AnonRoute exact path="/signup" component={Signup} />
+            <AnonRoute exact path="/login" component={Login} />
             <PrivateRoute exact path="/" component={Home} />
           </Switch>
         </div>
