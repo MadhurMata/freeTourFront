@@ -19,6 +19,7 @@ class Signup extends Component {
         this.setState({
             username: "",
             password: "",
+            email: ""
         });
       })
       .catch( error => console.log(error) )
@@ -30,12 +31,14 @@ class Signup extends Component {
   }
 
   render() {
-    const { username, password } = this.state;
+    const { username, password, email } = this.state;
     return (
       <div>
         <form onSubmit={this.handleFormSubmit}>
           <label>Username:</label>
           <input type="text" name="username" value={username} onChange={this.handleChange}/>
+          <label>Email:</label>
+          <input type="email" name="email" value={email} onChange={this.handleChange}/>
           <label>Password:</label>
           <input type="password" name="password" value={password} onChange={this.handleChange} />
           <input type="submit" value="Signup" />
