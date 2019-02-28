@@ -5,6 +5,7 @@ import AnonRoute from './components/AnonRoute';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import CreateTour from './pages/CreateTour';
 import AuthProvider from './components/AuthProvider';
 
 
@@ -17,6 +18,7 @@ class App extends Component {
             <AnonRoute exact path="/signup" component={Signup} />
             <AnonRoute exact path="/login" component={Login} />
             <PrivateRoute exact path="/" component={Home} />
+            <PrivateRoute exact path="/tour/create" component={CreateTour} />
           </Switch>
         </div>
       </AuthProvider>
