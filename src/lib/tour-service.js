@@ -19,8 +19,12 @@ class TourService {
   }
 
   edit(id, tour) {
-    console.log(id);
     return this.tour.put(`/${id}/edit`, {tour})
+      .then(({ data }) => data);
+  }
+
+  delete(id) {
+    return this.tour.delete(`/${id}/delete`)
       .then(({ data }) => data);
   }
 

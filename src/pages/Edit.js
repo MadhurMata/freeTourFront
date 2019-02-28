@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import tourService from '../lib/tour-service'
+import {Redirect} from 'react-router'
 
 export default class Edit extends Component {
   state = {
@@ -11,7 +12,8 @@ export default class Edit extends Component {
     description: "",
     location: "",
     duration: "",
-    POI: []
+    POI: [],
+    redirect: false,
   }
 
   componentDidMount(){
@@ -31,7 +33,7 @@ export default class Edit extends Component {
     // Pasamos aqui las dos varibles al back end por separada ya que sino el id pasa como objeto.
     tourService.edit(this.state.id, this.state)
     .then((data) => {
-      console.log(data)
+      return data
     })
     .catch(error => console.log(error.response));
   };
@@ -41,7 +43,22 @@ export default class Edit extends Component {
     this.setState({ [name]: value });
   }
 
+   handleDelete = () => {
+    tourService.delete(this.state.id)
+    .then((data) => {
+      
+      // this.state({ redirect: true})
+      console.log('deletennnnn')
+      return data
+
+    })
+    .catch(error => console.log(error.response));
+  };
+  
+
   render() {
+    // const { redirect } = this.state;
+    // if(redirect){return <Redirect to='/'></Redirect>}
     return (
       <div>
         <h1>Edit Tour</h1>
@@ -60,6 +77,8 @@ export default class Edit extends Component {
           <label >POI:</label>
           <input type="text" name="POI" value={this.state.POI} onChange={this.handleChange}/>
           <button type="submit" value="submit">Add tour</button>
+          <button type="submit" onClick={this.handleDelete}>Delete</button>
+
         </form>
       </div>
         
