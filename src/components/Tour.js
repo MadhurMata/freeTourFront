@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import tourService from '../lib/tour-service'
-import './card.css';
 
 
 
