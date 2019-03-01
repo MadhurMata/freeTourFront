@@ -18,7 +18,16 @@ class Profile extends Component {
   getMyTours = () => {
     tourService.getMyTours()
       .then((data) => {
-        console.log(data)
+        data.map((tour, id) => {
+          return (
+            <Link to={`/tour/${tour._id}`}>
+              <Tour
+                key={id}
+                image={tour.image}
+                name={tour.name}
+              /></Link>
+          );
+        })
         this.setState({
           tours: data
         })
@@ -28,29 +37,29 @@ class Profile extends Component {
       })
   }
 
-  // getMyTours = () => {
-  //   const { _id } = this.props.user;
-  //   const { tours } = this.state;
-  //   console.log(tours)
-  //     tours.map((tour, id) => {
-  //       console.log(tours)
-  //       return (
-  //         <Link to={`/tour/${tour._id}`}>
-  //           <Tour
-  //             key={id}
-  //             image={tour.image}
-  //             name={tour.name}
-  //           /></Link>
-  //       );
-  //     })
-  //   }
+  toursList = () => {
+    const { _id } = this.props.user;
+    const { tours } = this.state;
+    console.log(tours)
+    }
   
   render() {
     const { username } = this.props.user;
+    const { tours } = this.state
     return (
       <div>
         <h1>{username}'s Profile</h1>
-
+        { tours.map((tour, id) => {
+        console.log(tours)
+        return (
+          <Link to={`/tour/${tour._id}`}>
+            <Tour
+              key={id}
+              image={tour.image}
+              name={tour.name}
+            /></Link>
+        );
+      })}
       </div>
     )
   }
