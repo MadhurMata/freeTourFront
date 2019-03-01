@@ -10,6 +10,7 @@ import TourDetail from './pages/TourDetail';
 import CreateTour from './pages/CreateTour';
 import AuthProvider from './components/AuthProvider';
 import Edit from './pages/Edit';
+import './style.css';
 
 
 class App extends Component {

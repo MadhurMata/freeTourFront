@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withAuth } from "../components/AuthProvider";
 import {Link} from 'react-router-dom';
 
+
 class Login extends Component {
   state = {
     username: "",
@@ -28,26 +29,35 @@ class Login extends Component {
   render() {
     const { username, password } = this.state;
     return (
-      <div>
-        <h1>Welcome to Tour.me</h1>
-        <form onSubmit={this.handleFormSubmit}>
-          <label>Username:</label>
-          <input
-            type="text"
-            name="username"
-            value={username}
-            onChange={this.handleChange}
-          />
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={this.handleChange}
-          />
-          <input type="submit" value="Login" />
+      <div className="flex-column backfground">
+        <h1>Tour.me</h1>
+        <form className="flex-column" onSubmit={this.handleFormSubmit}>
+          <div className="flex-column space-around user-box">
+            <div  className="flex-start">
+              <label>Username:</label>
+              <input
+                className="user-box-input"
+                type="text"
+                name="username"
+                value={username}
+                onChange={this.handleChange}
+              />
+            </div>
+            <div  className="flex-start">
+              <label>Password:</label>
+              <input
+                className="user-box-input"
+                type="password"
+                name="password"
+                value={password}
+                onChange={this.handleChange}
+              />
+            </div>
+            <input className="button-log" type="submit" value="Login" />
+          </div>
+          <Link className="link" to='/Signup'>Sign Up</Link>
         </form>
-        <Link to='/Signup'>Sign Up</Link>
+        
       </div>
     );
   }

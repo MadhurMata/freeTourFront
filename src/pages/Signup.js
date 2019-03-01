@@ -35,20 +35,28 @@ class Signup extends Component {
   render() {
     const { username, password, email } = this.state;
     return (
-      <div>
-        <h1>Welcome to Tour.me</h1>
-        <form onSubmit={this.handleFormSubmit}>
-          <label>Username:</label>
-          <input type="text" name="username" value={username} onChange={this.handleChange}/>
-          <label>Email:</label>
-          <input type="email" name="email" value={email} onChange={this.handleChange}/>
-          <label>Password:</label>
-          <input type="password" name="password" value={password} onChange={this.handleChange} />
-          <input type="submit" value="Signup" />
+      <div className="flex-column backfground">
+        <h1>Sign Up</h1>
+        <form className="flex-column" onSubmit={this.handleFormSubmit}>
+          <div className="flex-column space-around user-box-signup">
+              <div  className="flex-start">
+                <label>Username:</label>
+                <input className="user-box-input" type="text" name="username" value={username} onChange={this.handleChange}/>
+              </div>
+              <div  className="flex-start">  
+                <label>Email:</label>
+                <input className="user-box-input" type="email" name="email" value={email} onChange={this.handleChange}/>
+              </div>
+              <div  className="flex-start">  
+                <label>Password:</label>
+                <input className="user-box-input" type="password" name="password" value={password} onChange={this.handleChange} />
+              </div>  
+                <input className="button-log" type="submit" value="Signup" />
+            </div>
         </form>
 
-        <p>Already have account? 
-          <Link to={"/login"}> Login</Link>
+        <p className="p-link" >Already have account? 
+          <Link className="link" to={"/login"}> Login</Link>
         </p>
 
       </div>
