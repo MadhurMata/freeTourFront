@@ -13,6 +13,11 @@ class TourService {
       .then(({ data }) => data);
   }
 
+  getTours(){
+    return this.tour.get('/')
+    .then(({ data }) => data);
+  }
+
   showTour(id) {
     return this.tour.get(`/showTour/${id}`)
       .then(({ data }) => data);
