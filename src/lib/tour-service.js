@@ -18,11 +18,6 @@ class TourService {
     .then(({ data }) => data);
   }
 
-  getMyTours() {
-    return this.tour.get('/profile')
-    .then(({ data }) => data);
-  }
-
   showTour(id) {
     return this.tour.get(`/showTour/${id}`)
       .then(({ data }) => data);
