@@ -19,10 +19,10 @@ export default class CreateTour extends Component {
       return data  })
     .catch(error => console.log(error.response));
   };
- 
-   handleChange = event => {
-    let { name, value } = event.target;
-    this.setState({ [name]: value });
+
+  handleChange = event => {
+  let { name, value } = event.target;
+  this.setState({ [name]: value });
   }
 
   render() {
