@@ -105,7 +105,8 @@ body {
   z-index: 9999;
   width: 100%;
   height: 50px;
-  background-color: #00a087;
+  background-color: rgba(242,224,141);
+  box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
   text-align: center;
 }
 
@@ -120,7 +121,7 @@ margin: 0;
   z-index: 9999;
   width: 100%;
   height: 50px;
-  background-color: #00a087;
+  background: transparent;
   text-align: center;
 }
 
@@ -165,11 +166,29 @@ margin: 0;
 /* Create page */
 
 .create-box {
-  box-shadow: -9px -9px 20px 5px #11d0cf, 9px 9px 20px 5px #eb7ab7;
-  height: 95vh;
+  box-shadow: -5px -5px 15px 0px #11d0cf, 3px 4px 20px 5px #eb7ab7;
   width: 90vw;
   margin: 0 auto;
-  margin-top: 17px;
+  margin-top: 4rem;
+  border-radius: 2rem;
+}
+
+.create-box h1{
+  padding: 2rem 0 0 1rem;
+
+}
+
+.create-btn{
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+}
+
+.flex-column-create{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .colores{
