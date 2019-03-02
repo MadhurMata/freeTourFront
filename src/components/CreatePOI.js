@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Navbar from '../components/Navbar';
 import BottomBar from '../components/BottomBar';
 
+
 export default class CreatePOI extends Component {
   state = {
     spot: 1,
@@ -27,6 +28,15 @@ export default class CreatePOI extends Component {
       image: "",
       description: "",
     })
+  }
+  handleParentSubmit = e => {
+    e.preventDefault();
+    const { name, city, image, description, location, duration,POI,handleFormSubmit} = this.props 
+    handleFormSubmit(name, city, image, description, location, duration,POI)
+  };
+  handleBoth = (e) =>{
+    this.handlePoi(e)
+    this.handleParentSubmit(e)
   }
 
   render() {
@@ -59,7 +69,7 @@ export default class CreatePOI extends Component {
           </div>
           <div className="create-btn">
             <button onClick={this.handlePoi}>Next</button>
-            <button type="submit" value="submit">Save Tour</button>
+            <button onClick={this.handleBoth}>Save Tour</button>
           </div>
         </form>
       </div>

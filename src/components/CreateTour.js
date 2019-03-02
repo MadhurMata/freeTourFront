@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import tourService from '../lib/tour-service'
 import Navbar from '../components/Navbar';
 import BottomBar from '../components/BottomBar';
 
@@ -12,15 +11,6 @@ export default class CreateTour extends Component {
     location: "",
     duration: "",
   }
-
-  handleFormSubmit = event => {
-    event.preventDefault();
-    tourService.create(this.state)
-    .then((data) => {
-      console.log(data)
-      return data  })
-    .catch(error => console.log(error.response));
-  };
 
   handleChange = event => {
     let { name, value } = event.target;
@@ -78,7 +68,6 @@ export default class CreateTour extends Component {
               </label>
             </div>
             <div className="create-btn">
-              <button type="submit" value="submit">Add tour</button>
               <button onClick={this.handleStage} >Next</button>
             </div>
             

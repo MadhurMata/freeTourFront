@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import CreateTour from '../components/CreateTour';
 import CreatePOI from '../components/CreatePOI';
+import tourService from '../lib/tour-service'
+
+
+
 
 
 export default class ParentCreate extends Component {
@@ -15,14 +19,24 @@ export default class ParentCreate extends Component {
     POI: [],
   }
 
+
+
   toggleForm = () =>{
-    const { stage } = this.state;
+    const { name, city, image, description, location, duration,POI, stage } = this.state;
     if(stage === 0 ){
      return <CreateTour
      changeStage={this.changeStage} />
     } else if (stage === 1 ){
       return <CreatePOI 
+      name={name}
+      image={image}
+      city={city}
+      description={description}
+      location={location}
+      duration={duration}
+      POI={POI}
       pushPoi = {this.pushPoi}
+      handleFormSubmit = {this.handleFormSubmit}
       />
     }
   }
@@ -45,6 +59,15 @@ export default class ParentCreate extends Component {
       poi: newPoi
     })
   }
+
+  handleFormSubmit = (event) => {
+    tourService.create(this.state)
+    .then((data) => {
+      console.log(data)
+      return data  })
+    .catch(error => console.log(error.response));
+  };
+
   render() {
     const {POI} = this.state
     console.log(this.state)
