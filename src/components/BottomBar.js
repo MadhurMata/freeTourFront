@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withAuth } from '../components/AuthProvider';
 
-class Navbar extends Component {
+class Bottombar extends Component {
   render() {
     const { isLogged, user, logout } = this.props;
     const { username } = user;
     if (isLogged) {
-      return <div className="navbar">
-        <h1>Tour.me</h1>
+      return <div className="bottombar">
+        <div>
+          <img src="../images/home-button-solid.svg" alt=""/>
+          <img src="../images/plus-button.svg" alt=""/>
+          <img src="../images/profile-button-white.svg" alt=""/>
+        </div>
       </div>
 
     } else {
@@ -21,4 +25,4 @@ class Navbar extends Component {
   }
 }
 
-export default withAuth(Navbar);
+export default withAuth(Bottombar);

@@ -9,11 +9,11 @@ class TourService {
   }
 
   create(tour) {
-    return this.tour.post('/create', {tour})
+    return this.tour.post('/create', tour)
       .then(({ data }) => data);
   }
 
-  getTours(){
+  getTours()  {
     return this.tour.get('/')
     .then(({ data }) => data);
   }

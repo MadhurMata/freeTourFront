@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { withAuth } from '../components/AuthProvider';
 import Navbar from '../components/Navbar';
+import BottomBar from '../components/BottomBar';
 import Tour from '../components/Tour';
 import tourService from '../lib/tour-service'
 import {BrowserRouter as Router, Switch, Link} from 'react-router-dom';
@@ -35,7 +36,6 @@ class Home extends Component {
     return (
       <div>
         <Navbar data='data' />
-        <h1>Welcome {user.username}</h1>
         <div>
          {tours.map((tour, id) => {
            console.log(tours)
@@ -48,49 +48,11 @@ class Home extends Component {
            /></Link>
           );
           })}
-        </div>
+        </div >
+        <BottomBar data='data' />
       </div>
     )
   }
 }
 
 export default withAuth(Home);
-
-// export default class List extends Component {
-//   state = {
-//     beers: []
-//   }
-//   componentDidMount() {
-//     this.getSomething(); // get data the first time
-//   }
- 
-//   getSomething = () => {
-//     api.getBeers()
-//       .then(( data ) => {
-//         console.log(data);
-//         this.setState({
-//           beers:data
-//         })
-//       })
-//       .catch((error) => {
-//         console.log('error', error);
-//       })
-//   }
-//   render() {
- 
-//     return (
-//       <div>
-//           {this.state.beers.map((item, id) => {
-//           return (
-//             <Beer
-//               key={id}
-//               image={item.image_url}
-//               name={item.name}
-//               id={item._id}
-//             />
-//           );
-//         })}
-//       </div>
-//     )
-//   }
-//  }
