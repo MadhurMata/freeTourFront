@@ -60,14 +60,14 @@ componentDidMount() {
 
   this.getRoute(this.map);
   
-  this.map.addControl(new mapboxgl.GeolocateControl({
+  this.geolocate = new mapboxgl.GeolocateControl({
     positionOptions: {
-    enableHighAccuracy: true
+        enableHighAccuracy: true
     },
     trackUserLocation: true
-    }));
+  });
   this.map.addControl(this.geolocate);
-
+  this.map.addControl(new mapboxgl.NavigationControl())
 }
 
 render() {
