@@ -305,3 +305,21 @@ clear: both;
 .inp input:focus + span + .border {
   transform: scaleX(1);
 }
+
+/* profile conainer */
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profileInfo img{
+  border-radius: 50%;
+  width: 10rem;
+}
+
+.profileContainer {
+  margin-top: 4rem;
+}
+
+/* ----------- */

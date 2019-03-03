@@ -4,6 +4,7 @@ import userService from '../lib/user-service'
 import {BrowserRouter as Router, Switch, Link} from 'react-router-dom';
 import Tour from '../components/Tour';
 import BottomBar from '../components/BottomBar';
+import Navbar from '../components/Navbar';
 
 class Profile extends Component {
   state = {
@@ -42,27 +43,27 @@ class Profile extends Component {
 
   setImage = () => {
     if(this.props.user.image === undefined){
-      return <div className="profileImg">
+      return <div>
         <img src="https://t4.ftcdn.net/jpg/00/64/67/27/240_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg" alt=""/>
       </div>
     } else if (this.props.user.image !== undefined){
-      return <div className="profileImg">
+      return <div>
       <img src={this.props.user.image} alt=""/>
-          </div>
+              </div>
     }
   }
   
   render() {
     const { username } = this.props.user;
     const { tours } = this.state
-    const { user } = this.props
     return (
-      <div>
-        <div>
+      <div className="profileContainer">
+        <Navbar />
+        <div className="profileInfo">
           {this.setImage()}
+          <h1>{username}'s Profile</h1>
+          <Link to={`/user/profile/${this.state._id}/edit`}>Edit</Link>
         </div>
-        <h1>{username}'s Profile</h1>
-        <Link to={`/user/profile/${this.state._id}/edit`}>Edit</Link>
         {tours.map((tour, id) => {
         console.log(tours)
         return (
