@@ -10,8 +10,10 @@ import TourDetail from './pages/TourDetail';
 import ParentCreate from './pages/ParentCreate';
 import AuthProvider from './components/AuthProvider';
 import EditProfile from './pages/EditProfile';
+import Map from './components/Map';
 import Edit from './pages/Edit';
 import './style.css';
+
 
 
 class App extends Component {
@@ -23,12 +25,12 @@ class App extends Component {
             <AnonRoute exact path="/signup" component={Signup} />
             <AnonRoute exact path="/login" component={Login} />
             <PrivateRoute exact path="/" component={Home} />
+            <PrivateRoute exact path="/map" component={Map} />
             <PrivateRoute exact path="/user/profile" component={Profile} />
             <PrivateRoute exact path="/tour/create" component={ParentCreate} />
             <PrivateRoute exact path="/tour/:id" component={TourDetail} />
             <PrivateRoute exact path="/tour/:id/edit" component={Edit} />
             <PrivateRoute exact path="/user/profile/:id/edit" component={EditProfile} />
-
           </Switch>
         </div>
       </AuthProvider>
