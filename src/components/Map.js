@@ -1,15 +1,8 @@
 import React, {Component} from 'react';
 import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 export default class Map extends Component {
-
-geolocate = new mapboxgl.GeolocateControl({
-  positionOptions: {
-    enableHighAccuracy: true
-  },
-  trackUserLocation: true
-});
-
 
 getRoute(map) {
   var start = [2.154007, 41.390205];
@@ -66,6 +59,15 @@ componentDidMount() {
   this.map = new mapboxgl.Map(mapConfig);
 
   this.getRoute(this.map);
+  
+  this.map.addControl(new mapboxgl.GeolocateControl({
+    positionOptions: {
+    enableHighAccuracy: true
+    },
+    trackUserLocation: true
+    }));
+  this.map.addControl(this.geolocate);
+
 }
 
 render() {
