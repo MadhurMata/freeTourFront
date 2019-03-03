@@ -124,7 +124,6 @@ margin: 0;
   left: 0;
   z-index: 9999;
   width: 100%;
-  height: 50px;
   background-color: rgba(242,224,141);
   box-shadow: 0 2px 1px 5px rgba(0,0,0,.2);
   text-align: center;
@@ -154,9 +153,9 @@ clear: both;
 
 .card-container{
   background-color: rgb(235, 122, 183, 0.6);
-    border-radius: 2rem;
-    margin-top: 3rem;
-    margin: 4rem 1rem 0;
+  border-radius: 2rem;
+  margin: 1rem 1rem;
+  padding-bottom: 1.5rem;
 }
 
 .card-info{
@@ -170,10 +169,12 @@ clear: both;
 
 .card-info  h2{
   padding: 0 0.5rem;
+  font-size: 1rem;
 }
 
 .card-info h1{
   padding-left: 0.5rem;
+  font-size: 1.3rem;
 }
 
 
@@ -181,6 +182,21 @@ clear: both;
   width: 100%;
   border-top-left-radius: 2rem;
   border-top-right-radius: 2rem;
+}
+
+/* Home page */
+
+.home-container{
+  margin-top: 2rem;
+
+}
+
+.box{
+  background: transparent;
+  box-shadow: none;
+  padding: 2rem 1.25rem 0;
+  position: fixed;
+  width: 100%;
 }
 
 /* Create page */
@@ -191,7 +207,10 @@ clear: both;
   margin: 0 auto;
   margin-top: 4rem;
   border-radius: 2rem;
+}
 
+.tours-list{
+  padding-top: 4.6rem;
 }
 
 .create-box h1{
