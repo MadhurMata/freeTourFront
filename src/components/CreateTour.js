@@ -3,6 +3,7 @@ import tourService from "../lib/tour-service";
 import Navbar from '../components/Navbar';
 import BottomBar from '../components/BottomBar';
 
+
 export default class CreateTour extends Component {
   state = {
     name: "",
