@@ -21,15 +21,18 @@ export default class Tour extends Component {
   //   })
   // }
   render() {
-    const { name, image } = this.props;
+    const { name, image, city } = this.props;
     console.log(name)
     return (
       <div className="card-container">
         <div className="card-img">
           <img src={image} alt=""/>
         </div>
-        <div className="card-name">
-          <h1>{name}</h1>
+        <div className="card-info">
+            <h1>{name}</h1>
+            <h2>{city}</h2>
+            <h2>Ranking</h2>
+            <h2>Favorite</h2>
         </div>
       </div>
     )

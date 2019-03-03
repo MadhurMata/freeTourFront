@@ -35,7 +35,10 @@ class Home extends Component {
     const { tours } = this.state;
     return (
       <div>
-        <Navbar data='data' />
+        <div>
+         <Navbar data='data' />
+        </div>
+        <div className="clear"></div>
         <div>
          {tours.map((tour, id) => {
            console.log(tours)
@@ -45,6 +48,7 @@ class Home extends Component {
              key={id}
              image={tour.image}
              name={tour.name}
+             city={tour.city}
            /></Link>
           );
           })}
