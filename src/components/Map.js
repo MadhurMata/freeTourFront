@@ -4,8 +4,10 @@ import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 export default class Map extends Component {
+  state
 
 getRoute(map) {
+  console.log(map)
  var start = [2.154007, 41.390205];
  var url =
    `https://api.mapbox.com/directions/v5/mapbox/cycling/2.154007%2C41.390205%3B2.132000%2C41.380000%3B2.153007%2C41.390105%3B2.151007%2C41.390005.json?steps=true&geometries=geojson&access_token=` + mapboxgl.accessToken;
@@ -15,8 +17,9 @@ getRoute(map) {
        .then((data) => {
          var data = data.routes[0];
          var route = data.geometry;
-         console.log(route)
          map.on('load', function () {
+         console.log('data', data)
+          console.log(route)
            map.addLayer({
              "id": "route",
              "type": "line",
@@ -74,13 +77,23 @@ componentDidMount() {
  this.map.addControl(new MapboxGeocoder({
    accessToken: mapboxgl.accessToken
    }));
+
+ 
 }
+//  geocoder.on('results', function(results) {
+//   console.log(results);
+
+ 
+
 
 render() {
 
  return (
+
  <div className ='map'
-   id = 'map' ></div>
+   id = 'map' >
+   <input id = 'map' type="text"/>
+   </div>
  );
 }
 }
