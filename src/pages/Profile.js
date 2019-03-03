@@ -7,7 +7,7 @@ import BottomBar from '../components/BottomBar';
 
 class Profile extends Component {
   state = {
-    id: this.props.user.id,
+    _id: this.props.user._id,
     user: [],
     tours: []
   }
@@ -51,7 +51,6 @@ class Profile extends Component {
           </div>
     }
   }
-
   
   render() {
     const { username } = this.props.user;
@@ -63,7 +62,7 @@ class Profile extends Component {
           {this.setImage()}
         </div>
         <h1>{username}'s Profile</h1>
-        <Link to={`/user/profile/${user.id}/edit`}>Edit</Link>
+        <Link to={`/user/profile/${this.state._id}/edit`}>Edit</Link>
         {tours.map((tour, id) => {
         console.log(tours)
         return (

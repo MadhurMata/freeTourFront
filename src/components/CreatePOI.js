@@ -37,6 +37,7 @@ export default class CreatePOI extends Component {
   handleBoth = (e) =>{
     this.handlePoi(e)
     this.handleParentSubmit(e)
+    console.log('saluditoooooooooooooooss', this.props)
   }
 
   render() {
