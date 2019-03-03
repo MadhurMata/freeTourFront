@@ -3,6 +3,7 @@ import { withAuth } from '../components/AuthProvider'
 import userService from '../lib/user-service'
 import {BrowserRouter as Router, Switch, Link} from 'react-router-dom';
 import Tour from '../components/Tour';
+import BottomBar from '../components/BottomBar';
 
 class Profile extends Component {
   state = {
@@ -55,6 +56,7 @@ class Profile extends Component {
             /></Link>
         );
       })}
+      <BottomBar />
       </div>
     )
   }

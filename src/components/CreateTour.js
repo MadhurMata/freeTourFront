@@ -1,6 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import tourService from "../lib/tour-service";
 import Navbar from '../components/Navbar';
 import BottomBar from '../components/BottomBar';
+
 
 export default class CreateTour extends Component {
   state = {
@@ -10,12 +12,24 @@ export default class CreateTour extends Component {
     description: "",
     location: "",
     duration: "",
-  }
+    POI: []
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+    tourService
+      .create(this.state)
+      .then(data => {
+        console.log(data);
+        return data;
+      })
+      .catch(error => console.log(error.response));
+  };
 
   handleChange = event => {
     let { name, value } = event.target;
     this.setState({ [name]: value });
-  }
+  };
 
   handleStage = (e) => {
     e.preventDefault()
@@ -75,6 +89,6 @@ export default class CreateTour extends Component {
         </div>
         <BottomBar data='data' />
       </div>
-    )
+    );
   }
 }

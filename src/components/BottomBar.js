@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withAuth } from '../components/AuthProvider';
+import BtnHome from '../components/BtnHome';
+import BtnCreate from '../components/BtnCreate';
+import BtnProfile from '../components/BtnProfile';
 
 class Bottombar extends Component {
   render() {
@@ -9,9 +12,9 @@ class Bottombar extends Component {
     if (isLogged) {
       return <div className="bottombar">
         <div>
-          <img src="../images/home-button-solid.svg" alt=""/>
-          <img src="../images/plus-button.svg" alt=""/>
-          <img src="../images/profile-button-white.svg" alt=""/>
+          <BtnHome />
+          <BtnCreate />
+          <BtnProfile /> 
         </div>
       </div>
 
