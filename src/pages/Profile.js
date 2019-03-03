@@ -13,7 +13,8 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props)
+    console.log(this.props.user)
+    console.log(this.props.user.image)
     this.getMyTours()
   }
 
@@ -39,16 +40,27 @@ class Profile extends Component {
       })
   }
 
+  setImage = () => {
+    if(this.props.user.image === undefined){
+      return <div className="profileImg">
+        <img src="https://t4.ftcdn.net/jpg/00/64/67/27/240_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg" alt=""/>
+      </div>
+    } else if (this.props.user.image !== undefined){
+      return <div className="profileImg">
+      <img src={this.props.user.image} alt=""/>
+          </div>
+    }
+  }
+
   
   render() {
     const { username } = this.props.user;
-    const { image } = this.props.user;
     const { tours } = this.state
     const { user } = this.props
     return (
       <div>
         <div>
-          <img src={user.image} alt=""/>
+          {this.setImage()}
         </div>
         <h1>{username}'s Profile</h1>
         <Link to={`/user/profile/${user.id}/edit`}>Edit</Link>
