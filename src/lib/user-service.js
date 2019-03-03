@@ -15,7 +15,7 @@ class UserService {
   }
 
   showUser(id) {
-    return this.user.get(`/profile/${id}/edit`)
+    return this.user.get(`/profile/${id}`)
     .then(({ data }) => data);
   }
 

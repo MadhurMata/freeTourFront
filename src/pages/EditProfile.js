@@ -1,44 +1,45 @@
 import React, { Component } from "react";
-import { withAuth } from "../components/AuthProvider";
-import userService from '../lib/user-service'
-import Navbar from "../components/Navbar";
+import { withAuth } from '../components/AuthProvider'
+import { Redirect } from "react-router-dom";
+import userService from "../lib/user-service";
 import BottomBar from "../components/BottomBar";
-import { BrowserRouter as Router, Switch, Link } from "react-router-dom";
 
-export default class EditProfile extends Component {
+class EditProfile extends Component {
   state = {
     id: this.props.match.params.id,
     username: "",
-    image: ""
+    image: "",
   };
 
-  componentDidMount(){
-    this.showUser();
-  }
-
-  showUser = () => {
-    userService.showUser(this.state.id)
-    .then((user) => {
-      this.setState( {
-        user: user
-      })
-    })
-  }
+  componentDidMount() {}
 
   handleFormSubmit = event => {
+    console.log(this.props)
     event.preventDefault();
+    const { id, username, image } = this.state;
+    const {email, password} = this.props.user;
+    console.log(id);
     // Pasamos aqui las dos varibles al back end por separada ya que sino el id pasa como objeto.
-    userService.edit(this.state.id, this.state)
-    .then((data) => {
-      return data
-    })
-    .catch(error => console.log(error.response));
+    userService
+      .edit(id, { id, email, password, username, image })
+      .then(data => {
+        const { username, image } = data;
+        this.setState({
+          username,
+          image
+        });
+      })
+      .then(() => {
+        console.log('pollas en vinagre')
+        return <Redirect to={`/user/profile/${id}`} />;
+      })
+      .catch(error => console.log(error.response));
   };
 
   handleChange = event => {
     let { name, value } = event.target;
     this.setState({ [name]: value });
-  }
+  };
 
   render() {
     return (
@@ -74,10 +75,13 @@ export default class EditProfile extends Component {
             </label>
           </div>
           <div className="create-btn">
-            <button onClick={this.handleStage}>Save</button>
+            <button onClick={this.handleFormSubmit}>Save</button>
           </div>
         </form>
+        <BottomBar />
       </div>
     );
   }
 }
+
+export default withAuth(EditProfile);
