@@ -9,6 +9,7 @@ import Profile from './pages/Profile';
 import TourDetail from './pages/TourDetail';
 import ParentCreate from './pages/ParentCreate';
 import AuthProvider from './components/AuthProvider';
+import EditProfile from './pages/EditProfile';
 import Map from './components/Map';
 import Edit from './pages/Edit';
 import './style.css';
@@ -29,7 +30,7 @@ class App extends Component {
             <PrivateRoute exact path="/tour/create" component={ParentCreate} />
             <PrivateRoute exact path="/tour/:id" component={TourDetail} />
             <PrivateRoute exact path="/tour/:id/edit" component={Edit} />
-
+            <PrivateRoute exact path="/user/profile/:id/edit" component={EditProfile} />
           </Switch>
         </div>
       </AuthProvider>
