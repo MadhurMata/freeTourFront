@@ -14,6 +14,15 @@ class UserService {
     .then(({ data }) => data);
   }
 
+  showUser(id) {
+    return this.user.get(`/profile/${id}/edit`)
+    .then(({ data }) => data);
+  }
+
+  edit(id, user) {
+    return this.user.put(`/profile/${id}/edit`, {user})
+      .then(({ data }) => data);
+  }
   
 
 }

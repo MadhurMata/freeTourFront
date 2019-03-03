@@ -20,7 +20,7 @@ class TourService {
 
   showTour(id) {
     return this.tour.get(`/showTour/${id}`)
-      .then(({ data }) => data);
+    .then(({ data }) => data);
   }
 
   edit(id, tour) {

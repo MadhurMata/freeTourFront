@@ -42,9 +42,11 @@ class Profile extends Component {
   render() {
     const { username } = this.props.user;
     const { tours } = this.state
+    const { user } = this.props
     return (
       <div>
         <h1>{username}'s Profile</h1>
+        <Link to={`/user/profile/${user._id}/edit`}>Edit</Link>
         {tours.map((tour, id) => {
         console.log(tours)
         return (
