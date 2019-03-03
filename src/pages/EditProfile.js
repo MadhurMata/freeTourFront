@@ -6,7 +6,7 @@ import BottomBar from "../components/BottomBar";
 
 class EditProfile extends Component {
   state = {
-    id: this.props.match.params.id,
+    _id: this.props.match.params.id,
     username: "",
     image: "",
   };
@@ -16,12 +16,13 @@ class EditProfile extends Component {
   handleFormSubmit = event => {
     console.log(this.props)
     event.preventDefault();
-    const { id, username, image } = this.state;
+    const { _id, username, image } = this.state;
+    
     const {email, password} = this.props.user;
-    console.log(id);
+    console.log(_id);
     // Pasamos aqui las dos varibles al back end por separada ya que sino el id pasa como objeto.
     userService
-      .edit(id, { id, email, password, username, image })
+      .edit(_id, { _id, email, password, username, image })
       .then(data => {
         const { username, image } = data;
         this.setState({
@@ -31,7 +32,7 @@ class EditProfile extends Component {
       })
       .then(() => {
         console.log('pollas en vinagre')
-        return <Redirect to={`/user/profile/${id}`} />;
+        return <Redirect to={`/user/profile/${_id}`} />;
       })
       .catch(error => console.log(error.response));
   };

@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Redirect } from "react-router-dom";
 import CreateTour from '../components/CreateTour';
 import CreatePOI from '../components/CreatePOI';
 import tourService from '../lib/tour-service'
@@ -17,6 +18,7 @@ export default class ParentCreate extends Component {
     location: "",
     duration: "",
     POI: [],
+    redirect: false,
   }
 
 
@@ -63,8 +65,12 @@ export default class ParentCreate extends Component {
   handleFormSubmit = (event) => {
     tourService.create(this.state)
     .then((data) => {
-      console.log(data)
       return data  })
+    .then((data) => {
+      console.log("dame la", data)
+        console.log(data._id)
+      return <Redirect to={`tour/${data._id}`} />;
+    })
     .catch(error => console.log(error.response));
   };
 

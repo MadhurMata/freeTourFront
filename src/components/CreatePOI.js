@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import Navbar from '../components/Navbar';
 import BottomBar from '../components/BottomBar';
 
@@ -20,6 +20,9 @@ export default class CreatePOI extends Component {
     e.preventDefault();
     const {pushPoi} = this.props
     const {title, image, description} = this.state
+    if(!title || !image || !description){
+      alert('hay campos vacios')
+    }
     pushPoi({ pushPoi, title, image, description })
     const spot = this.state.spot +1;
     this.setState({
@@ -29,14 +32,17 @@ export default class CreatePOI extends Component {
       description: "",
     })
   }
-  handleParentSubmit = e => {
+  handleParentSubmit = (e) => {
     e.preventDefault();
     const { name, city, image, description, location, duration,POI,handleFormSubmit} = this.props 
-    handleFormSubmit(name, city, image, description, location, duration,POI)
+    handleFormSubmit( name, city, image, description, location, duration,POI)
   };
+
   handleBoth = (e) =>{
+    
     this.handlePoi(e)
     this.handleParentSubmit(e)
+    console.log('saluditoooooooooooooooss', this.props)
   }
 
   render() {
