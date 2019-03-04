@@ -45,27 +45,24 @@ class TourDetail extends Component {
   };
 
   pushComment = e => {
-    e.preventDefault();
     this.setState({
       comments: [...this.state.comments, this.state.comment]
-
     });
-    
     console.log("this are", this.state.comments);
   };
 
-  // handleFormSubmit = event => {
-  //       event.preventDefault();
-  //       tourService.comment(this.state.comments)
-  //       .then(()=>{
-  //         this.pushComment()
-  //       })
-  //       .then((data) => {
-  //         return data
-  //       })
-  //       .catch(error => console.log(error.response));
-  //     };
-  
+  handleFormSubmit = event => {
+        event.preventDefault();
+        tourService.comment(this.state.id, this.state.comments)
+        .then(()=>{
+          this.pushComment(event)
+        })
+        .then((data) => {
+          return data
+        })
+        .catch(error => console.log('errorsito',error.response));
+      };
+
   isOwner = () => {
     const { tour } = this.state;
     if (tour.creator === this.props.user._id) {
@@ -83,6 +80,7 @@ class TourDetail extends Component {
     const { redirect } = this.state;
     const { tour } = this.state;
     const { comments } = this.state
+    const { username } = this.props.user
     if (redirect) {
       return <Redirect to="/user/profile" />;
     } else {
@@ -97,7 +95,7 @@ class TourDetail extends Component {
           </div>
           {this.isOwner()}
           <div className="comments">
-            <form onSubmit={this.pushComment}>
+            <form onSubmit={this.handleFormSubmit}>
               <input
                 type="text"
                 name="comments"
@@ -110,10 +108,11 @@ class TourDetail extends Component {
           <h1>Comments</h1>
           <div className="commentSection">
             {comments.map((comment, id) => {
-              console.log(comments);
+              console.log(comments, username);
               return (
-                <div className="commentBox" key = {id}>
-                  {comment}
+                <div className="commentBox" key = {id} username = {username}>
+                  <h1>{username} said:</h1>
+                  <p>{comment}</p>
                 </div>
               );
             })}
