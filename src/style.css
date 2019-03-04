@@ -325,6 +325,7 @@ clear: both;
 }
 
 /* ----------- */
+
 .map {
   position: absolute;
   top: 0;
@@ -332,3 +333,7 @@ clear: both;
   width: 100%;
   height: 100vh;
 }
+  .button-save {
+    position: absolute;
+    top: 0;
+  }
