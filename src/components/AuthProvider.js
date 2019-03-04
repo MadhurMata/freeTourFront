@@ -19,6 +19,7 @@ export const withAuth = (Comp) => {
               logout={authStore.logout}
               login={authStore.login}
               signup={authStore.signup}
+              setUser={authStore.setUser}
               {...this.props} />
           }}
         </Consumer>
@@ -100,6 +101,7 @@ export default class AuthProvider extends Component {
               logout: this.logoutUser, 
               login: this.loginUser,
               signup: this.signupUser,
+              setUser: this.setUser
             }}>
             {children}
           </Provider>    
