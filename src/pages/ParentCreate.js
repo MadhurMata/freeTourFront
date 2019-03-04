@@ -5,9 +5,6 @@ import CreatePOI from '../components/CreatePOI';
 import tourService from '../lib/tour-service'
 
 
-
-
-
 export default class ParentCreate extends Component {
   state = {
     stage: 0,
@@ -67,14 +64,14 @@ export default class ParentCreate extends Component {
     .then((data) => {
       return data  })
     .then((data) => {
-      console.log("dame la", data)
-        console.log(data._id)
+      console.log("new tour home redirect")
       return <Redirect to={`tour/${data._id}`} />;
     })
     .catch(error => console.log(error.response));
   };
 
   render() {
+
     const {POI} = this.state
     console.log(this.state)
     return (
@@ -88,6 +85,6 @@ export default class ParentCreate extends Component {
           })}
         {this.toggleForm()}
       </div>
-    )
+      )
   }
 }

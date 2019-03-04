@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
+import { Redirect } from "react-router-dom";
+import { withAuth } from "../components/AuthProvider";
 import Navbar from '../components/Navbar';
 import BottomBar from '../components/BottomBar';
 
 
-export default class CreatePOI extends Component {
+class CreatePOI extends Component {
   state = {
     spot: 1,
     title: "",
     image: "",
     description: "",
+    redirect: false,
   }
 
   handleChange = event => {
@@ -35,17 +38,22 @@ export default class CreatePOI extends Component {
   handleParentSubmit = (e) => {
     e.preventDefault();
     const { name, city, image, description, location, duration,POI,handleFormSubmit} = this.props 
-    handleFormSubmit( name, city, image, description, location, duration,POI)
+    handleFormSubmit( name, city, image, description, location, duration, POI)
   };
 
   handleBoth = (e) =>{
-    
     this.handlePoi(e)
     this.handleParentSubmit(e)
+    this.setState({
+      redirect: true
+    })
     console.log('saluditoooooooooooooooss', this.props)
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to={`/user/profile/`} />;
+    } else {
     return (
       <div>
       <Navbar data='data' />
@@ -82,5 +90,8 @@ export default class CreatePOI extends Component {
       <BottomBar data='data' />
     </div>
     )
+    }
   }
 }
+
+export default withAuth(CreatePOI);

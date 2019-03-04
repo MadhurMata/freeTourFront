@@ -22,7 +22,6 @@ export default class Tour extends Component {
   // }
   render() {
     const { name, image, city } = this.props;
-    console.log(name)
     return (
       <div className="card-container">
         <div className="card-img">
