@@ -47,8 +47,8 @@ export default class Edit extends Component {
     tourService.delete(this.state.id)
     .then((data) => {
       
-      // this.state({ redirect: true})
-      console.log('deletennnnn')
+      this.setState({ redirect: true})
+      console.log('deletennnnn', this.state.redirect)
       return data
 
     })
@@ -57,8 +57,10 @@ export default class Edit extends Component {
   
 
   render() {
-    // const { redirect } = this.state;
-    // if(redirect){return <Redirect to='/'></Redirect>}
+    const { redirect } = this.state;
+    if(redirect){
+      return <Redirect to='/user/profile'></Redirect>
+    }else{
     return (
       <div>
         <h1>Edit Tour</h1>
@@ -84,6 +86,7 @@ export default class Edit extends Component {
         
       </div>
     )
+   }
   }
 }
 
