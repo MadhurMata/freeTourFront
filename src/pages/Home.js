@@ -12,6 +12,7 @@ import Search from '../components/Search'
 
 class Home extends Component {
   state = {
+    searchedTours: [],
     tours: []
   }
 
@@ -24,7 +25,8 @@ class Home extends Component {
     // console.log('tours front end', this.state)
     .then(( data ) => {
       this.setState({
-        tours: data
+        tours: data,
+        searchedTours: data
       })
     })
     .catch((error) => {
@@ -36,21 +38,18 @@ class Home extends Component {
     console.log(itemSearched)
     const { tours } = this.state;
     const copyTours = [...tours];
-    console.log(copyTours)
-    console.log("city", copyTours.POI)
 
      let toursFiltered = copyTours.filter (tour => {
-       console.log('hey', tour.city.toLowerCase().search(itemSearched.toLowerCase()))
       return tour.city.toLowerCase().search(itemSearched.toLowerCase()) !== -1;
     })
     this.setState({
-      tours: toursFiltered,
+      searchedTours: toursFiltered,
     })
   }
 
   render() {
     const { user } = this.props;
-    const { tours } = this.state;
+    const { searchedTours, tours } = this.state;
     return (
       <div className="home-container">
         <div>
@@ -61,8 +60,7 @@ class Home extends Component {
         </div>
         
         <div className="tours-list">
-         {tours.map((tour, id) => {
-           console.log(tours)
+         {searchedTours.map((tour, id) => {
          return (
            <Link to={`/tour/${tour._id}`}>
            <Tour
