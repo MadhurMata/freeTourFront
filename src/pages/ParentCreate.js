@@ -3,6 +3,8 @@ import { Redirect } from "react-router-dom";
 import CreateTour from '../components/CreateTour';
 import CreatePOI from '../components/CreatePOI';
 import tourService from '../lib/tour-service'
+import Map from '../components/Map';
+
 
 
 
@@ -29,7 +31,7 @@ export default class ParentCreate extends Component {
      return <CreateTour
      changeStage={this.changeStage} />
     } else if (stage === 1 ){
-      return <CreatePOI 
+      return <div><CreatePOI 
       name={name}
       image={image}
       city={city}
@@ -40,6 +42,8 @@ export default class ParentCreate extends Component {
       pushPoi = {this.pushPoi}
       handleFormSubmit = {this.handleFormSubmit}
       />
+      <Map />
+      </div>
     }
   }
 
