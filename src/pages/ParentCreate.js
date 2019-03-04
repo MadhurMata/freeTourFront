@@ -82,7 +82,7 @@ export default class ParentCreate extends Component {
     const {POI} = this.state
     console.log(this.state)
     return (
-      <div>
+      <div className="ontainer-POI">
         <h1>{this.state.name}</h1>
         {POI.map((poi, index) => {
            console.log(poi)

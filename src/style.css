@@ -101,6 +101,7 @@ a{
 
 /* general content */
 
+
 .navbar{
   position: fixed;
   top: 0;
@@ -306,6 +307,12 @@ clear: both;
   transform: scaleX(1);
 }
 
+/* create POI conainer */
+.container-POI{
+  margin: 4rem 0;
+}
+
+
 /* profile conainer */
 
 .profileInfo {
@@ -326,13 +333,19 @@ clear: both;
 
 /* ----------- */
 
-.map {
+#map {
   position: relative;
 
   width: 90%;
-  height: 60vh;
+  height: 50vh;
+  border-radius: 3rem;
+  padding-top: 2rem;
+
 }
   .button-save {
     position: relative;
     
+  }
+  .mapboxgl-canvas{
+    margin-left: 9%;
   }
