@@ -20,7 +20,6 @@ export default class CreateTour extends Component {
     tourService
       .create(this.state)
       .then(data => {
-        console.log(data);
         return data;
       })
       .catch(error => console.log(error.response));

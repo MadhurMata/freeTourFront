@@ -6,23 +6,25 @@ import { CLIENT_RENEG_WINDOW } from 'tls';
 export default class Map extends Component {
   state = {
     center: [],
-    listOfPoi: [],
+    
   }
   onDragEnd(marker) {
     var lngLat = marker.getLngLat();
     console.log(lngLat)
+    this.props.sendCenter(lngLat)
       this.setState({
         center: [lngLat.lng, lngLat.lat]
       })
     }
-  handleSubmit = event => {
-    const listOfNewPoints = this.state.listOfPoi.slice();
-    listOfNewPoints.push(this.state.center)
-    console.log(listOfNewPoints)
-    this.setState({
-      listOfPoi: listOfNewPoints
-    })
-  }
+  // handleSubmit = event => {
+  //   const listOfNewPoints = this.state.listOfPoi.slice();
+  //   listOfNewPoints.push(this.state.center)
+  //   this.setState({
+  //     listOfPoi: listOfNewPoints
+  //   })
+  // }
+
+
 getRoute(map) {
   var url =
     `https://api.mapbox.com/directions/v5/mapbox/cycling/2.154007%2C41.390205%3B2.132000%2C41.380000%3B2.153007%2C41.390105%3B2.151007%2C41.390005.json?steps=true&geometries=geojson&access_token=` + mapboxgl.accessToken;
@@ -100,7 +102,7 @@ getRoute(map) {
     return (
         <div>
           <div className ='map' id = 'map' ></div>
-          <button className="button-save" onClick={this.handleSubmit}>Save</button>
+          {/* <button className="button-save" onClick={this.handleSubmit}>Save</button> */}
         </div>
     );
   }
