@@ -37,8 +37,8 @@ class CreatePOI extends Component {
   }
   handleParentSubmit = (e) => {
     e.preventDefault();
-    const { name, city, image, description, location, duration,POI,handleFormSubmit} = this.props 
-    handleFormSubmit( name, city, image, description, location, duration, POI)
+    const { _id, name, city, image, description, location, duration,POI,handleFormSubmit} = this.props 
+    handleFormSubmit( _id, name, city, image, description, location, duration, POI)
   };
 
   handleBoth = (e) =>{
@@ -51,9 +51,6 @@ class CreatePOI extends Component {
   }
 
   render() {
-    if (this.state.redirect) {
-      return <Redirect to={`/user/profile/`} />;
-    } else {
     return (
       <div>
       <Navbar data='data' />
@@ -90,7 +87,6 @@ class CreatePOI extends Component {
       <BottomBar data='data' />
     </div>
     )
-    }
   }
 }
 

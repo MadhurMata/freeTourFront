@@ -19,16 +19,17 @@ class Home extends Component {
   }
 
   getTours = () => {
-    tourService.getTours()
-    // console.log('tours front end', this.state)
-    .then(( data ) => {
-      this.setState({
-        tours: data,
-        searchedTours: data
-      })
-      .catch(error => {
-        console.log("error", error);
-      });
+    tourService
+      .getTours()
+      // console.log('tours front end', this.state)
+      .then(data => {
+        this.setState({
+          tours: data,
+          searchedTours: data
+        })
+        }).catch(error => {
+          console.log("error", error);
+        });
   };
 
   filterItem = itemSearched => {
@@ -36,13 +37,13 @@ class Home extends Component {
     const { tours } = this.state;
     const copyTours = [...tours];
 
-     let toursFiltered = copyTours.filter (tour => {
+    let toursFiltered = copyTours.filter(tour => {
       return tour.city.toLowerCase().search(itemSearched.toLowerCase()) !== -1;
-    });
-    this.setState({
-      searchedTours: toursFiltered,
     })
-  }
+    this.setState({
+      searchedTours: toursFiltered
+    })
+  };
 
   render() {
     const { user } = this.props;
@@ -57,16 +58,17 @@ class Home extends Component {
         </div>
 
         <div className="tours-list">
-         {searchedTours.map((tour, id) => {
-         return (
-           <Link to={`/tour/${tour._id}`}>
-           <Tour
-             key={id}
-             image={tour.image}
-             name={tour.name}
-             city={tour.city}
-           /></Link>
-          );
+          {searchedTours.map((tour, id) => {
+            return (
+              <Link to={`/tour/${tour._id}`}>
+                <Tour
+                  key={id}
+                  image={tour.image}
+                  name={tour.name}
+                  city={tour.city}
+                />
+              </Link>
+            );
           })}
         </div>
         <BottomBar data="data" />

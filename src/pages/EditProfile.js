@@ -3,7 +3,6 @@ import { withAuth } from "../components/AuthProvider";
 import { Redirect } from "react-router-dom";
 import userService from "../lib/user-service";
 import BottomBar from "../components/BottomBar";
-import FileUploader from 'react-firebase-file-uploader';
 import firebase from 'firebase';
 import CustomUploadButton from 'react-firebase-file-uploader/lib/CustomUploadButton';
 
@@ -12,7 +11,6 @@ class EditProfile extends Component {
   state = {
     _id: this.props.match.params.id,
     username: "",
-    // image: "",
     redirect: false,
     avatar: '',
     isUploading: false,
