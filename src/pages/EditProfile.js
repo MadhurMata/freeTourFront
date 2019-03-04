@@ -9,12 +9,18 @@ class EditProfile extends Component {
     _id: this.props.match.params.id,
     username: "",
     image: "",
+    redirect: false
   };
 
   componentDidMount() {}
 
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
+  }
+
   handleFormSubmit = event => {
-    console.log(this.props)
     event.preventDefault();
     const { _id, username, image } = this.state;
     
@@ -24,6 +30,7 @@ class EditProfile extends Component {
     userService
       .edit(_id, { _id, email, password, username, image })
       .then(data => {
+        console.log(this.state)
         const { username, image } = data;
         this.setState({
           username,
@@ -31,8 +38,7 @@ class EditProfile extends Component {
         });
       })
       .then(() => {
-        console.log('pollas en vinagre')
-        return <Redirect to={`/user/profile/${_id}`} />;
+        this.setRedirect()
       })
       .catch(error => console.log(error.response));
   };
@@ -43,7 +49,10 @@ class EditProfile extends Component {
   };
 
   render() {
-    return (
+    if (this.state.redirect){
+      return <Redirect to={`/user/profile/`} />
+    } else{
+      return (
       <div>
         <h1>Edit PROFILE</h1>
         <form>
@@ -81,7 +90,8 @@ class EditProfile extends Component {
         </form>
         <BottomBar />
       </div>
-    );
+      );
+    }
   }
 }
 

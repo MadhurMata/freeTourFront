@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withAuth } from '../components/AuthProvider'
 import userService from '../lib/user-service'
-import {BrowserRouter as Router, Switch, Link} from 'react-router-dom';
+import {BrowserRouter as Link} from 'react-router-dom';
 import Tour from '../components/Tour';
 import BottomBar from '../components/BottomBar';
 import Navbar from '../components/Navbar';
