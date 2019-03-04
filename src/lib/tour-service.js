@@ -28,6 +28,11 @@ class TourService {
       .then(({ data }) => data);
   }
 
+  comment(id, comment){
+    return this.tour.put(`/${id}`, {comment})
+      .then(({ data }) => data);
+  }
+
   delete(id) {
     return this.tour.delete(`/${id}/delete`)
       .then(({ data }) => data);
