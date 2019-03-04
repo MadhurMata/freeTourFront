@@ -21,9 +21,8 @@ class UserService {
 
   edit(id, user) {
     return this.user.put(`/profile/${id}/edit`, {user})
-      .then(({ data }) => data);
-  }
-  
+    .then(({ data }) => data);
+  }  
 
 }
 
