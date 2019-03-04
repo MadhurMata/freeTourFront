@@ -3,10 +3,6 @@ import { withAuth } from '../components/AuthProvider'
 import { Redirect } from "react-router-dom";
 import userService from "../lib/user-service";
 import BottomBar from "../components/BottomBar";
-import addUploadPhoto from "../javascript/uploadPhoto";
-import FileUploader from 'react-firebase-file-uploader';
-import firebase from 'firebase';
-
 
 class EditProfile extends Component {
   state = {
@@ -67,15 +63,13 @@ class EditProfile extends Component {
           </div>
           <div className="flex-create">
             <label for="inp" className="inp">
-              <FileUploader
-              accept="image/*"
-              name="avatar"
-              randomizeFilename
-              storageRef={firebase.storage().ref('images')}
-              onUploadStart={this.handleUploadStart}
-              onUploadError={this.handleUploadError}
-              onUploadSuccess={this.handleUploadSuccess}
-              onProgress={this.handleProgress}
+              <input
+                id="inp"
+                type="text"
+                name="image"
+                placeholder="&nbsp;"
+                value={this.state.image}
+                onChange={this.handleChange}
               />
               <span className="label">Image</span>
               <span className="border" />
