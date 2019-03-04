@@ -10,6 +10,7 @@ import Search from "../components/Search";
 
 class Home extends Component {
   state = {
+    searchedTours: [],
     tours: []
   };
 
@@ -18,13 +19,12 @@ class Home extends Component {
   }
 
   getTours = () => {
-    tourService
-      .getTours()
-      // console.log('tours front end', this.state)
-      .then(data => {
-        this.setState({
-          tours: data
-        });
+    tourService.getTours()
+    // console.log('tours front end', this.state)
+    .then(( data ) => {
+      this.setState({
+        tours: data,
+        searchedTours: data
       })
       .catch(error => {
         console.log("error", error);
@@ -35,24 +35,18 @@ class Home extends Component {
     console.log(itemSearched);
     const { tours } = this.state;
     const copyTours = [...tours];
-    console.log(copyTours);
-    console.log("city", copyTours.POI);
 
-    let toursFiltered = copyTours.filter(tour => {
-      console.log(
-        "hey",
-        tour.city.toLowerCase().search(itemSearched.toLowerCase())
-      );
+     let toursFiltered = copyTours.filter (tour => {
       return tour.city.toLowerCase().search(itemSearched.toLowerCase()) !== -1;
     });
     this.setState({
-      tours: toursFiltered
-    });
-  };
+      searchedTours: toursFiltered,
+    })
+  }
 
   render() {
     const { user } = this.props;
-    const { tours } = this.state;
+    const { searchedTours, tours } = this.state;
     return (
       <div className="home-container">
         <div>
@@ -63,17 +57,16 @@ class Home extends Component {
         </div>
 
         <div className="tours-list">
-          {tours.map((tour, id) => {
-            return (
-              <Link to={`/tour/${tour._id}`}>
-                <Tour
-                  key={id}
-                  image={tour.image}
-                  name={tour.name}
-                  city={tour.city}
-                />
-              </Link>
-            );
+         {searchedTours.map((tour, id) => {
+         return (
+           <Link to={`/tour/${tour._id}`}>
+           <Tour
+             key={id}
+             image={tour.image}
+             name={tour.name}
+             city={tour.city}
+           /></Link>
+          );
           })}
         </div>
         <BottomBar data="data" />
