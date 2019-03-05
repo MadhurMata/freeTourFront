@@ -13,12 +13,13 @@ class CreatePOI extends Component {
     image: "",
     description: "",
     redirect: false,
-    listOfPoi: []
+    listOfPoi: null,
+    lastLocation: ""
 
   }
 
   componentDidUpdate(){
-    console.log(this.state.listOfPoi)
+    //console.log(this.state.listOfPoi)
   }
   handleChange = event => {
     let { name, value } = event.target;
@@ -28,20 +29,21 @@ class CreatePOI extends Component {
   handlePoi = (e) =>{
     e.preventDefault();
     const {pushPoi} = this.props
-    console.log(this.props, "mis props")
+    //console.log(this.props, "mis props")
     const {title, image, description, listOfPoi} = this.state
-    if(!title || !image || !description){
+    if(title && image && description && listOfPoi) {
+      pushPoi({ pushPoi, title, image, description, listOfPoi})
       alert('hay campos vacios')
-    }
-    pushPoi({ pushPoi, title, image, description, listOfPoi})
-    const spot = this.state.spot +1;
-    this.setState({
-      spot,
-      title: "",
-      image: "",
-      description: "",
-      listOfPoi: this.state.center
-    })
+      const spot = this.state.spot +1;
+      this.setState({
+        spot,
+        title: "",
+        image: "",
+        description: "",
+        listOfPoi: [],
+        lastLocation:[this.state.center]
+      })
+      }
   }
   handleParentSubmit = (e) => {
     e.preventDefault();
@@ -50,12 +52,15 @@ class CreatePOI extends Component {
   };
 
   handleBoth = (e) =>{
-    this.handlePoi(e)
-    this.handleParentSubmit(e)
+    const {title, image, description, listOfPoi} = this.state
+    if(title || image || description || listOfPoi){
+      this.handlePoi(e)
+      this.handleParentSubmit(e)
+    }
     this.setState({
       redirect: true
     })
-    console.log('saluditoooooooooooooooss', this.props)
+    //console.log('saluditoooooooooooooooss', this.props)
   }
 
   receiveCenter = (center) => {

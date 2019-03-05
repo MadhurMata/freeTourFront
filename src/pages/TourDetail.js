@@ -3,6 +3,7 @@ import tourService from "../lib/tour-service";
 import { BrowserRouter as Router, Switch, Link } from "react-router-dom";
 import { Redirect } from "react-router";
 import { withAuth } from "../components/AuthProvider";
+import TourRoute from "../components/TourRoute";
 
 class TourDetail extends Component {
   state = {
@@ -89,6 +90,9 @@ class TourDetail extends Component {
             <p>{tour.description}</p>
             <div className="detailCardImg">
               <img src={tour.image} alt="" />
+            </div>
+            <div>
+            <TourRoute id={this.state.id}/>
             </div>
           </div>
           {this.isOwner()}

@@ -2,62 +2,58 @@ import React, { Component } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import tourService from '../lib/tour-service'
+import { element } from 'prop-types';
 
-export default class Map extends Component {
+
+export default class TourRoute extends Component {
   state = {
+    id: this.props.id,
     center: [],
-    tours: []
+    tour: [],
+    loading: true,
+    map: null,
   }
 
-
   componentDidUpdate() {
-    console.log('this tours', this.state.tours)
+    
   }
 
   getTours = () => {
-    tourService.getTours()
+    tourService.showTour(this.state.id)
       .then((data) => {
+        const mapConfig = {
+          container: 'map',
+          style: 'mapbox://styles/ismaeljaouhar/cjsu6nqjy4krf1fn7qmru3zrr',
+          center: [2.15, 41.39],
+          zoom: 13,
+        };
+        mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_KEY}`;
+        this.map = new mapboxgl.Map(mapConfig);
         this.setState({
-          tours: data,
-        }, () => {
-          const mapConfig = {
-            container: 'map',
-            style: 'mapbox://styles/ismaeljaouhar/cjsu6nqjy4krf1fn7qmru3zrr',
-            center: [2.15, 41.39],
-            zoom: 13,
-          };
-          mapboxgl.accessToken = 'pk.eyJ1IjoiaXNtYWVsamFvdWhhciIsImEiOiJjanMzZDBobzYwaHZ0NDNwbXlhdHM5eDF2In0.PT_A0flp8x4mH78w-JOegA';
-          this.map = new mapboxgl.Map(mapConfig);
-          this.getRoute(this.map);
-          this.geolocate = new mapboxgl.GeolocateControl({
-            positionOptions: {
-              enableHighAccuracy: true
-            },
-            trackUserLocation: true
-          });
-
-          this.map.addControl(this.geolocate);
-
-
+          map: this.map,
         })
+        this.getRoute(this.map);
+        this.geolocate = new mapboxgl.GeolocateControl({
+          positionOptions: {
+            enableHighAccuracy: true
+          },
+          trackUserLocation: true
+        });
+        this.map.addControl(this.geolocate);
+        this.setState({
+          tour: data,
+          loading:false,
+          map: this.map,
+        })
+      
       })
       .catch((error) => {
         console.log('error', error);
       })
   }
 
-  paintPoints =() =>{
-    const { tours } = this.state;
-    console.log(tours)
-  }
-
   getRoute(map) {
-    const { tours } = this.state
-    console.log("mis tours in map", tours)
-    // const lat = tours[10].POI[0].listOfPoi.lat
-    // const lon = tours[10].POI[0].listOfPoi.lon
-    // console.log(lat)
-
+    const { tour } = this.state
     var url =
       `https://api.mapbox.com/directions/v5/mapbox/cycling/2.154007%2C41.390205%3B2.132000%2C41.380000%3B2.153007%2C41.390105%3B2.151007%2C41.390005.json?steps=true&geometries=geojson&access_token=` + mapboxgl.accessToken;
     fetch(url)
@@ -66,7 +62,6 @@ export default class Map extends Component {
           .then((data) => {
             var data = data.routes[0];
             var route = data.geometry;
-            console.log(route)
             map.on('load', () => {
               map.addLayer({
                 "id": "route",
@@ -97,20 +92,33 @@ export default class Map extends Component {
   }
   componentDidMount() {
     this.getTours()
-
-
   }
 
-
-  createNewMarker(coordinateX, coordinateY) {
-    this.marker = new mapboxgl.Marker({ name: 'a', anchor: 'center', color: 'red', draggable: true, })
-      .setLngLat([coordinateX, coordinateY])
-      .addTo(this.map);
-    this.marker.on('dragend', () => this.onDragEnd(this.marker));
+  paintPoints = () =>{
+    const { tour } = this.state;
+    if(tour.POI){
+      for (let i = 0; i < tour.POI.length; i++){
+        if(tour.POI[i].listOfPoi.lng){
+            new mapboxgl.Marker({
+              anchor: 'center',
+              color: '#f8683f'
+            })
+            .setLngLat([ tour.POI[i].listOfPoi.lng, tour.POI[i].listOfPoi.lat ]).addTo(this.state.map);
+        }
+      }
+    }
+  
   }
+
+  
   render() {
+    if(this.state.map) {
+      this.paintPoints();
+    }
+    
     return (
       <div>
+      {/* {!this.state.loading && this.paintPoints()} */}
         <div className='map' id='map' ></div>
       </div>
     );

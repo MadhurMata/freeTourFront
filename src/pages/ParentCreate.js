@@ -22,7 +22,7 @@ export default class ParentCreate extends Component {
   }
 
   componentDidUpdate(){
-    console.log('mi array de pois funcionando',this.state.POI)
+    //console.log('mi array de pois funcionando',this.state.POI)
   }
 
   toggleForm = () =>{
@@ -58,7 +58,8 @@ export default class ParentCreate extends Component {
   }
 
   pushPoi = (poi) =>{
-    let newPoi = this.state.POI.push(poi)
+    const newPoi = this.state.POI
+    newPoi.push(poi)
     this.setState({
       poi: newPoi
     })
@@ -89,7 +90,7 @@ export default class ParentCreate extends Component {
   render() {
 
     const {POI} = this.state
-    console.log(this.state)
+    //console.log(this.state)
     
       if(this.state.redirect){
       return <Redirect to={`/tour/${this.state._id}`} />;
@@ -99,7 +100,7 @@ export default class ParentCreate extends Component {
         <div className="container-POI">
           <h1>{this.state.name}</h1>
           {POI.map((poi, index) => {
-            console.log(poi)
+            //console.log(poi)
           return (
             <h1 key={index}>{poi.title}</h1>
             );
