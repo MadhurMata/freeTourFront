@@ -14,10 +14,6 @@ export default class TourRoute extends Component {
     map: null,
   }
 
-  componentDidUpdate() {
-    
-  }
-
   getTours = () => {
     tourService.showTour(this.state.id)
       .then((data) => {
