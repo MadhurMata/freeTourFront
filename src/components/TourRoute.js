@@ -118,7 +118,6 @@ export default class TourRoute extends Component {
     
     return (
       <div>
-      {/* {!this.state.loading && this.paintPoints()} */}
         <div className='map' id='map' ></div>
       </div>
     );
