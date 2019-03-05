@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
+import { Redirect } from "react-router-dom";
+import { withAuth } from "../components/AuthProvider";
 import Navbar from '../components/Navbar';
 import BottomBar from '../components/BottomBar';
 import Map from '../components/Map';
 
 
-export default class CreatePOI extends Component {
+class CreatePOI extends Component {
   state = {
     spot: 1,
     title: "",
     image: "",
     description: "",
+    redirect: false,
     listOfPoi: []
 
   }
@@ -42,15 +45,17 @@ export default class CreatePOI extends Component {
   }
   handleParentSubmit = (e) => {
     e.preventDefault();
-    const { name, city, image, description, location, duration,POI,handleFormSubmit} = this.props 
-    handleFormSubmit( name, city, image, description, location, duration,POI)
+    const { _id, name, city, image, description, location, duration,POI,handleFormSubmit} = this.props 
+    handleFormSubmit( _id, name, city, image, description, location, duration, POI)
   };
 
   handleBoth = (e) =>{
-    
     this.handlePoi(e)
     this.handleParentSubmit(e)
-    // console.log('saluditoooooooooooooooss', this.props)
+    this.setState({
+      redirect: true
+    })
+    console.log('saluditoooooooooooooooss', this.props)
   }
 
   receiveCenter = (center) => {
@@ -102,3 +107,5 @@ export default class CreatePOI extends Component {
     )
   }
 }
+
+export default withAuth(CreatePOI);

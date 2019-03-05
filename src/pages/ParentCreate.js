@@ -7,11 +7,9 @@ import Map from '../components/Map';
 
 
 
-
-
-
 export default class ParentCreate extends Component {
   state = {
+    _id: "",
     stage: 0,
     name: "",
     image: "",
@@ -28,12 +26,13 @@ export default class ParentCreate extends Component {
   }
 
   toggleForm = () =>{
-    const { name, city, image, description, location, duration,POI, stage } = this.state;
+    const { _id, name, city, image, description, location, duration,POI, stage } = this.state;
     if(stage === 0 ){
      return <CreateTour
      changeStage={this.changeStage} />
     } else if (stage === 1 ){
-      return <div><CreatePOI 
+      return <CreatePOI 
+      id={_id}
       name={name}
       image={image}
       city={city}
@@ -44,7 +43,6 @@ export default class ParentCreate extends Component {
       pushPoi = {this.pushPoi}
       handleFormSubmit = {this.handleFormSubmit}
       />
-      </div>
     }
   }
 
@@ -71,27 +69,44 @@ export default class ParentCreate extends Component {
     .then((data) => {
       return data  })
     .then((data) => {
-      console.log("dame la", data)
-        console.log(data._id)
-      return <Redirect to={`tour/${data._id}`} />;
+      const {_id, name, city, image, description, location, duration,POI } = data
+      this.setState({
+        _id, 
+        name, 
+        city, 
+        image, 
+        description, 
+        location, 
+        duration,
+        POI,
+        redirect: true
+      })
+      
     })
     .catch(error => console.log(error.response));
   };
 
   render() {
+
     const {POI} = this.state
     console.log(this.state)
-    return (
-      <div className="container-POI">
-        <h1>{this.state.name}</h1>
-        {POI.map((poi, index) => {
-           console.log(poi)
-         return (
-          <h1 key={index}>{poi.title}</h1>
-          );
-          })}
-        {this.toggleForm()}
-      </div>
-    )
+    
+      if(this.state.redirect){
+      return <Redirect to={`/tour/${this.state._id}`} />;
+    }
+    else {
+      return (
+        <div className="container-POI">
+          <h1>{this.state.name}</h1>
+          {POI.map((poi, index) => {
+            console.log(poi)
+          return (
+            <h1 key={index}>{poi.title}</h1>
+            );
+            })}
+          {this.toggleForm()}
+        </div>
+      )
+    }
   }
 }

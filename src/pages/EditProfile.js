@@ -12,7 +12,6 @@ class EditProfile extends Component {
   state = {
     _id: this.props.match.params.id,
     username: "",
-    // image: "",
     redirect: false,
     avatar: '',
     isUploading: false,
