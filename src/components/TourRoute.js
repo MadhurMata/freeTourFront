@@ -97,7 +97,7 @@ export default class TourRoute extends Component {
   paintPoints = () =>{
     const { tour } = this.state;
     if(tour.POI){
-      for (var i = 0; i < tour.POI.length-1; i++){
+      for (let i = 0; i < tour.POI.length; i++){
         if(tour.POI[i].listOfPoi.lng){
             new mapboxgl.Marker({
               anchor: 'center',
