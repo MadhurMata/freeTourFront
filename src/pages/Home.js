@@ -46,7 +46,6 @@ class Home extends Component {
   };
 
   render() {
-    console.log('home props', this.props)
     const { user } = this.props;
     const { searchedTours, tours } = this.state;
     return (

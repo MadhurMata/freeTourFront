@@ -11,7 +11,6 @@ isUserHome = () => {
 }
 
   render() {
-    console.log('boton props HOME', this.props)
     return (
       <div>
         <Link to="/">

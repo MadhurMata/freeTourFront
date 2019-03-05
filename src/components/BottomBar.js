@@ -8,7 +8,6 @@ import BtnProfile from '../components/BtnProfile';
 class Bottombar extends Component {
 
   render() {
-    console.log('showing BOTTOMBAR', this.props)
     const { isLogged, user, logout } = this.props;
     const { username } = user;
     if (isLogged) {

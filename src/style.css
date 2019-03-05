@@ -323,7 +323,6 @@ clear: both;
 .profileInfo img{
   border-radius: 50%;
   width: 10rem;
-  transform: rotate(90deg);
   margin-bottom: 30px
 }
 
