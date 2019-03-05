@@ -353,6 +353,7 @@ clear: both;
     
   }
   .mapboxgl-canvas{
+    position: absolute;
     margin-left: 9%;
   }
 
@@ -377,5 +378,10 @@ clear: both;
   }
 
   div.mapboxgl-ctrl.mapboxgl-ctrl-group{
+    position: absolute;
     margin-top: 3rem;
+  }
+
+  .mapboxgl-marke path{
+    position: absolute;
   }

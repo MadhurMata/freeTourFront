@@ -100,14 +100,20 @@ export default class TourRoute extends Component {
       for (let i = 0; i < tour.POI.length; i++){
         if(tour.POI[i].listOfPoi.lng){
             new mapboxgl.Marker({
-              anchor: 'center',
-              color: '#f8683f'
+              name: 'HOLA',
+              color:'red', 
             })
-            .setLngLat([ tour.POI[i].listOfPoi.lng, tour.POI[i].listOfPoi.lat ]).addTo(this.state.map);
+            .setLngLat([ tour.POI[i].listOfPoi.lng, tour.POI[i].listOfPoi.lat ])
+            .addTo(this.state.map);
+            new mapboxgl.Popup({
+              closeOnClick: false,
+            })
+            .setLngLat([ tour.POI[i].listOfPoi.lng, tour.POI[i].listOfPoi.lat ])
+            .setHTML(tour.POI[i].title)
+            .addTo(this.state.map);
         }
       }
     }
-  
   }
 
   
@@ -118,7 +124,6 @@ export default class TourRoute extends Component {
     
     return (
       <div>
-      {/* {!this.state.loading && this.paintPoints()} */}
         <div className='map' id='map' ></div>
       </div>
     );
