@@ -40,7 +40,7 @@ class ProfilePage extends Component {
           />
           <label>Avatar:</label>
           {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
-          {this.state.avatarURL && <img src={this.state.avatarURL} />}
+          {this.state.avatarURL && <img src={this.state.avatarURL} alt=""/>}
           <FileUploader
             accept="image/*"
             name="avatar"

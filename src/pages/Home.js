@@ -46,6 +46,7 @@ class Home extends Component {
   };
 
   render() {
+    console.log('home props', this.props)
     const { user } = this.props;
     const { searchedTours, tours } = this.state;
     return (
@@ -71,7 +72,7 @@ class Home extends Component {
             );
           })}
         </div>
-        <BottomBar data="data" />
+        <BottomBar path={this.props.match.path} data="data" />
       </div>
     );
   }

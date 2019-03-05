@@ -77,7 +77,7 @@ class Profile extends Component {
           </Link>
           );
         })}
-        <BottomBar/>
+        <BottomBar pathname={this.props.location.pathname}/>
       </div>
     )
   }
