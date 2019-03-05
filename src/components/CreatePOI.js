@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import { withAuth } from "../components/AuthProvider";
 import Navbar from '../components/Navbar';
 import BottomBar from '../components/BottomBar';
+import Map from '../components/Map';
 
 
 class CreatePOI extends Component {
@@ -12,8 +13,13 @@ class CreatePOI extends Component {
     image: "",
     description: "",
     redirect: false,
+    listOfPoi: []
+
   }
 
+  componentDidUpdate(){
+    console.log(this.state.listOfPoi)
+  }
   handleChange = event => {
     let { name, value } = event.target;
     this.setState({ [name]: value });
@@ -22,17 +28,19 @@ class CreatePOI extends Component {
   handlePoi = (e) =>{
     e.preventDefault();
     const {pushPoi} = this.props
-    const {title, image, description} = this.state
+    console.log(this.props, "mis props")
+    const {title, image, description, listOfPoi} = this.state
     if(!title || !image || !description){
       alert('hay campos vacios')
     }
-    pushPoi({ pushPoi, title, image, description })
+    pushPoi({ pushPoi, title, image, description, listOfPoi})
     const spot = this.state.spot +1;
     this.setState({
       spot,
       title: "",
       image: "",
       description: "",
+      listOfPoi: this.state.center
     })
   }
   handleParentSubmit = (e) => {
@@ -49,6 +57,14 @@ class CreatePOI extends Component {
     })
     console.log('saluditoooooooooooooooss', this.props)
   }
+
+  receiveCenter = (center) => {
+    this.setState({
+      listOfPoi: center,
+    })
+    
+  } 
+  
 
   render() {
     return (
@@ -83,6 +99,8 @@ class CreatePOI extends Component {
             <button onClick={this.handleBoth}>Save Tour</button>
           </div>
         </form>
+        <Map sendCenter={this.receiveCenter}/>
+
       </div>
       <BottomBar data='data' />
     </div>

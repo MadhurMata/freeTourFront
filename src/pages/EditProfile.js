@@ -3,6 +3,7 @@ import { withAuth } from "../components/AuthProvider";
 import { Redirect } from "react-router-dom";
 import userService from "../lib/user-service";
 import BottomBar from "../components/BottomBar";
+import Navbar from '../components/Navbar';
 import firebase from 'firebase';
 import CustomUploadButton from 'react-firebase-file-uploader/lib/CustomUploadButton';
 
@@ -81,7 +82,7 @@ handleUploadSuccess = (filename) => {
     } else {
       return (
         <div>
-          <h1>Edit PROFILE</h1>
+          <Navbar data='data' />
           <form>
             <div className="flex-create">
               <label for="inp" className="inp">
@@ -122,7 +123,7 @@ handleUploadSuccess = (filename) => {
               <button onClick={this.handleFormSubmit}>Save</button>
             </div>
           </form>
-          <BottomBar />
+          <BottomBar data='data' />
         </div>
       );
     }
