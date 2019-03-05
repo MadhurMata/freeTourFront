@@ -33,7 +33,11 @@ class TourService {
       .then(({ data }) => data);
   }
 
+  
+
 }
+
+
 
 const tourService = new TourService();
 

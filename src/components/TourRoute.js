@@ -16,9 +16,7 @@ export default class Map extends Component {
 
   getTours = () => {
     tourService.getTours()
-      // console.log('tours front end', this.state)
       .then((data) => {
-        console.log("data in map", data)
         this.setState({
           tours: data,
         }, () => {
@@ -28,7 +26,8 @@ export default class Map extends Component {
             center: [2.15, 41.39],
             zoom: 13,
           };
-          mapboxgl.accessToken = process.env.MAPBOX_KEY;
+          mapboxgl.accessToken='pk.eyJ1IjoiaXNtYWVsamFvdWhhciIsImEiOiJjanMzZDBobzYwaHZ0NDNwbXlhdHM5eDF2In0.PT_A0flp8x4mH78w-JOegA';
+          
           this.map = new mapboxgl.Map(mapConfig);
           this.getRoute(this.map);
           this.geolocate = new mapboxgl.GeolocateControl({
@@ -48,15 +47,19 @@ export default class Map extends Component {
       })
   }
 
+  paintPoints =() =>{
+    const { tours } = this.state;
+    console.log(tours, "en paintPoints")
+  }
+
   getRoute(map) {
     const { tours } = this.state
     console.log("mis tours in map", tours)
     // const lat = tours[10].POI[0].listOfPoi.lat
     // const lon = tours[10].POI[0].listOfPoi.lon
     // console.log(lat)
-
     var url =
-      `https://api.mapbox.com/directions/v5/mapbox/cycling/2.154007%2C41.390205%3B2.132000%2C41.380000%3B2.153007%2C41.390105%3B2.151007%2C41.390005.json?steps=true&geometries=geojson&access_token=` + mapboxgl.accessToken;
+      `https://api.mapbox.com/directions/v5/mapbox/cycling/2.154007%2C41.390205%3B2.132000%2C41.380000%3B2.153007%2C41.390105%3B2.151007%2C41.390005.json?steps=true&geometries=geojson&access_token=${process.env.MAPBOX_KEY}`;
     fetch(url)
       .then((response) => {
         response.json()
