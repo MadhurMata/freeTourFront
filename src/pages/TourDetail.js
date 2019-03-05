@@ -10,16 +10,18 @@ class TourDetail extends Component {
     tour: {},
     redirect: false,
     comments: [],
-    commentInput: ""
+    comment: ""
   };
 
   componentDidMount() {
     this.showTour();
   }
+
   showTour = () => {
     tourService.showTour(this.state.id).then(tour => {
       this.setState({
-        tour: tour
+        tour: tour,
+        comments: tour.comments
       });
     });
   };
@@ -36,7 +38,7 @@ class TourDetail extends Component {
       .catch(error => console.log(error.response));
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     let { value } = event.target;
     console.log(value);
     this.setState({
@@ -44,24 +46,20 @@ class TourDetail extends Component {
     });
   };
 
-  pushComment = e => {
+  handleFormSubmit = (event) => {
+    event.preventDefault();
+    const newComment = {
+      comment: this.state.comment,
+      owner: this.props.user.username,
+    }
+    const newCommentsList = [newComment, ...this.state.comments]
     this.setState({
-      comments: [...this.state.comments, this.state.comment]
-    });
-    console.log("this are", this.state.comments);
+      comments: newCommentsList,
+      comment: ''
+    })
+    tourService.comment(this.state.id, newCommentsList)
+    .catch(error => console.log('errorsito',error.response));
   };
-
-  handleFormSubmit = event => {
-        event.preventDefault();
-        tourService.comment(this.state.id, this.state.comments)
-        .then(()=>{
-          this.pushComment(event)
-        })
-        .then((data) => {
-          return data
-        })
-        .catch(error => console.log('errorsito',error.response));
-      };
 
   isOwner = () => {
     const { tour } = this.state;
@@ -79,7 +77,7 @@ class TourDetail extends Component {
   render() {
     const { redirect } = this.state;
     const { tour } = this.state;
-    const { comments } = this.state
+    const { comments } =  this.state;
     const { username } = this.props.user
     if (redirect) {
       return <Redirect to="/user/profile" />;
@@ -100,6 +98,7 @@ class TourDetail extends Component {
                 type="text"
                 name="comments"
                 onChange={this.handleChange}
+                value={this.state.comment}
                 placeholder="Write a comment here..."
               />
               <button type="submit">Comment</button>
@@ -108,11 +107,10 @@ class TourDetail extends Component {
           <h1>Comments</h1>
           <div className="commentSection">
             {comments.map((comment, id) => {
-              console.log(comments, username);
               return (
                 <div className="commentBox" key = {id} username = {username}>
-                  <h1>{username} said:</h1>
-                  <p>{comment}</p>
+                  <h1>{comment.owner} said:</h1>
+                  <p>{comment.comment}</p>
                 </div>
               );
             })}
