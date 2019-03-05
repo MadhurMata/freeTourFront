@@ -26,7 +26,8 @@ export default class Map extends Component {
             center: [2.15, 41.39],
             zoom: 13,
           };
-          mapboxgl.accessToken = 'pk.eyJ1IjoiaXNtYWVsamFvdWhhciIsImEiOiJjanMzZDBobzYwaHZ0NDNwbXlhdHM5eDF2In0.PT_A0flp8x4mH78w-JOegA';
+          console.log("MAPBOX KEY ", process.env.REACT_APP_MAPBOX_KEY);
+          mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_KEY}`;
           this.map = new mapboxgl.Map(mapConfig);
           this.getRoute(this.map);
           this.geolocate = new mapboxgl.GeolocateControl({

@@ -9,7 +9,7 @@ class TourService {
   }
 
   create(tour) {
-    return this.tour.post('tour/create', tour)
+    return this.tour.post('/tour/create', tour)
       .then(({ data }) => data);
   }
 
@@ -33,7 +33,7 @@ class TourService {
       .then(({ data }) => data);
   }
 
-  
+
 
 }
 
