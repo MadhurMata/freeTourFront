@@ -21,7 +21,6 @@ export default class TourRoute extends Component {
   getTours = () => {
     tourService.showTour(this.state.id)
       .then((data) => {
-        console.log("enseñame toda la data",data)
         const mapConfig = {
           container: 'map',
           style: 'mapbox://styles/ismaeljaouhar/cjsu6nqjy4krf1fn7qmru3zrr',
@@ -97,7 +96,6 @@ export default class TourRoute extends Component {
 
   paintPoints = () =>{
     const { tour } = this.state;
-    console.log(tour.POI)
     if(tour.POI){
       for (var i = 0; i < tour.POI.length-1; i++){
         if(tour.POI[i].listOfPoi.lng){
