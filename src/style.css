@@ -206,8 +206,8 @@ clear: both;
   box-shadow: -5px -5px 15px 0px #11d0cf, 3px 4px 20px 5px #eb7ab7;
   width: 90vw;
   margin: 0 auto;
-  margin-top: 4rem;
   border-radius: 2rem;
+  padding-bottom: 2rem;
 }
 
 .tours-list{
@@ -215,8 +215,8 @@ clear: both;
 }
 
 .create-box h1{
-  padding: 2rem 0 0 1rem;
-
+  padding: 0.7rem 0 0 0rem;
+  text-align: center;
 }
 
 .create-btn{
@@ -307,6 +307,16 @@ clear: both;
   transform: scaleX(1);
 }
 
+.create-btn {
+  background-color: rgb(17,208,207);
+  padding: 8px 55px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 2rem;
+  color:white;
+
+}
+
 /* create POI conainer */
 .container-POI{
   margin: 4rem 0;
@@ -335,12 +345,9 @@ clear: both;
 
 #map {
   position: relative;
-
   width: 90%;
   height: 50vh;
-  border-radius: 3rem;
   padding-top: 2rem;
-
 }
   .button-save {
     position: relative;
@@ -353,12 +360,11 @@ clear: both;
   .mapboxgl-ctrl input{
     position: absolute;
     top: 0rem;
-    right: 1.7rem;
-    border: 1px solid grey;
-    border-radius: 1rem;
+    right: 0.1rem;
+    border: 1px solid rgb(109, 108, 108);
+    border-radius: 0.5rem;
     text-align: center;
     font-size: 1.1rem;
-
   }
 
   ul.suggestions{
