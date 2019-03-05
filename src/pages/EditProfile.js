@@ -12,7 +12,6 @@ class EditProfile extends Component {
   state = {
     _id: this.props.match.params.id,
     username: "",
-    // image: "",
     redirect: false,
     avatar: '',
     isUploading: false,
@@ -77,6 +76,7 @@ handleUploadSuccess = (filename) => {
   };
 
   render() {
+    console.log('EDIT PROPS', this.props)
     const { avatarURL, username, location, progress, isUploading } = this.state;
     if (this.state.redirect) {
       return <Redirect to={`/user/profile/`} />;

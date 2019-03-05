@@ -67,7 +67,7 @@ class Profile extends Component {
           <Link to={`/user/profile/${this.state._id}/edit`}>Edit</Link>
         </div>
         {tours.map((tour, id) => {
-        console.log(tours)
+
         return (
           <Link to={`/tour/${tour._id}`}>
             <Tour
@@ -77,7 +77,7 @@ class Profile extends Component {
           </Link>
           );
         })}
-        <BottomBar/>
+        <BottomBar pathname={this.props.location.pathname}/>
       </div>
     )
   }
