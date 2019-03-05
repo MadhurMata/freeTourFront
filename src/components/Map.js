@@ -33,7 +33,6 @@ export default class Map extends Component {
     });
     
     this.map.addControl(this.geolocate);
-    this.map.addControl(new mapboxgl.NavigationControl())
     const geocoder = new MapboxGeocoder({
       accessToken: mapboxgl.accessToken
     })
