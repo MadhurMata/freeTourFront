@@ -90,14 +90,13 @@ export default class ParentCreate extends Component {
 
     const {POI} = this.state
     console.log(this.state)
-<<<<<<< HEAD
     
       if(this.state.redirect){
       return <Redirect to={`/tour/${this.state._id}`} />;
     }
     else {
       return (
-        <div>
+        <div className="container-POI">
           <h1>{this.state.name}</h1>
           {POI.map((poi, index) => {
             console.log(poi)
@@ -109,19 +108,5 @@ export default class ParentCreate extends Component {
         </div>
       )
     }
-=======
-    return (
-      <div className="container-POI">
-        <h1>{this.state.name}</h1>
-        {POI.map((poi, index) => {
-           console.log(poi)
-         return (
-          <h1 key={index}>{poi.title}</h1>
-          );
-          })}
-        {this.toggleForm()}
-      </div>
-    )
->>>>>>> cb13932b747f26050f6036dcdf6e0bf10b4fb994
   }
 }
