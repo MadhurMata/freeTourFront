@@ -28,6 +28,11 @@ class TourService {
       .then(({ data }) => data);
   }
 
+  comment(id, comments){
+    return this.tour.put(`/comment/${id}`, comments) //comments es el objeto body que axios te permite crear
+      .then(({ data }) => data);
+  }
+
   delete(id) {
     return this.tour.delete(`/${id}/tour/delete`)
       .then(({ data }) => data);
