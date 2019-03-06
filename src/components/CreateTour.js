@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import tourService from "../lib/tour-service";
 import Navbar from '../components/Navbar';
 import BottomBar from '../components/BottomBar';
+import CustomUploadButton from "react-firebase-file-uploader/lib/CustomUploadButton";
+import firebase from "firebase";
 
 
 export default class CreateTour extends Component {
@@ -12,7 +14,10 @@ export default class CreateTour extends Component {
     description: "",
     location: "",
     duration: "",
-    POI: []
+    POI: [],
+    avatar: "",
+    isUploading: false,
+    progress: 0,
   };
 
   handleFormSubmit = event => {
@@ -38,7 +43,41 @@ export default class CreateTour extends Component {
    changeStage({newStage, name, image, city, description, duration})
   }
 
+  handleUploadStart = () =>
+    this.setState({
+      isUploading: true,
+      progress: 0
+    });
+  handleProgress = progress =>
+    this.setState({
+      progress
+    });
+  handleUploadError = error => {
+    this.setState({
+      isUploading: false
+    });
+    console.error(error);
+  };
+  handleUploadSuccess = filename => {
+    this.setState({
+      avatar: filename,
+      progress: 100,
+      isUploading: false
+    });
+    firebase
+      .storage()
+      .ref("images")
+      .child(filename)
+      .getDownloadURL()
+      .then(url =>
+        this.setState({
+         image: url
+        })
+      );
+  };
+
   render() {
+    const { progress, isUploading } = this.state;
     return (
       <div>
         <Navbar data='data' />
@@ -61,13 +100,6 @@ export default class CreateTour extends Component {
             </div>
             <div className="flex-create">
               <label for="inp" className="inp" >
-                <input id="inp" type="text" name="image" placeholder="&nbsp;" value={this.state.image} onChange={this.handleChange}/>
-                <span className="label">Image</span>
-                <span className="border"></span>
-              </label>
-            </div>
-            <div className="flex-create">
-              <label for="inp" className="inp" >
                 <input id="inp" type="text" name="description" placeholder="&nbsp;" value={this.state.description} onChange={this.handleChange}/>
                 <span className="label">Description</span>
                 <span className="border"></span>
@@ -79,6 +111,20 @@ export default class CreateTour extends Component {
                 <span className="label">Duration</span>
                 <span className="border"></span>
               </label>
+            </div>
+            <div>
+              <CustomUploadButton
+                className="uploadButton"
+                accept="image/*"
+                storageRef={firebase.storage().ref("images")}
+                onUploadStart={this.handleUploadStart}
+                onUploadError={this.handleUploadError}
+                onUploadSuccess={this.handleUploadSuccess}
+                onProgress={this.handleProgress}
+              >
+                Select a photo from the gallery
+              </CustomUploadButton>
+              {isUploading && <p> Progress: {progress} </p>}
             </div>
               <button className="create-btn" onClick={this.handleStage} >Next</button>
           </form>
