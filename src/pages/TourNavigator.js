@@ -57,7 +57,7 @@ export default class TourNavigation extends Component {
           <Navbar data="data" />
           <TourRoute id={this.state.id} />
           <h2>Points of interest</h2>
-          <div className="tours-list">
+          <div className="tours-poi">
             {tour.POI.map((tour, id) => {
               return (
                 <div key={id}>

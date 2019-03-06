@@ -404,11 +404,11 @@ clear: both;
 
   /* Tour Navigator page */
 
-  .tours-list {
+  .tours-poi {
     display: grid;
     grid-template-columns: 1fr 1fr;
   } 
 
-  .tours-list h3{
+  .tours-poi h3{
     font-size: 1rem;
   } 
