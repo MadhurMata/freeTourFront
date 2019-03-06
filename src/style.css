@@ -401,3 +401,14 @@ clear: both;
   .commentTitle{
     font-size: 2rem;
   }
+
+  /* Tour Navigator page */
+
+  .tours-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  } 
+
+  .tours-list h3{
+    font-size: 1rem;
+  } 

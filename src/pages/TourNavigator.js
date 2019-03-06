@@ -56,31 +56,20 @@ export default class TourNavigation extends Component {
         <div>
           <Navbar data="data" />
           <TourRoute id={this.state.id} />
+          <h2>Points of interest</h2>
           <div className="tours-list">
             {tour.POI.map((tour, id) => {
               return (
                 <div key={id}>
 
-                  <button onClick={() => { this.makeChange(id) }}>Button</button>
-
+                  <button onClick={() => { this.makeChange(id) }}>
                   <h3>{tour.title}</h3>
-                  <img src={tour.image}></img>
+                  <img src={tour.image}></img></button>
                 </div>
               );
             })}
           </div>
-          <PoiDetail poi={this.state.selectedPoi}
-            anchorReference="anchorPosition"
-            anchorPosition={{ top: 100, left: 100 }}
-            anchorOrigin={{
-              vertical: 'center',
-              horizontal: 'center',
-            }}
-            transformOrigin={{
-              vertical: 'center',
-              horizontal: 'center',
-            }}
-          >
+          <PoiDetail poi={this.state.selectedPoi}>
           </PoiDetail>
 
           <BottomBar path={this.props.match.path} data="data" />

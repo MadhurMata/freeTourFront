@@ -3,7 +3,7 @@ import tourService from "../lib/tour-service";
 import { BrowserRouter as Router, Switch, Link } from "react-router-dom";
 import { Redirect } from "react-router";
 import { withAuth } from "../components/AuthProvider";
-import TourRoute from "../components/TourRoute";
+import TourMarkers from "../components/TourMarkers";
 import BottomBar from "../components/BottomBar";
 class TourDetail extends Component {
   state = {
@@ -70,7 +70,7 @@ class TourDetail extends Component {
   };
   render() {
     const { redirect } = this.state;
-    const { tour } = this.state;
+    const { tour, id } = this.state;
     const { comments } = this.state;
     const { username } = this.props.user;
     if (redirect) {
@@ -87,10 +87,10 @@ class TourDetail extends Component {
               <p>{tour.description}</p>
             </div>
             <div className="startBtnContainer">
-              <Link className="startTourBtn" to="#">Start</Link>
+              <Link className="startTourBtn" to={`/tour/${id}/navigator`}>Start</Link>
             </div>
             <div>
-              <TourRoute id={this.state.id} />
+              <TourMarkers id={this.state.id} />
             </div>
           </div>
           {this.isOwner()}
