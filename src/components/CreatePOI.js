@@ -60,7 +60,6 @@ class CreatePOI extends Component {
     this.setState({
       redirect: true
     })
-    //console.log('saluditoooooooooooooooss', this.props)
   }
 
   receiveCenter = (center) => {

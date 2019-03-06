@@ -19,7 +19,7 @@ export default class Map extends Component {
   componentDidMount() {
     const mapConfig = {
       container: 'map',
-      style: 'mapbox://styles/ismaeljaouhar/cjsu6nqjy4krf1fn7qmru3zrr',
+      style: 'mapbox://styles/ismaeljaouhar/cjsxi2yln1ean1hmsrey6rsbx',
       center: [2.15, 41.39],
       zoom: 13,
     };
