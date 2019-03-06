@@ -19,8 +19,6 @@ class CreatePOI extends Component {
     avatar: "",
     isUploading: false,
     progress: 0,
-    avatarURL: this.props.user.image
-
   }
 
   handleChange = event => {
