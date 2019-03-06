@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 import Tour from '../components/Tour';
 import BottomBar from '../components/BottomBar';
 import Navbar from '../components/Navbar';
-
+import authService from '../lib/auth-service';
 class Profile extends Component {
   state = {
     _id: this.props.user._id,
@@ -13,13 +13,11 @@ class Profile extends Component {
     user: [],
     tours: []
   }
-
   componentDidMount() {
     console.log(this.props.user)
     console.log(this.props.user.image)
     this.getMyTours()
   }
-
   getMyTours = () => {
     userService.getMyTours()
       .then((data) => {
@@ -41,7 +39,9 @@ class Profile extends Component {
         console.log('error', error);
       })
   }
-
+  handlelogOut = () =>{
+    authService.logout()
+  }
   setImage = () => {
     if(this.props.user.image === undefined){
       return( <div>
@@ -63,11 +63,10 @@ class Profile extends Component {
         <Navbar/>
         <div className="profileInfo">
           {this.setImage()}
-          <h1>{username}'s Profile</h1>
+          <h1 className="userName">{username}'s profile</h1>
           <Link to={`/user/profile/${this.state._id}/edit`}>Edit</Link>
         </div>
         {tours.map((tour, id) => {
-        console.log(tours)
         return (
           <Link to={`/tour/${tour._id}`}>
             <Tour
@@ -77,10 +76,12 @@ class Profile extends Component {
           </Link>
           );
         })}
-        <BottomBar/>
+          <form onSubmit={this.handlelogOut}>
+            <button>Log Out</button>
+          </form>
+        <BottomBar pathname={this.props.location.pathname}/>
       </div>
     )
   }
 }
-
 export default withAuth(Profile);

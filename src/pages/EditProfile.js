@@ -2,24 +2,20 @@ import React, { Component } from "react";
 import { withAuth } from "../components/AuthProvider";
 import { Redirect } from "react-router-dom";
 import userService from "../lib/user-service";
+import Navbar from "../components/Navbar";
+import firebase from "firebase";
 import BottomBar from "../components/BottomBar";
-import Navbar from '../components/Navbar';
-import firebase from 'firebase';
-import CustomUploadButton from 'react-firebase-file-uploader/lib/CustomUploadButton';
-
-
+import CustomUploadButton from "react-firebase-file-uploader/lib/CustomUploadButton";
 class EditProfile extends Component {
   state = {
     _id: this.props.match.params.id,
-    username: "",
-    // image: "",
+    username: this.props.user.username,
     redirect: false,
-    avatar: '',
+    avatar: "",
     isUploading: false,
     progress: 0,
-    avatarURL: this.props.user.image,
+    avatarURL: this.props.user.image
   };
-
   handleFormSubmit = event => {
     event.preventDefault();
     const { _id, username, avatarURL, image } = this.state;
@@ -29,11 +25,11 @@ class EditProfile extends Component {
       username,
       image: avatarURL,
       password
-    }
-    console.log(avatarURL)
+    };
+    console.log(avatarURL);
     userService
-    .edit(_id, user)
-    .then(data => {
+      .edit(_id, user)
+      .then(data => {
         const { username, image } = data;
         this.props.setUser(data);
         this.setState({
@@ -43,48 +39,52 @@ class EditProfile extends Component {
       })
       .catch(error => console.log(error));
   };
-
-  handleUploadStart = () => this.setState({
-    isUploading: true,
-    progress: 0
-});
-
-handleProgress = (progress) => this.setState({
-    progress
-});
-
-handleUploadError = (error) => {
+  handleUploadStart = () =>
     this.setState({
-        isUploading: false
+      isUploading: true,
+      progress: 0
+    });
+  handleProgress = progress =>
+    this.setState({
+      progress
+    });
+  handleUploadError = error => {
+    this.setState({
+      isUploading: false
     });
     console.error(error);
-}
-
-handleUploadSuccess = (filename) => {
+  };
+  handleUploadSuccess = filename => {
     this.setState({
-        avatar: filename,
-        progress: 100,
-        isUploading: false
+      avatar: filename,
+      progress: 100,
+      isUploading: false
     });
-    firebase.storage().ref('images').child(filename).getDownloadURL().then(url => this.setState({
-        avatarURL: url
-    }));
-};
-
+    firebase
+      .storage()
+      .ref("images")
+      .child(filename)
+      .getDownloadURL()
+      .then(url =>
+        this.setState({
+          avatarURL: url
+        })
+      );
+  };
   handleChange = event => {
     let { name, value } = event.target;
     this.setState({ [name]: value });
   };
-
   render() {
+    console.log("EDIT PROPS", this.props);
     const { avatarURL, username, location, progress, isUploading } = this.state;
     if (this.state.redirect) {
       return <Redirect to={`/user/profile/`} />;
     } else {
       return (
         <div>
-          <Navbar data='data' />
-          <form>
+          <Navbar data="data" />
+          <form className="editForm">
             <div className="flex-create">
               <label for="inp" className="inp">
                 <input
@@ -99,19 +99,19 @@ handleUploadSuccess = (filename) => {
                 <span className="border" />
               </label>
             </div>
-            
-              <CustomUploadButton
-                accept="image/*"
-                storageRef={firebase.storage().ref('images')}
-                onUploadStart={this.handleUploadStart}
-                onUploadError={this.handleUploadError}
-                onUploadSuccess={this.handleUploadSuccess}
-                onProgress={this.handleProgress} style={{backgroundColor: 'steelblue', color: 'white', padding: 10, borderRadius: 4}}
-                >
-                Select your awesome avatar
-              </CustomUploadButton>
-                {isUploading && <p> Progress: {progress} </p>}
-              {/* <div className="flex-create">
+            <CustomUploadButton 
+              className="uploadButton"
+              accept="image/*"
+              storageRef={firebase.storage().ref("images")}
+              onUploadStart={this.handleUploadStart}
+              onUploadError={this.handleUploadError}
+              onUploadSuccess={this.handleUploadSuccess}
+              onProgress={this.handleProgress}
+            >
+              Select a photo from the gallery
+            </CustomUploadButton>
+            {isUploading && <p> Progress: {progress} </p>}
+            {/* <div className="flex-create">
                   <label for="inp" className="inp">
                   <input type="text" value={username} name="username" onChange={this.handleChange}/>
                   <label> location: </label>
@@ -120,15 +120,14 @@ handleUploadSuccess = (filename) => {
                   <span className="border" />
               </label>
             </div> */}
-            <div className="create-btn">
-              <button onClick={this.handleFormSubmit}>Save</button>
+            <div>
+              <button className="saveEditProfile-btn" onClick={this.handleFormSubmit}>Save</button>
             </div>
           </form>
-          <BottomBar data='data' />
+          <BottomBar data="data" />
         </div>
       );
     }
   }
 }
-
 export default withAuth(EditProfile);

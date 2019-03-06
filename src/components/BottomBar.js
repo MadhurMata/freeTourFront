@@ -6,18 +6,18 @@ import BtnCreate from '../components/BtnCreate';
 import BtnProfile from '../components/BtnProfile';
 
 class Bottombar extends Component {
+
   render() {
     const { isLogged, user, logout } = this.props;
     const { username } = user;
     if (isLogged) {
       return <div className="bottombar">
         <div>
-          <BtnHome />
-          <BtnCreate />
-          <BtnProfile /> 
+          <BtnHome path={this.props}/>
+          <BtnCreate /> 
+          <BtnProfile pathname={this.props}/>
         </div>
       </div>
-
     } else {
       return <div>
         <Link to='/login'>Login</Link>

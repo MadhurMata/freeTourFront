@@ -9,7 +9,7 @@ class TourService {
   }
 
   create(tour) {
-    return this.tour.post('tour/create', tour)
+    return this.tour.post('/tour/create', tour)
       .then(({ data }) => data);
   }
 
@@ -28,12 +28,21 @@ class TourService {
       .then(({ data }) => data);
   }
 
+  comment(id, comments){
+    return this.tour.put(`/comment/${id}`, comments) //comments es el objeto body que axios te permite crear
+      .then(({ data }) => data);
+  }
+
   delete(id) {
     return this.tour.delete(`/${id}/tour/delete`)
       .then(({ data }) => data);
   }
 
+
+
 }
+
+
 
 const tourService = new TourService();
 

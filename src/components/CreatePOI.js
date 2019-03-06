@@ -1,16 +1,26 @@
 import React, { Component } from 'react';
+import { Redirect } from "react-router-dom";
+import { withAuth } from "../components/AuthProvider";
 import Navbar from '../components/Navbar';
 import BottomBar from '../components/BottomBar';
+import Map from '../components/Map';
 
 
-export default class CreatePOI extends Component {
+class CreatePOI extends Component {
   state = {
     spot: 1,
     title: "",
     image: "",
     description: "",
+    redirect: false,
+    listOfPoi: null,
+    lastLocation: ""
+
   }
 
+  componentDidUpdate(){
+    //console.log(this.state.listOfPoi)
+  }
   handleChange = event => {
     let { name, value } = event.target;
     this.setState({ [name]: value });
@@ -19,31 +29,47 @@ export default class CreatePOI extends Component {
   handlePoi = (e) =>{
     e.preventDefault();
     const {pushPoi} = this.props
-    const {title, image, description} = this.state
-    if(!title || !image || !description){
+    //console.log(this.props, "mis props")
+    const {title, image, description, listOfPoi} = this.state
+    if(title && image && description && listOfPoi) {
+      pushPoi({ pushPoi, title, image, description, listOfPoi})
       alert('hay campos vacios')
-    }
-    pushPoi({ pushPoi, title, image, description })
-    const spot = this.state.spot +1;
-    this.setState({
-      spot,
-      title: "",
-      image: "",
-      description: "",
-    })
+      const spot = this.state.spot +1;
+      this.setState({
+        spot,
+        title: "",
+        image: "",
+        description: "",
+        listOfPoi: [],
+        lastLocation:[this.state.center]
+      })
+      }
   }
   handleParentSubmit = (e) => {
     e.preventDefault();
-    const { name, city, image, description, location, duration,POI,handleFormSubmit} = this.props 
-    handleFormSubmit( name, city, image, description, location, duration,POI)
+    const { _id, name, city, image, description, location, duration,POI,handleFormSubmit} = this.props 
+    handleFormSubmit( _id, name, city, image, description, location, duration, POI)
   };
 
   handleBoth = (e) =>{
-    
-    this.handlePoi(e)
-    this.handleParentSubmit(e)
-    console.log('saluditoooooooooooooooss', this.props)
+    const {title, image, description, listOfPoi} = this.state
+    if(title || image || description || listOfPoi){
+      this.handlePoi(e)
+      this.handleParentSubmit(e)
+    }
+    this.setState({
+      redirect: true
+    })
+    //console.log('saluditoooooooooooooooss', this.props)
   }
+
+  receiveCenter = (center) => {
+    this.setState({
+      listOfPoi: center,
+    })
+    
+  } 
+  
 
   render() {
     return (
@@ -78,9 +104,13 @@ export default class CreatePOI extends Component {
             <button onClick={this.handleBoth}>Save Tour</button>
           </div>
         </form>
+        <Map sendCenter={this.receiveCenter}/>
+
       </div>
       <BottomBar data='data' />
     </div>
     )
   }
 }
+
+export default withAuth(CreatePOI);

@@ -20,7 +20,6 @@ export default class CreateTour extends Component {
     tourService
       .create(this.state)
       .then(data => {
-        console.log(data);
         return data;
       })
       .catch(error => console.log(error.response));
@@ -81,10 +80,7 @@ export default class CreateTour extends Component {
                 <span className="border"></span>
               </label>
             </div>
-            <div className="create-btn">
-              <button onClick={this.handleStage} >Next</button>
-            </div>
-            
+              <button className="create-btn" onClick={this.handleStage} >Next</button>
           </form>
         </div>
         <BottomBar data='data' />

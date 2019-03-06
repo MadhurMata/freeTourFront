@@ -1,5 +1,4 @@
 /* ---- reset ---- */
-
 html {
   box-sizing: border-box;
   font-family: 'Lato', sans-serif;
@@ -7,7 +6,6 @@ html {
 *, *:before, *:after {
   box-sizing: inherit;
 }
-
 body {
   margin: 0;
   padding: 0;
@@ -17,12 +15,10 @@ body {
 a{
   text-decoration: none;
 }
-
 /* Log in page */
 .container {
   margin: 0 auto;
 }
-
 .flex-column{
   display: flex;
     flex-direction: column;
@@ -30,18 +26,15 @@ a{
     height: 100vh;
     justify-content: center;
 }
-
 .flex-column h1{
   font-size: 4rem;
 }
-
 .backfground{
   background-image: url(./img/background.png);
   background-size:     cover;                      /* <------ */
   background-repeat:   no-repeat;
   background-position: center center; 
 }
-
 .user-box {
   background-color: rgb(255,255,255, 0.9);
   width: 300px;
@@ -50,7 +43,6 @@ a{
   font-size: 1.3rem;
   margin-top: -100px;
 }
-
 .user-box-signup {
   background-color: rgb(255,255,255, 0.9);
   width: 300px;
@@ -65,17 +57,14 @@ a{
   width: 15rem;
   background-color: rgb(0,0,0, 0.07);
 }
-
 .flex-start{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-
 .space-around{
   justify-content: space-around;
 }
-
 .button-log{
   font-size: 1.3rem;
   background-color: rgb(255,255,255, 0);
@@ -87,20 +76,16 @@ a{
   border: none;
   border: 1px solid black;
 }
-
 .link{
   text-decoration: none;
   font-size: 2rem;
   font-weight: bolder;
   color: white;
 }
-
 .p-link {
   font-size: 1.3rem;
 }
-
 /* general content */
-
 .navbar{
   position: fixed;
   top: 0;
@@ -108,56 +93,46 @@ a{
   z-index: 9999;
   width: 100%;
   height: 50px;
-  background-color: rgba(242,224,141);
+  background-color: #23d160;
   box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
   text-align: center;
+  -webkit-box-shadow: 2px 4px 37px -13px rgba(0,0,0,0.75);
+  -moz-box-shadow: 2px 4px 37px -13px rgba(0,0,0,0.75);
+  box-shadow: 2px 4px 37px -13px rgba(0,0,0,0.75);
 }
-
-
 .navbar h1{
+font-family: 'Pacifico', cursive;
 margin: 0;
+font-size: 2rem;
 }
-
 .bottombar{
   position: fixed;
   bottom: 0;
   left: 0;
   z-index: 9999;
   width: 100%;
-  background-color: rgba(242,224,141);
+  background-color: #23d160;
   box-shadow: 0 2px 1px 5px rgba(0,0,0,.2);
   text-align: center;
 }
-
 .bottombar h1{
 margin: 0;
 }
 .clear{
 clear: both;
-
 }
-
 .bottombar img{
-  height: 2.8rem;
-
+  height: 1.8rem;
 }
 .bottombar div{
   padding: 0.2rem;
   display: flex;
   justify-content: space-around;
 }
-
-
-
 /* Card */
-
 .card-container{
-  background-color: rgb(235, 122, 183, 0.6);
-  border-radius: 2rem;
-  margin: 1rem 1rem;
   padding-bottom: 1.5rem;
 }
-
 .card-info{
   font-size: 0.6rem;
   display: flex;
@@ -165,32 +140,21 @@ clear: both;
   align-items: center;
   color: black;
 }
-
-
 .card-info  h2{
   padding: 0 0.5rem;
   font-size: 1rem;
 }
-
 .card-info h1{
   padding-left: 0.5rem;
   font-size: 1.3rem;
 }
-
-
 .card-img img{
   width: 100%;
-  border-top-left-radius: 2rem;
-  border-top-right-radius: 2rem;
 }
-
 /* Home page */
-
 .home-container{
   margin-top: 2rem;
-
 }
-
 .box{
   background: transparent;
   box-shadow: none;
@@ -198,45 +162,37 @@ clear: both;
   position: fixed;
   width: 100%;
 }
-
 /* Create page */
-
 .create-box {
   box-shadow: -5px -5px 15px 0px #11d0cf, 3px 4px 20px 5px #eb7ab7;
   width: 90vw;
   margin: 0 auto;
-  margin-top: 4rem;
   border-radius: 2rem;
+  padding-bottom: 2rem;
 }
-
 .tours-list{
-  padding-top: 4.6rem;
+  padding-top: 5.7rem;;
 }
-
 .create-box h1{
-  padding: 2rem 0 0 1rem;
-
+  padding: 0.7rem 0 0 0rem;
+  text-align: center;
 }
-
 .create-btn{
   display: flex;
   justify-content: space-around;
   padding: 1rem;
 }
-
 .flex-column-create{
   display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-
 .colores{
   background: rgb(17,208,207);
   background: rgb(242,224,141);
   background: rgb(235,122,183);
 }
-
 .flex-create {
   display: flex;
   align-items: flex-start;
@@ -244,7 +200,6 @@ clear: both;
   height: 80px;
   width: 80%;
 }
-
 .inp {
   position: relative;
   margin: auto;
@@ -305,9 +260,19 @@ clear: both;
 .inp input:focus + span + .border {
   transform: scaleX(1);
 }
-
+.create-btn {
+  background-color: rgb(17,208,207);
+  padding: 8px 55px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 2rem;
+  color:white;
+}
+/* create POI conainer */
+.container-POI{
+  margin: 4rem 0;
+}
 /* profile conainer */
-
 .profileInfo {
   display: flex;
   flex-direction: column;
@@ -316,23 +281,134 @@ clear: both;
 .profileInfo img{
   border-radius: 50%;
   width: 10rem;
-  transform: rotate(90deg);
-  margin-bottom: 30px
+  margin-bottom: 1rem;
 }
-
 .profileContainer {
   margin-top: 4rem;
+  margin-bottom: 3rem;
 }
-
+.profileInfo a{
+    padding: 0.5rem 2rem;
+    background-color: pink;
+    border-radius: 1.5rem;
+    margin-bottom: 1rem;
+}
 /* ----------- */
-
-.map {
+#map {
   position: relative;
-
-  width: 90%;
-  height: 60vh;
+  width: 100%;
+  height: 50vh;
+  padding-top: 1rem;
 }
   .button-save {
     position: relative;
     
   }
+  .mapboxgl-canvas{
+    width: 100%;
+    height: 334px;
+    margin: 0rem;
+  }
+  .mapboxgl-ctrl input{
+    position: absolute;
+    top: 0rem;
+    right: 0.1rem;
+    border: 1px solid rgb(109, 108, 108);
+    border-radius: 0.5rem;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+  ul.suggestions{
+    background-color: white;
+    position: absolute;
+    right: 0rem;
+    top: 2rem;
+    width: 17rem;
+    color: white;
+    font-size: 1rem;
+  }
+  div.mapboxgl-ctrl.mapboxgl-ctrl-group{
+    margin-top: 1rem;
+  }
+  /* Edit Profile */
+  .saveEditProfile-btn {
+    background-color: rgb(17,208,207);
+    padding: 8px 55px;
+    font-size: 1rem;
+    border: none;
+    color:white;
+    margin-top: 0.5rem;
+  }
+  .uploadButton{
+    background-color: rgb(17,208,207);
+    padding: 8px 55px;
+    font-size: 1rem;
+    border: none;
+    color:white;
+    margin-top: 0.5rem;
+  }
+  .editForm{
+    margin-top: 3rem;
+  }
+  .userName{
+    font-size: 2rem;
+    
+  }
+  /* detail tour page */
+  .detailTourTitle{
+    background-color: #26c75fcc;
+    color: cornsilk;
+    font-size: 3rem;
+    text-align: center;
+  }
+  .startTourBtn{
+    background-color: #23d160;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.8rem;
+  }
+  .startBtnContainer{
+    text-align: center;
+  }
+  .detailDescription{
+    margin-bottom: 1rem;
+    padding: 1rem;
+  }
+  .commentSection{
+    padding: 1rem;
+    margin-bottom: 3rem;
+  }
+  .commentSection h2{
+    font-weight: 900;
+  }
+  .commentSection input{
+    border-radius: 1rem;
+    padding: 0.5rem;
+    border-style: none;
+    border: 1px solid grey;
+  }
+  .commentSection form{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+  .commentBox{
+    padding: 0.5rem;
+    border: 1px solid grey;
+    border-radius: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .commentTitle{
+    font-size: 2rem;
+  }
+
+  /* Tour Navigator page */
+
+  .tours-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  } 
+
+  .tours-list h3{
+    font-size: 1rem;
+  } 
