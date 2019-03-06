@@ -72,6 +72,8 @@ class TourDetail extends Component {
     const { tour, id } = this.state;
     const { comments } = this.state;
     const { username } = this.props.user;
+    let test = new Date();
+
     if (redirect) {
       return <Redirect to="/user/profile" />;
     } else {
@@ -110,7 +112,7 @@ class TourDetail extends Component {
               {comments.map((comment, id) => {
                 return (
                   <div className="commentBox" key={id} username={username}>
-                    <h2> {comment.owner}</h2>
+                    <h2> {comment.owner}  on {test.toLocaleDateString()}</h2>
                     <p>{comment.comment}</p>
                   </div>
                 );
