@@ -4,9 +4,9 @@ export default class BtnHome extends Component {
 
 isUserHome = () => {
   if (this.props.path.path !== "/"){
-    return <img src="../images/home.png" alt="home"/>
+    return <img src="/images/home.png" alt="home"/>
   }else{
-    return <img src="../images/blackhome.png" alt="home"/>
+    return <img src="/images/blackhome.png" alt="home"/>
   }
 }
 

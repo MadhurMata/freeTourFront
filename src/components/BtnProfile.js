@@ -5,9 +5,9 @@ export default class BtnProfile extends Component {
 
   isUserProfile = () => {
   if (this.props.pathname.pathname !== "/user/profile"){
-    return <img src="../images/profile-button-white.svg" alt="profile"/>
+    return <img src="/images/profile-button-white.svg" alt="profile"/>
   }else{
-    return <img src="../images/profile-button-solid.svg" alt="profile"/>
+    return <img src="/images/profile-button-solid.svg" alt="profile"/>
   }
 }
   

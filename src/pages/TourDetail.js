@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Link } from "react-router-dom";
 import { Redirect } from "react-router";
 import { withAuth } from "../components/AuthProvider";
 import TourRoute from "../components/TourRoute";
-
+import BottomBar from "../components/BottomBar";
 class TourDetail extends Component {
   state = {
     id: this.props.match.params.id,
@@ -13,11 +13,9 @@ class TourDetail extends Component {
     comments: [],
     comment: ""
   };
-
   componentDidMount() {
     this.showTour();
   }
-
   showTour = () => {
     tourService.showTour(this.state.id).then(tour => {
       this.setState({
@@ -26,7 +24,6 @@ class TourDetail extends Component {
       });
     });
   };
-
   handleDelete = e => {
     e.preventDefault();
     tourService
@@ -38,30 +35,27 @@ class TourDetail extends Component {
       })
       .catch(error => console.log(error.response));
   };
-
-  handleChange = (event) => {
+  handleChange = event => {
     let { value } = event.target;
-    console.log(value);
     this.setState({
       comment: value
     });
   };
-
-  handleFormSubmit = (event) => {
+  handleFormSubmit = event => {
     event.preventDefault();
     const newComment = {
       comment: this.state.comment,
-      owner: this.props.user.username,
-    }
-    const newCommentsList = [newComment, ...this.state.comments]
+      owner: this.props.user.username
+    };
+    const newCommentsList = [newComment, ...this.state.comments];
     this.setState({
       comments: newCommentsList,
-      comment: ''
-    })
-    tourService.comment(this.state.id, newCommentsList)
-    .catch(error => console.log('errorsito',error.response));
+      comment: ""
+    });
+    tourService
+      .comment(this.state.id, newCommentsList)
+      .catch(error => console.log("errorsito", error.response));
   };
-
   isOwner = () => {
     const { tour } = this.state;
     if (tour.creator === this.props.user._id) {
@@ -74,55 +68,59 @@ class TourDetail extends Component {
       );
     }
   };
-
   render() {
     const { redirect } = this.state;
     const { tour } = this.state;
-    const { comments } =  this.state;
-    const { username } = this.props.user
+    const { comments } = this.state;
+    const { username } = this.props.user;
     if (redirect) {
       return <Redirect to="/user/profile" />;
     } else {
       return (
         <div>
           <div className="tourDetailCard">
-            <h1>{tour.name}</h1>
-            <p>{tour.description}</p>
+            <h1 className="detailTourTitle">{tour.name}</h1>
             <div className="detailCardImg">
-              <img src={tour.image} alt="" />
+              <img src={tour.image} alt="tourimg" />
+            </div>
+            <div className="detailDescription">
+              <p>{tour.description}</p>
+            </div>
+            <div className="startBtnContainer">
+              <Link className="startTourBtn" to="#">Start</Link>
             </div>
             <div>
-            <TourRoute id={this.state.id}/>
+              <TourRoute id={this.state.id} />
             </div>
           </div>
           {this.isOwner()}
-          <div className="comments">
-            <form onSubmit={this.handleFormSubmit}>
-              <input
-                type="text"
-                name="comments"
-                onChange={this.handleChange}
-                value={this.state.comment}
-                placeholder="Write a comment here..."
-              />
-              <button type="submit">Comment</button>
-            </form>
-          </div>
-          <h1>Comments</h1>
           <div className="commentSection">
-            {comments.map((comment, id) => {
-              return (
-                <div className="commentBox" key = {id} username = {username}>
-                  <h1>{comment.owner} said:</h1>
-                  <p>{comment.comment}</p>
+            <h1 className="commentTitle">Comments</h1>
+                <div className="comments">
+                  <form onSubmit={this.handleFormSubmit}>
+                    <input
+                      type="text"
+                      name="comments"
+                      onChange={this.handleChange}
+                      value={this.state.comment}
+                      placeholder="Write a comment here..."
+                    />
+                    <button type="submit">Comment</button>
+                  </form>
                 </div>
-              );
-            })}
+              {comments.map((comment, id) => {
+                return (
+                  <div className="commentBox" key={id} username={username}>
+                    <h2> {comment.owner}</h2>
+                    <p>{comment.comment}</p>
+                  </div>
+                );
+              })}
           </div>
+          <BottomBar data="data" />
         </div>
       );
     }
   }
 }
-
 export default withAuth(TourDetail);
