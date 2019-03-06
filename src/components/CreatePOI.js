@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from "react-router-dom";
 import { withAuth } from "../components/AuthProvider";
 import Navbar from '../components/Navbar';
 import BottomBar from '../components/BottomBar';
@@ -12,7 +11,6 @@ class CreatePOI extends Component {
     title: "",
     image: "",
     description: "",
-    redirect: false,
     listOfPoi: null,
     lastLocation: ""
 
