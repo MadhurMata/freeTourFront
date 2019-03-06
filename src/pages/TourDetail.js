@@ -30,7 +30,6 @@ class TourDetail extends Component {
       .delete(this.state.id)
       .then(data => {
         this.setState({ redirect: true });
-        console.log("deletennnnn", this.state.redirect);
         return data;
       })
       .catch(error => console.log(error.response));
@@ -54,7 +53,7 @@ class TourDetail extends Component {
     });
     tourService
       .comment(this.state.id, newCommentsList)
-      .catch(error => console.log("errorsito", error.response));
+      .catch(error => console.log(newCommentsList,"errorsito", error.response));
   };
   isOwner = () => {
     const { tour } = this.state;
@@ -73,6 +72,8 @@ class TourDetail extends Component {
     const { tour, id } = this.state;
     const { comments } = this.state;
     const { username } = this.props.user;
+    let test = new Date();
+
     if (redirect) {
       return <Redirect to="/user/profile" />;
     } else {
@@ -111,7 +112,7 @@ class TourDetail extends Component {
               {comments.map((comment, id) => {
                 return (
                   <div className="commentBox" key={id} username={username}>
-                    <h2> {comment.owner}</h2>
+                    <h2> {comment.owner}  on {test.toLocaleDateString()}</h2>
                     <p>{comment.comment}</p>
                   </div>
                 );

@@ -6,20 +6,26 @@ import {Link} from 'react-router-dom';
 class Login extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    usernameError: "",
+    passwordError: "",
   };
+
 
   handleFormSubmit = event => {
     event.preventDefault();
     const { username, password } = this.state;
-
-    this.props
-      .login({ username, password })
-      .then(() => {
-        this.props.history.push("/");
-      })
-      .catch(error => console.log(error));
-  };
+    // const isValid = this.validate();
+    // if(isValid){
+      
+      this.props
+        .login({ username, password })
+        .then(() => {
+          this.props.history.push("/");
+        })
+        .catch(error => console.log(error));
+    // };
+    }
 
   handleChange = event => {
     const { name, value } = event.target;
@@ -41,8 +47,10 @@ class Login extends Component {
                 name="username"
                 value={username}
                 onChange={this.handleChange}
+                required
               />
             </div>
+              {/* <div style={{color: "red"}}>{this.state.usernameError}</div> */}
             <div  className="flex-start">
               <label>Password:</label>
               <input
@@ -51,8 +59,10 @@ class Login extends Component {
                 name="password"
                 value={password}
                 onChange={this.handleChange}
+                required
               />
             </div>
+            {/* <div style={{color: "red"}}>{this.state.passwordError}</div> */}
             <input className="button-log" type="submit" value="Login" />
           </div>
           <Link className="link" to='/Signup'>Sign Up</Link>

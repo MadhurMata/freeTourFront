@@ -14,10 +14,10 @@ export default class Search extends Component {
         <div className="box">
           <div className="field has-addons">
               <div className="control is-expanded">
-                  <input className="input has-text-centered" type="search" placeholder="» » » » » » find me « « « « « «" onChange={ this.searchTour } />
+                  <input className="input has-text-centered" type="search" placeholder="» » » » » » find a tour « « « « « «" onChange={ this.searchTour } />
               </div>
               <div className="control">
-                  <a className="button is-info">Search</a>
+                  <a className="button is-info"><i class="fas fa-search"></i></a>
               </div>
           </div>
         </div>
