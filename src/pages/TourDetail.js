@@ -30,7 +30,6 @@ class TourDetail extends Component {
       .delete(this.state.id)
       .then(data => {
         this.setState({ redirect: true });
-        console.log("deletennnnn", this.state.redirect);
         return data;
       })
       .catch(error => console.log(error.response));
@@ -54,7 +53,7 @@ class TourDetail extends Component {
     });
     tourService
       .comment(this.state.id, newCommentsList)
-      .catch(error => console.log("errorsito", error.response));
+      .catch(error => console.log(newCommentsList,"errorsito", error.response));
   };
   isOwner = () => {
     const { tour } = this.state;
