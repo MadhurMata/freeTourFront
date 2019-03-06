@@ -114,9 +114,9 @@ export default class TourRoute extends Component {
 
   
   render() {
-    if(this.state.map) {
-      this.paintPoints();
-    }
+    // if(this.state.map) {
+    //   this.paintPoints();
+    // }
     
     return (
       <div>
