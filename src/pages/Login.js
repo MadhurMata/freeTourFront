@@ -11,24 +11,6 @@ class Login extends Component {
     passwordError: "",
   };
 
-  // validate = () =>{
-  //   let usernameError = "";
-  //   let passwordError = "";
-
-  //   if(!this.state.username || !this.state.password){
-  //     usernameError = "field required"
-  //     passwordError = "enter your password"
-  //   }
-
-  //   // if(!this.state.email.includes('@')){
-  //   //   emailError = "invalid email"
-  //   // }
-  //   if(usernameError){
-  //     this.setState({usernameError, passwordError})
-  //     return false
-  //   }
-  //   return true
-  // }
 
   handleFormSubmit = event => {
     event.preventDefault();
