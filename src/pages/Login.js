@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 class Login extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
   };
 
   handleFormSubmit = event => {
