@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Redirect } from "react-router-dom";
 import { withAuth } from "../components/AuthProvider";
 import Navbar from '../components/Navbar';
 import BottomBar from '../components/BottomBar';
 import Map from '../components/Map';
+import CustomUploadButton from "react-firebase-file-uploader/lib/CustomUploadButton";
+import firebase from "firebase";
+
 
 
 class CreatePOI extends Component {
@@ -14,13 +16,13 @@ class CreatePOI extends Component {
     description: "",
     redirect: false,
     listOfPoi: null,
-    lastLocation: ""
+    avatar: "",
+    isUploading: false,
+    progress: 0,
+    avatarURL: this.props.user.image
 
   }
 
-  componentDidUpdate(){
-    //console.log(this.state.listOfPoi)
-  }
   handleChange = event => {
     let { name, value } = event.target;
     this.setState({ [name]: value });
@@ -29,19 +31,16 @@ class CreatePOI extends Component {
   handlePoi = (e) =>{
     e.preventDefault();
     const {pushPoi} = this.props
-    //console.log(this.props, "mis props")
-    const {title, image, description, listOfPoi} = this.state
-    if(title && image && description && listOfPoi) {
+    const { title, image, description, listOfPoi } = this.state
+    if(title && image &&description && listOfPoi) {
       pushPoi({ pushPoi, title, image, description, listOfPoi})
-      alert('hay campos vacios')
       const spot = this.state.spot +1;
       this.setState({
         spot,
         title: "",
         image: "",
         description: "",
-        listOfPoi: [],
-        lastLocation:[this.state.center]
+        listOfPoi: null,
       })
       }
   }
@@ -60,18 +59,53 @@ class CreatePOI extends Component {
     this.setState({
       redirect: true
     })
-    //console.log('saluditoooooooooooooooss', this.props)
   }
 
   receiveCenter = (center) => {
     this.setState({
       listOfPoi: center,
     })
-    
   } 
+
+
+  handleUploadStart = () =>
+    this.setState({
+      isUploading: true,
+      progress: 0
+    });
+  handleProgress = progress =>
+    this.setState({
+      progress
+    });
+  handleUploadError = error => {
+    this.setState({
+      isUploading: false
+    });
+    console.error(error);
+  };
+  handleUploadSuccess = filename => {
+    this.setState({
+      avatar: filename,
+      progress: 100,
+      isUploading: false
+    });
+    firebase
+      .storage()
+      .ref("images")
+      .child(filename)
+      .getDownloadURL()
+      .then(url =>
+        this.setState({
+         image: url
+        })
+      );
+  };
+
   
 
   render() {
+    const { progress, isUploading } = this.state;
+
     return (
       <div>
       <Navbar data='data' />
@@ -86,12 +120,25 @@ class CreatePOI extends Component {
             </label>
           </div>
           <div className="flex-create">
-            <label for="inp" className="inp" >
+            {/* <label for="inp" className="inp" >
               <input id="inp" type="text" name="image" placeholder="&nbsp;" value={this.state.image} onChange={this.handleChange}/>
               <span className="label">Image</span>
               <span className="border"></span>
-            </label>
+            </label> */}
+            <CustomUploadButton 
+              className="uploadButton"
+              accept="image/*"
+              storageRef={firebase.storage().ref("images")}
+              onUploadStart={this.handleUploadStart}
+              onUploadError={this.handleUploadError}
+              onUploadSuccess={this.handleUploadSuccess}
+              onProgress={this.handleProgress}
+            >
+              Select a photo from the gallery
+            </CustomUploadButton>
+            {isUploading && <p> Progress: {progress} </p>}
           </div>
+          
           <div className="flex-create">
             <label for="inp" className="inp" >
               <input id="inp" type="text" name="description" placeholder="&nbsp;" value={this.state.description} onChange={this.handleChange}/>
