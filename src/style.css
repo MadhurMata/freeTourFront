@@ -2,6 +2,8 @@
 html {
   box-sizing: border-box;
   font-family: 'Lato', sans-serif;
+  max-width: 414px;
+  max-height: 736px;
 }
 *, *:before, *:after {
   box-sizing: inherit;
@@ -11,6 +13,8 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
+  max-width: 414px;
+  max-height: 736px;
 }
 a{
   text-decoration: none;
@@ -19,9 +23,17 @@ a{
 .container {
   margin: 0 auto;
   background-color: #fff2dd !important;
-  height: 100vh;
-  margin-top: -20px;
+  height: 100%;
+  margin-top: -25px;
   padding-top: 45px;
+}
+.container-tourNavigator {
+  margin: 0 auto;
+  background-color: #fff2dd !important;
+  height: 100%;
+  padding-top: 45px;
+  margin-bottom: 10px;
+  margin-bottom: 4rem;
 }
 .flex-column{
   display: flex;
@@ -32,15 +44,17 @@ a{
 }
 .flex-column h1{
   font-size: 4rem;
+  color: #fff2dd;
+  background-color: rgb(151, 102, 123, 0.9);
 }
 .backfground{
-  background-image: url(./img/background.png);
+  background-image: url(./img/Captura\ de\ pantalla\ -2019-03-07\ 15-14-28.png);
   background-size:     cover;                      /* <------ */
   background-repeat:   no-repeat;
   background-position: center center; 
 }
 .user-box {
-  background-color: rgb(255,255,255, 0.9);
+  background-color: rgb(151, 102, 123, 0.9);
   width: 300px;
   height: 200px;
   border-radius: 10px;
@@ -48,18 +62,24 @@ a{
   margin-top: -100px;
 }
 .user-box-signup {
-  background-color: rgb(255,255,255, 0.9);
+  background-color: rgb(151, 102, 123, 0.9);
   width: 300px;
   height: 300px;
   border-radius: 10px;
   font-size: 1.3rem;
   margin-top: -70px;
 }
+.flex-start label{
+  color: #fff2dd;
+}
+
 .user-box-input{
   border: none;
   height: 1.4rem;
   width: 15rem;
   background-color: rgb(0,0,0, 0.07);
+  color: #fff2dd;
+  font-size: 1.3rem; 
 }
 .flex-start{
   display: flex;
@@ -73,18 +93,18 @@ a{
   font-size: 1.3rem;
   background-color: rgb(255,255,255, 0);
   font-weight:bolder;
-  color:black;
+  color:#fff2dd;
   text-align:center;
   transition: all 0.2s;
   padding: 0.35em 5em;
   border: none;
-  border: 1px solid black;
+  border: 1px solid #fff2dd;
 }
 .link{
   text-decoration: none;
   font-size: 2rem;
   font-weight: bolder;
-  color: white;
+  color: #97667b;
 }
 .p-link {
   font-size: 1.3rem;
@@ -94,6 +114,7 @@ a{
   position: fixed;
   top: 0;
   left: 0;
+  max-width: 414px;
   width: 100%;
   height: 50px;
   background-color: #97667b;
@@ -108,6 +129,20 @@ font-family: 'Pacifico', cursive;
 margin: 0;
 font-size: 2rem;
 }
+
+.sing-up{
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  bottom: 0;
+  align-items: center;
+}
+
+.sing-up h3{
+  font-size: 1.5rem;
+  margin-right: 25px;
+}
+
 .bottombar{
   position: fixed;
   bottom: 0;
@@ -117,6 +152,8 @@ font-size: 2rem;
   background-color: #97667b;
   box-shadow: 0 2px 1px 5px rgba(0,0,0,.2);
   text-align: center;
+  max-width: 414px;
+  max-height: 736px;
 }
 .bottombar h1{
 margin: 0;
@@ -179,10 +216,12 @@ clear: both;
 }
 .card-img img{
   height: 250px;
+  width: 100%
 }
 /* Home page */
 .home-container{
   margin-top: 2rem;
+  margin-bottom: 3rem;
 }
 .box{
   background: transparent;
@@ -190,6 +229,10 @@ clear: both;
   padding: 1rem 1.25rem 0;
   position: fixed;
   width: 100%;
+  max-width: 414px;
+  max-height: 736px;
+  margin-top: 10px;
+  z-index: 9999;
 }
 /* Create page */
 .create-box {
@@ -303,7 +346,7 @@ clear: both;
 
 /* create POI conainer */
 .container-POI{
-  margin: 4rem 0;
+  margin: 6rem 0;
 }
 /* profile conainer */
 .profileInfo {
@@ -319,6 +362,7 @@ clear: both;
 .profileContainer {
   margin-top: 4rem;
   margin-bottom: 3rem;
+  height: 100vh;
 }
 .profileInfo a{
   padding: 0.5rem 5rem;
@@ -412,7 +456,7 @@ clear: both;
   }
   .userName{
     font-size: 2rem;
-    
+    text-align: center;
   }
   /* detail tour page */
   .detailTourTitle{
@@ -445,6 +489,7 @@ clear: both;
     font-weight: 900;
     text-align: center;
     color: #97667b;
+    margin-top: 15px;
   }
   .commentSection input{
     border-radius: 0.5rem;
@@ -478,6 +523,19 @@ clear: both;
     border-radius: 0.7rem;
   }
 
+  .delate-tour {
+    position: absolute;
+    margin-bottom: 10px;
+  }
+  .delate-tour form button{
+    padding: 10px 20px;
+    color: white;
+    background-color: #97667b;
+    border: none;
+    border-radius: 0.2rem;
+  }
+
+
   /* Tour Navigator page */
 
   .tours-poi {
@@ -504,6 +562,7 @@ clear: both;
     padding: 20px;
     left: 8%;
     color: white;
+    z-index: 9;
 }
 
   .popup-info {

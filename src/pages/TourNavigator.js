@@ -57,7 +57,7 @@ export default class TourNavigation extends Component {
     const { tour } = this.state;
     return (
       !this.state.loading ?
-        <div>
+        <div className="container-tourNavigator">
           <Navbar data="data" />
           <TourRoute id={this.state.id} />
           <h2 className="tours-poi-h2">Points of interest</h2>

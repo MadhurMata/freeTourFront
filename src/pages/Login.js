@@ -65,7 +65,10 @@ class Login extends Component {
             {/* <div style={{color: "red"}}>{this.state.passwordError}</div> */}
             <input className="button-log" type="submit" value="Login" />
           </div>
+          <div className="sing-up">
+          <h3>No account yet??</h3>
           <Link className="link" to='/Signup'>Sign Up</Link>
+          </div>
         </form>
         
       </div>
