@@ -82,7 +82,7 @@ export default class ParentCreate extends Component {
         POI,
         redirect: true
       })
-      
+
     })
     .catch(error => console.log(error.response));
   };
