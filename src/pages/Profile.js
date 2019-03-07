@@ -15,8 +15,6 @@ class Profile extends Component {
     tours: []
   }
   componentDidMount() {
-    console.log(this.props.user)
-    console.log(this.props.user.image)
     this.getMyTours()
   }
   getMyTours = () => {
@@ -77,7 +75,7 @@ class Profile extends Component {
           </Link>
           );
         })}
-          <form onSubmit={this.handlelogOut}>
+          <form className={"logout"} onSubmit={this.handlelogOut}>
             <button>Log Out</button>
           </form>
         <BottomBar pathname={this.props.location.pathname}/>

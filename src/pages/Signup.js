@@ -42,17 +42,17 @@ class Signup extends Component {
           <div className="flex-column space-around user-box-signup">
               <div  className="flex-start">
                 <label>Username:</label>
-                <input className="user-box-input" type="text" name="username" value={username} onChange={this.handleChange}/>
+                <input className="user-box-input" type="text" name="username" value={username} onChange={this.handleChange} required/>
               </div>
               <div  className="flex-start">  
                 <label>Email:</label>
-                <input className="user-box-input" type="email" name="email" value={email} onChange={this.handleChange}/>
+                <input className="user-box-input" type="email" name="email" value={email} onChange={this.handleChange} required/>
               </div>
               <div  className="flex-start">  
                 <label>Password:</label>
-                <input className="user-box-input" type="password" name="password" value={password} onChange={this.handleChange} />
+                <input className="user-box-input" type="password" name="password" value={password} onChange={this.handleChange} required/>
               </div>  
-                <input className="button-log" type="submit" value="Signup" />
+                <input className="button-log" type="submit" value="Signup"/>
             </div>
         </form>
         <p className="p-link" >Already have account? 

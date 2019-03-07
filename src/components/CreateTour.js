@@ -150,7 +150,7 @@ export default class CreateTour extends Component {
                 <span className="border" />
               </label>
             </div>
-            <div>
+            
               <CustomUploadButton
                 className="uploadButton"
                 accept="image/*"
@@ -163,11 +163,10 @@ export default class CreateTour extends Component {
                 Select a photo from the gallery
               </CustomUploadButton>
               {isUploading && <p> Progress: {progress} </p>}
-            </div>
+            <div style={{ color: "red" }}>{this.state.errorName}</div>
             <button className="create-btn" onClick={this.handleStage}>
               Next
             </button>
-            <div style={{ color: "red" }}>{this.state.errorName}</div>
           </form>
         </div>
         <BottomBar data="data" />
