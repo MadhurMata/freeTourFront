@@ -80,7 +80,7 @@ class TourDetail extends Component {
       return <Redirect to="/user/profile" />;
     } else {
       return (
-        <div>
+        <div className="tour-detail-container">
           <div className="tourDetailCard">
             <h1 className="detailTourTitle">{tour.name}</h1>
             <div className="detailCardImg">
