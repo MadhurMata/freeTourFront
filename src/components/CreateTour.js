@@ -32,7 +32,6 @@ export default class CreateTour extends Component {
       errorName = "There are some missing fields";
     }
     if (errorName) {
-      const { name, image, city, description } = this.state;
       this.setState({
         errorName: "There are some missing fields"
       });
@@ -109,7 +108,7 @@ export default class CreateTour extends Component {
           <h1>New tour</h1>
           <form className="flex-column-create" onSubmit={this.handleFormSubmit}>
             <div className="flex-create">
-              <label for="inp" className="inp">
+              <label  className="inp">
                 <input
                   id="inp"
                   type="text"
@@ -123,7 +122,7 @@ export default class CreateTour extends Component {
               </label>
             </div>
             <div className="flex-create">
-              <label for="inp" className="inp">
+              <label className="inp">
                 <input
                   id="inp"
                   type="text"
@@ -137,7 +136,7 @@ export default class CreateTour extends Component {
               </label>
             </div>
             <div className="flex-create">
-              <label for="inp" className="inp">
+              <label className="inp">
                 <input
                   id="inp"
                   type="text"

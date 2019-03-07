@@ -63,9 +63,9 @@ export default class TourRoute extends Component {
     fetch(url)
       .then((response) => {
         response.json()
-          .then((data) => {
-            var data = data.routes[0];
-            var route = data.geometry;
+          .then((info) => {
+            let data = info.routes[0];
+            let route = data.geometry;
             map.on('load', () => {
               map.addLayer({
                 "id": "route",

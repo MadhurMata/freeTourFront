@@ -19,7 +19,7 @@ export default class Search extends Component {
                   <input className="input has-text-centered" type="search" placeholder="» » » » » » find a tour « « « « « «" onChange={ this.searchTour } />
               </div>
               <div className="control">
-                  <Link className="button is-info" to="#" ><i  class="fas fa-search" ></i></Link>
+                  <Link className="button is-info" to="#" ><i  className="fas fa-search" ></i></Link>
               </div>
           </div>
         </div>

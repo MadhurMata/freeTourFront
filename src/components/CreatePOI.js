@@ -31,7 +31,6 @@ class CreatePOI extends Component {
       errorName = "There are some missing fields";
     }
     if (errorName) {
-      const { title, image,description } = this.state;
       this.setState({
         errorName: "There are some missing fields"
       });
@@ -71,7 +70,6 @@ class CreatePOI extends Component {
   handleBoth = (e) => {
     e.preventDefault()
     const { title, image, description, listOfPoi } = this.state
-    console.log("mama te quiero",listOfPoi, this.props)
     if (title && image && description && listOfPoi) {
       this.handlePoi(e)
       this.handleParentSubmit(e)
@@ -123,7 +121,7 @@ class CreatePOI extends Component {
 
 
   render() {
-    const { progress, isUploading, redirect, id } = this.state;
+    const { progress, isUploading } = this.state;
       return (
         <div>
           <Navbar data='data' />
@@ -131,18 +129,14 @@ class CreatePOI extends Component {
             <h1>Spot {this.state.spot}</h1>
             <form className="flex-column-create" onSubmit={this.handleFormSubmit}>
               <div className="flex-create">
-                <label for="inp" className="inp" >
+                <label className="inp" >
                   <input id="inp" type="text" name="title" placeholder="&nbsp;" value={this.state.title} onChange={this.handleChange} />
                   <span className="label">Title</span>
                   <span className="border"></span>
                 </label>
               </div>
               <div className="flex-create">
-                {/* <label for="inp" className="inp" >
-              <input id="inp" type="text" name="image" placeholder="&nbsp;" value={this.state.image} onChange={this.handleChange}/>
-              <span className="label">Image</span>
-              <span className="border"></span>
-            </label> */}
+              
                 <CustomUploadButton
                   className="uploadButton-poi"
                   accept="image/*"
@@ -157,7 +151,7 @@ class CreatePOI extends Component {
                 {isUploading && <p> Progress: {progress} </p>}
               </div>
               <div className="flex-create">
-                <label for="inp" className="inp" >
+                <label className="inp" >
                   <input id="inp" type="text" name="description" placeholder="&nbsp;" value={this.state.description} onChange={this.handleChange} />
                   <span className="label">Description</span>
                   <span className="border"></span>

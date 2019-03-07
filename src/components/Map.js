@@ -8,7 +8,6 @@ export default class Map extends Component {
   }
   onDragEnd = (marker) => {
     var lngLat = marker.getLngLat();
-    console.log(lngLat)
     this.props.sendCenter(lngLat)
       this.setState({
         center: [lngLat.lng, lngLat.lat]

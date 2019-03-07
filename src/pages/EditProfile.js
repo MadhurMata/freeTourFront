@@ -77,7 +77,6 @@ class EditProfile extends Component {
     this.setState({ [name]: value });
   };
   render() {
-    console.log("EDIT PROPS", this.props);
     const { progress, isUploading } = this.state;
     if (this.state.redirect) {
       return <Redirect to={`/user/profile/`} />;
@@ -87,7 +86,7 @@ class EditProfile extends Component {
           <Navbar data="data" />
           <form className="editForm">
             <div className="flex-create">
-              <label for="inp" className="inp">
+              <label className="inp">
                 <input
                   id="inp"
                   type="text"
