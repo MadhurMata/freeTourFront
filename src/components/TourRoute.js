@@ -88,7 +88,7 @@ export default class TourRoute extends Component {
                   "line-cap": "round"
                 },
                 "paint": {
-                  "line-color": "#FF0080",
+                  "line-color": "#97667b",
                   "line-width": 5
                 }
               });
@@ -106,7 +106,7 @@ export default class TourRoute extends Component {
       for (let i = 0; i < tour.POI.length; i++){
         if(tour.POI[i].listOfPoi.lng){
             new mapboxgl.Marker({
-              color:'#23d160', 
+              color:'#e68572', 
             })
             .setLngLat([ tour.POI[i].listOfPoi.lng, tour.POI[i].listOfPoi.lat ])
             .addTo(this.state.map);
