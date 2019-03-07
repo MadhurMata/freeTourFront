@@ -38,6 +38,7 @@ export default class TourNavigation extends Component {
       if (index === id) {
         return poi;
       }
+      return null;
     })
     if(this.state.selectedPoi){
       this.setState({
