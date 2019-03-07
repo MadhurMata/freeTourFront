@@ -5,7 +5,7 @@ export default class BtnCreate extends Component {
     return (
       <div>
         <Link to="/tour/create">
-          <img src="/images/plus-button.svg" alt=""/>
+          <img src="/images/plusbuttonwhite.svg" alt=""/>
         </Link>
       </div>
     );

@@ -15,8 +15,6 @@ class Profile extends Component {
     tours: []
   }
   componentDidMount() {
-    console.log(this.props.user)
-    console.log(this.props.user.image)
     this.getMyTours()
   }
   getMyTours = () => {
