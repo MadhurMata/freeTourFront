@@ -19,6 +19,27 @@ class CreatePOI extends Component {
     progress: 0,
   }
 
+  validate = () => {
+    let errorName = "";
+
+    if (
+      !this.state.title ||
+      !this.state.image ||
+      !this.state.description
+
+    ) {
+      errorName = "There are some missing fields";
+    }
+    if (errorName) {
+      const { title, image,description } = this.state;
+      this.setState({
+        errorName: "There are some missing fields"
+      });
+      return false;
+    }
+    return true;
+  };
+
   handleChange = event => {
     let { name, value } = event.target;
     this.setState({ [name]: value });
@@ -27,8 +48,9 @@ class CreatePOI extends Component {
   handlePoi = (e) => {
     e.preventDefault();
     const { pushPoi } = this.props
+    const isValid = this.validate();
     const { title, image, description, listOfPoi } = this.state
-    if (title && image && description && listOfPoi) {
+    if (isValid) {
       pushPoi({ pushPoi, title, image, description, listOfPoi })
       const spot = this.state.spot + 1;
       this.setState({
@@ -102,9 +124,6 @@ class CreatePOI extends Component {
 
   render() {
     const { progress, isUploading, redirect, id } = this.state;
-    console.log("hhhhhh", id)
-
-    
       return (
         <div>
           <Navbar data='data' />
@@ -137,7 +156,6 @@ class CreatePOI extends Component {
             </CustomUploadButton>
                 {isUploading && <p> Progress: {progress} </p>}
               </div>
-
               <div className="flex-create">
                 <label for="inp" className="inp" >
                   <input id="inp" type="text" name="description" placeholder="&nbsp;" value={this.state.description} onChange={this.handleChange} />
@@ -149,15 +167,14 @@ class CreatePOI extends Component {
                 <button onClick={this.handlePoi}>Next</button>
                 <button onClick={this.handleBoth}>Save Tour</button>
               </div>
+                <div style={{ color: "red" }}>{this.state.errorName}</div>
             </form>
             <Map sendCenter={this.receiveCenter} />
-
           </div>
           <BottomBar data='data' />
         </div>
       )
     }
   }
-
 
 export default withAuth(CreatePOI);
