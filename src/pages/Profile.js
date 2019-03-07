@@ -45,6 +45,7 @@ class Profile extends Component {
     
   }
   
+  
   render() {
     const { username } = this.props.user;
     const { tours } = this.state
