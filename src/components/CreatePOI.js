@@ -126,9 +126,9 @@ class CreatePOI extends Component {
 
   render() {
     const { progress, isUploading, redirect } = this.state;
-    if (redirect) {
-      return <Redirect to="/" />;
-    } else {
+    // if (redirect) {
+    //   return <Redirect to="/" />;
+    // } else {
       return (
         <div>
           <Navbar data='data' />
@@ -181,6 +181,6 @@ class CreatePOI extends Component {
       )
     }
   }
-}
+// }
 
 export default withAuth(CreatePOI);
