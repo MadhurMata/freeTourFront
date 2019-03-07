@@ -57,7 +57,7 @@ export default class TourMarkers extends Component {
       for (let i = 0; i < tour.POI.length; i++){
         if(tour.POI[i].listOfPoi.lng){
             new mapboxgl.Marker({
-              color:'#26c75fcc', 
+              color:'#e68572', 
             })
             .setLngLat([ tour.POI[i].listOfPoi.lng, tour.POI[i].listOfPoi.lat ])
             .addTo(this.state.map);

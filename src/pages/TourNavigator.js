@@ -65,7 +65,7 @@ export default class TourNavigation extends Component {
             {tour.POI.map((tour, id) => {
               return (
                 <div key={id}>
-                  <button onClick={() => { this.makeChange(id) }}>
+                  <button className={"button-poi-detail"} onClick={() => { this.makeChange(id) }}>
                   <h3>{tour.title}</h3>
                   <img src={tour.image}></img></button>
                 </div>

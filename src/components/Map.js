@@ -44,7 +44,7 @@ export default class Map extends Component {
     });
   }
   createNewMarker (coordinateX, coordinateY) {
-    this.marker = new mapboxgl.Marker({name: 'a',anchor: 'center', color:'red', draggable: true,})
+    this.marker = new mapboxgl.Marker({name: 'a',anchor: 'center', color:'#97667b', draggable: true,})
     .setLngLat([coordinateX, coordinateY])
     .addTo(this.map);
     this.marker.on('dragend',() => this.onDragEnd(this.marker));

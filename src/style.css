@@ -18,6 +18,10 @@ a{
 /* Log in page */
 .container {
   margin: 0 auto;
+  background-color: #fff2dd !important;
+  height: 100vh;
+  margin-top: -20px;
+  padding-top: 45px;
 }
 .flex-column{
   display: flex;
@@ -90,12 +94,11 @@ a{
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999;
   width: 100%;
   height: 50px;
-  background-color: #23d160;
-  box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
+  background-color: #97667b;
   text-align: center;
+  color: white;
   -webkit-box-shadow: 2px 4px 37px -13px rgba(0,0,0,0.75);
   -moz-box-shadow: 2px 4px 37px -13px rgba(0,0,0,0.75);
   box-shadow: 2px 4px 37px -13px rgba(0,0,0,0.75);
@@ -111,7 +114,7 @@ font-size: 2rem;
   left: 0;
   z-index: 9999;
   width: 100%;
-  background-color: #23d160;
+  background-color: #97667b;
   box-shadow: 0 2px 1px 5px rgba(0,0,0,.2);
   text-align: center;
 }
@@ -131,14 +134,32 @@ clear: both;
 }
 
 .button.is-info {
-  background-color: #23d160 !important;
+  background-color: #e68572 !important;
   border-color: transparent;
   color: #fff;
 }
+
+.has-text-centered {
+  background-color: #fff2dd !important;
+  border-color: #e68572 !important;
+  opacity: 0.7 !important;
+}
 /* Card */
 .card-container{
-  padding-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+  text-align: center;
 }
+
+.cardsText {
+  position: absolute;
+  top: 81px;
+  background-color: rgb(255, 255, 255, 0.82);
+  width: 100%;
+  color: #97667b;
+  max-height: 300px;
+}
+
 .card-info{
   font-size: 0.6rem;
   display: flex;
@@ -146,16 +167,18 @@ clear: both;
   align-items: center;
   color: black;
 }
-.card-info  h2{
+.cardsText  h2{
+  font-weight: bolder;
   padding: 0 0.5rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
-.card-info h1{
+.cardsText h1{
+  font-weight: bolder;
   padding-left: 0.5rem;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 }
 .card-img img{
-  width: 100%;
+  height: 250px;
 }
 /* Home page */
 .home-container{
@@ -164,29 +187,40 @@ clear: both;
 .box{
   background: transparent;
   box-shadow: none;
-  padding: 2rem 1.25rem 0;
+  padding: 1rem 1.25rem 0;
   position: fixed;
   width: 100%;
 }
 /* Create page */
 .create-box {
-  box-shadow: -5px -5px 15px 0px #11d0cf, 3px 4px 20px 5px #eb7ab7;
+  box-shadow: -5px -5px 15px 0px #97667b, 3px 4px 20px 5px #97667b;
   width: 90vw;
   margin: 0 auto;
   border-radius: 2rem;
   padding-bottom: 2rem;
+  height: 100%;
+  background-color: #fdf8ee;
 }
 .tours-list{
-  padding-top: 5.7rem;;
+  padding-top: 4.7rem;;
 }
 .create-box h1{
   padding: 0.7rem 0 0 0rem;
   text-align: center;
+  color: #97667b;
+  font-weight: bolder;
+  font-size: 1.7rem;
 }
 .create-btn{
-  display: flex;
   justify-content: space-around;
-  padding: 1rem;
+  background-color: #97667b;
+  padding: 5px 62px;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 2rem;
+  color: white;
+  margin-top: 60px;
+
 }
 .flex-column-create{
   display: flex;
@@ -217,7 +251,7 @@ clear: both;
   top: 16px;
   left: 0;
   font-size: 16px;
-  color: #9098a9;
+  color: #e68572;
   font-weight: 500;
   transform-origin: 0 0;
   transition: all 0.2s ease;
@@ -228,7 +262,7 @@ clear: both;
   left: 0;
   height: 2px;
   width: 100%;
-  background: #07f;
+  background: #97667b;
   transform: scaleX(0);
   transform-origin: 0 0;
   transition: all 0.15s ease;
@@ -242,7 +276,7 @@ clear: both;
   height: 48px;
   font-size: 16px;
   font-weight: 500;
-  border-bottom: 2px solid #c8ccd4;
+  border-bottom: 2px solid #e68572;
   background: none;
   border-radius: 0;
   color: #223254;
@@ -260,20 +294,13 @@ clear: both;
   outline: none;
 }
 .inp input:focus + span {
-  color: #07f;
+  color: #97667b;
   transform: translateY(-26px) scale(0.75);
 }
 .inp input:focus + span + .border {
   transform: scaleX(1);
 }
-.create-btn {
-  background-color: rgb(17,208,207);
-  padding: 8px 55px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 2rem;
-  color:white;
-}
+
 /* create POI conainer */
 .container-POI{
   margin: 4rem 0;
@@ -294,15 +321,19 @@ clear: both;
   margin-bottom: 3rem;
 }
 .profileInfo a{
-    padding: 0.5rem 2rem;
-    background-color: pink;
-    border-radius: 1.5rem;
-    margin-bottom: 1rem;
+  padding: 0.5rem 5rem;
+  background-color: #97667b;
+  border-radius: 1.5rem;
+  margin-bottom: 1rem;
+  color: white;
+  font-weight: bolder;
 }
+
 /* ----------- */
 #map {
+  margin-top: 6px;
   position: relative;
-  width: 100%;
+  width: 99%;
   height: 50vh;
   padding-top: 1rem;
 }
@@ -317,12 +348,13 @@ clear: both;
   }
   .mapboxgl-ctrl input{
     position: absolute;
-    top: 0rem;
-    right: 0.1rem;
+    top: 1rem;
+    right: 2.6rem;
     border: 1px solid rgb(109, 108, 108);
-    border-radius: 0.5rem;
+    border-radius: -0.5rem;
     text-align: center;
     font-size: 1.1rem;
+    width: 291px;
   }
   ul.suggestions{
     background-color: white;
@@ -336,6 +368,18 @@ clear: both;
   div.mapboxgl-ctrl.mapboxgl-ctrl-group{
     margin-top: 1rem;
   }
+
+  .poi-button {
+    padding: 7px 36px;
+    margin-right: 6px;
+    background-color: #97667b;
+    border: none;
+    margin-top: 10px;
+    color: white;
+    font-size: 1rem;
+    font-weight: bolder;
+    margin-bottom: 0px;
+  }
   /* Edit Profile */
   .saveEditProfile-btn {
     background-color: rgb(17,208,207);
@@ -346,13 +390,23 @@ clear: both;
     margin-top: 0.5rem;
   }
   .uploadButton{
-    background-color: rgb(17,208,207);
-    padding: 8px 55px;
+    padding: 8px 20px;
     font-size: 1rem;
-    border: none;
-    color:white;
-    margin-top: 0.5rem;
+    border: 2px solid #e68572;
+    color: #e68572;
+    margin-top: 1.2rem;
+    width: 80%;
   }
+
+  .uploadButton-poi{
+    padding: 8px 20px;
+    font-size: 1rem;
+    border: 2px solid #e68572;
+    color: #e68572;
+    margin-top: 1.2rem;
+    width: 100%
+  }
+
   .editForm{
     margin-top: 3rem;
   }
@@ -362,16 +416,18 @@ clear: both;
   }
   /* detail tour page */
   .detailTourTitle{
-    background-color: #26c75fcc;
-    color: cornsilk;
-    font-size: 3rem;
+    background-color: #976675;
+    color: white;
+    font-size: 2rem;
     text-align: center;
+    margin-top: -26px;
   }
   .startTourBtn{
-    background-color: #23d160;
+    background-color: #97667b;
     color: white;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 4rem;
     border-radius: 0.8rem;
+    font-weight: bolder;
   }
   .startBtnContainer{
     text-align: center;
@@ -383,15 +439,20 @@ clear: both;
   .commentSection{
     padding: 1rem;
     margin-bottom: 3rem;
+    background-color: #fff2dd;
   }
-  .commentSection h2{
+  .commentSection h1{
     font-weight: 900;
+    text-align: center;
+    color: #97667b;
   }
   .commentSection input{
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     padding: 0.5rem;
     border-style: none;
-    border: 1px solid grey;
+    border: 1px solid #e68572;
+    background-color: #e68572;
+    background-color: #fff2dd;
   }
   .commentSection form{
     display: flex;
@@ -407,12 +468,25 @@ clear: both;
   .commentTitle{
     font-size: 2rem;
   }
+  .comments-btn{
+    padding: 0px 17px;
+    border: none;
+    background-color: #97667b;
+    color: white;
+    font-weight: bolder;
+    font-size: 1rem;
+    border-radius: 0.7rem;
+  }
 
   /* Tour Navigator page */
 
   .tours-poi {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
   } 
 
   .tours-poi-h2{
@@ -426,10 +500,11 @@ clear: both;
     position: absolute;
     top: 100px;
     width: 85%;
-    background-color: rgb(255,255,255,0.95);
+    background-color: #e68572;
     padding: 20px;
     left: 8%;
-  }
+    color: white;
+}
 
   .popup-info {
     display: flex;
@@ -438,4 +513,30 @@ clear: both;
 
   .popup-info h1,h2,p{
     text-align: center;
+    font-weight: bolder;
+  }
+
+  .button-poi-detail {
+    background-color: #ffefd6;
+    border: 3px solid #d4c6cc;
+    padding-bottom: 5px;
+  }
+
+  .button-poi-detail h3{
+    color: #97667b;
+    font-weight: bolder;
+  }
+
+  .logout {
+    position: absolute;
+    top: 72px;
+    left: 0;
+  }
+
+  .logout button{
+    background-color: #97667b;
+    color: white;
+    font-weight: bolder;
+    border: none;
+    padding: 10px;
   }

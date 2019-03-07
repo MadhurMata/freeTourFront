@@ -127,7 +127,7 @@ class CreatePOI extends Component {
               <span className="border"></span>
             </label> */}
                 <CustomUploadButton
-                  className="uploadButton"
+                  className="uploadButton-poi"
                   accept="image/*"
                   storageRef={firebase.storage().ref("images")}
                   onUploadStart={this.handleUploadStart}
@@ -147,9 +147,9 @@ class CreatePOI extends Component {
                   <span className="border"></span>
                 </label>
               </div>
-              <div className="create-btn">
-                <button onClick={this.handlePoi}>Next</button>
-                <button onClick={this.handleBoth}>Save Tour</button>
+              <div>
+                <button className="poi-button" onClick={this.handlePoi}>Next</button>
+                <button className="poi-button" onClick={this.handleBoth}>Save Tour</button>
               </div>
             </form>
             <Map sendCenter={this.receiveCenter} />
