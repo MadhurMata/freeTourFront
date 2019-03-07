@@ -12,7 +12,6 @@ import TourNavigator from './pages/TourNavigator';
 import AuthProvider from './components/AuthProvider';
 import EditProfile from './pages/EditProfile';
 import Profile2 from './pages/Profile2';
-import Edit from './pages/Edit';
 import './style.css';
 
 
@@ -32,7 +31,6 @@ class App extends Component {
             <PrivateRoute exact path="/tour/create" component={ParentCreate} />
             <PrivateRoute exact path="/tour/:id/navigator" component={TourNavigator} />
             <PrivateRoute exact path="/tour/:id" component={TourDetail} />
-            <PrivateRoute exact path="/tour/:id/edit" component={Edit} />
             <PrivateRoute exact path="/user/profile/:id/edit" component={EditProfile} />
           </Switch>
         </div>
