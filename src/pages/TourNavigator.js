@@ -13,7 +13,7 @@ export default class TourNavigation extends Component {
     id: this.props.match.params.id,
     tour: {},
     loading: true,
-    selectedPoi: {}
+    selectedPoi: null
   }
 
   getTour = () => {
@@ -34,34 +34,37 @@ export default class TourNavigation extends Component {
   }
 
   makeChange(id) {
-    const { tour } = this.state
+    const { tour } = this.state;
     let poiSelected = tour.POI.filter((poi, index) => {
       if (index === id) {
         return poi;
       }
     })
-
+    if(this.state.selectedPoi){
+      this.setState({
+        selectedPoi: null
+      })
+    } else {
     this.setState({
       selectedPoi: poiSelected
+    
     })
-
+  }
   }
 
 
   render() {
     const { tour } = this.state;
-    // console.log(tour.POI)
     return (
       !this.state.loading ?
         <div>
           <Navbar data="data" />
           <TourRoute id={this.state.id} />
-          <h2>Points of interest</h2>
+          <h2 className="tours-poi-h2">Points of interest</h2>
           <div className="tours-poi">
             {tour.POI.map((tour, id) => {
               return (
                 <div key={id}>
-
                   <button onClick={() => { this.makeChange(id) }}>
                   <h3>{tour.title}</h3>
                   <img src={tour.image}></img></button>
@@ -69,9 +72,7 @@ export default class TourNavigation extends Component {
               );
             })}
           </div>
-          <PoiDetail poi={this.state.selectedPoi}>
-          </PoiDetail>
-
+          {this.state.selectedPoi ? <PoiDetail poi={this.state.selectedPoi}></PoiDetail> : null}
           <BottomBar path={this.props.match.path} data="data" />
         </div>
         : <div>loading...</div>

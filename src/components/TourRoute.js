@@ -19,9 +19,9 @@ export default class TourRoute extends Component {
       .then((data) => {
         const mapConfig = {
           container: 'map',
-          style: 'mapbox://styles/ismaeljaouhar/cjsu6nqjy4krf1fn7qmru3zrr',
-          center: [2.15, 41.39],
-          zoom: 13,
+          style: 'mapbox://styles/ismaeljaouhar/cjsxi2yln1ean1hmsrey6rsbx',
+          center: [data.POI[0].listOfPoi.lng, data.POI[0].listOfPoi.lat],
+          zoom: 12,
         };
         mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_KEY}`;
         this.map = new mapboxgl.Map(mapConfig);
@@ -61,7 +61,6 @@ export default class TourRoute extends Component {
       }
     }
     var url =
-      //`https://api.mapbox.com/directions/v5/mapbox/cycling/2.154007%2C41.390205%3B2.132000%2C41.380000%3B2.153007%2C41.390105%3B2.151007%2C41.390005.json?steps=true&geometries=geojson&access_token=` + mapboxgl.accessToken;
       `https://api.mapbox.com/directions/v5/mapbox/walking/${listOfPoints}.json?steps=true&geometries=geojson&access_token=` + mapboxgl.accessToken;
     fetch(url)
       .then((response) => {
@@ -89,8 +88,8 @@ export default class TourRoute extends Component {
                   "line-cap": "round"
                 },
                 "paint": {
-                  "line-color": "#23d160",
-                  "line-width": 3
+                  "line-color": "#FF0080",
+                  "line-width": 5
                 }
               });
             });

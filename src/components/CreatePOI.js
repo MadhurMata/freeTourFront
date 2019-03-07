@@ -58,8 +58,6 @@ class CreatePOI extends Component {
         redirect: true
       })
     }
-
-
   }
 
   receiveCenter = (center) => {
