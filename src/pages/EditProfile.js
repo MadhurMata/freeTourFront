@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import firebase from "firebase";
 import BottomBar from "../components/BottomBar";
 import CustomUploadButton from "react-firebase-file-uploader/lib/CustomUploadButton";
+
 class EditProfile extends Component {
   state = {
     _id: this.props.match.params.id,
@@ -18,8 +19,8 @@ class EditProfile extends Component {
   };
   handleFormSubmit = event => {
     event.preventDefault();
-    const { _id, username, avatarURL, image } = this.state;
-    const { email, password } = this.props.user;
+    const { _id, username, avatarURL } = this.state;
+    const { password } = this.props.user;
     const user = {
       _id,
       username,
@@ -30,7 +31,7 @@ class EditProfile extends Component {
     userService
       .edit(_id, user)
       .then(data => {
-        const { username, image } = data;
+        const { username } = data;
         this.props.setUser(data);
         this.setState({
           username,
@@ -77,7 +78,7 @@ class EditProfile extends Component {
   };
   render() {
     console.log("EDIT PROPS", this.props);
-    const { avatarURL, username, location, progress, isUploading } = this.state;
+    const { progress, isUploading } = this.state;
     if (this.state.redirect) {
       return <Redirect to={`/user/profile/`} />;
     } else {
@@ -111,15 +112,6 @@ class EditProfile extends Component {
               Select a photo from the gallery
             </CustomUploadButton>
             {isUploading && <p> Progress: {progress} </p>}
-            {/* <div className="flex-create">
-                  <label for="inp" className="inp">
-                  <input type="text" value={username} name="username" onChange={this.handleChange}/>
-                  <label> location: </label>
-                  <input type="text" value={location} name="location" onChange={this.handleChange}/>
-                  <span className="label">Image</span>
-                  <span className="border" />
-              </label>
-            </div> */}
             <div>
               <button className="saveEditProfile-btn" onClick={this.handleFormSubmit}>Save</button>
             </div>
