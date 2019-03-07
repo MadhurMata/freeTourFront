@@ -9,7 +9,7 @@ import tourService from '../lib/tour-service'
 
 export default class ParentCreate extends Component {
   state = {
-    _id: "",
+    _id: this.props.match.params.id,
     stage: 0,
     name: "",
     image: "",
@@ -23,13 +23,15 @@ export default class ParentCreate extends Component {
 
   componentDidUpdate(){
     //console.log('mi array de pois funcionando',this.state.POI)
+
+    console.log("dame el id", this.state_id)
   }
 
   toggleForm = () => {
     const { _id, name, city, image, description, location, duration,POI, stage } = this.state;
     if(stage === 0 ){
-     return <CreateTour
-     changeStage={this.changeStage} />
+      return <CreateTour
+      changeStage={this.changeStage} />
     } else if (stage === 1 ){
       return <CreatePOI 
       id={_id}
@@ -45,7 +47,7 @@ export default class ParentCreate extends Component {
       />
     }
   }
-
+  
   changeStage = (stage) => {
     this.setState({
       stage: stage.newStage,
@@ -56,7 +58,7 @@ export default class ParentCreate extends Component {
       duration: stage.duration
     })
   }
-
+  
   pushPoi = (poi) =>{
     const newPoi = this.state.POI
     newPoi.push(poi)
@@ -64,13 +66,14 @@ export default class ParentCreate extends Component {
       poi: newPoi
     })
   }
-
+  
   handleFormSubmit = (event) => {
     tourService.create(this.state)
     .then((data) => {
       return data  })
-    .then((data) => {
-      const {_id, name, city, image, description, location, duration,POI } = data
+      .then((data) => {
+        const {_id, name, city, image, description, location, duration,POI } = data
+        console.log("bhcdhdhf", _id)
       this.setState({
         _id, 
         name, 

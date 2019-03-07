@@ -5,7 +5,6 @@ import BottomBar from '../components/BottomBar';
 import Map from '../components/Map';
 import CustomUploadButton from "react-firebase-file-uploader/lib/CustomUploadButton";
 import firebase from "firebase";
-import { Redirect } from "react-router";
 
 
 class CreatePOI extends Component {
@@ -50,12 +49,11 @@ class CreatePOI extends Component {
   handleBoth = (e) => {
     e.preventDefault()
     const { title, image, description, listOfPoi } = this.state
-    console.log("mama te quiero",listOfPoi)
+    console.log("mama te quiero",listOfPoi, this.props)
     if (title && image && description && listOfPoi) {
       this.handlePoi(e)
       this.handleParentSubmit(e)
       this.setState({
-        redirect: true
       })
     }
   }
@@ -103,10 +101,10 @@ class CreatePOI extends Component {
 
 
   render() {
-    const { progress, isUploading, redirect } = this.state;
-    if (redirect) {
-      return <Redirect to="/" />;
-    } else {
+    const { progress, isUploading, redirect, id } = this.state;
+    console.log("hhhhhh", id)
+
+    
       return (
         <div>
           <Navbar data='data' />
@@ -160,6 +158,6 @@ class CreatePOI extends Component {
       )
     }
   }
-}
+
 
 export default withAuth(CreatePOI);

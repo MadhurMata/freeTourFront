@@ -77,7 +77,7 @@ class TourDetail extends Component {
     const { comments } = this.state;
     const { username } = this.props.user;
     let test = new Date();
-    console.log(this.state)
+    console.log("Tour detail",this.state)
 
     if (redirect) {
       return <Redirect to="/user/profile" />;
