@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import BottomBar from "../components/BottomBar";
 import Tour from "../components/Tour";
 import tourService from "../lib/tour-service";
-import { BrowserRouter as Router, Switch, Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import "bulma/css/bulma.css";
 import Search from "../components/Search";
 
@@ -21,7 +21,6 @@ class Home extends Component {
   getTours = () => {
     tourService
       .getTours()
-      // console.log('tours front end', this.state)
       .then(data => {
         this.setState({
           tours: data,
@@ -33,7 +32,6 @@ class Home extends Component {
   };
 
   filterItem = itemSearched => {
-    console.log(itemSearched);
     const { tours } = this.state;
     const copyTours = [...tours];
 
@@ -46,8 +44,7 @@ class Home extends Component {
   };
 
   render() {
-    const { user } = this.props;
-    const { searchedTours, tours } = this.state;
+    const { searchedTours } = this.state;
     return (
       <div className="home-container">
         <div>
@@ -60,7 +57,7 @@ class Home extends Component {
         <div className="tours-list">
           {searchedTours.map((tour, id) => {
             return (
-              <Link to={`/tour/${tour._id}`}>
+              <Link key={id} to={`/tour/${tour._id}`}>
                 <Tour
                   key={id}
                   image={tour.image}

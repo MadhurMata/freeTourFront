@@ -20,16 +20,7 @@ class Profile extends Component {
   getMyTours = () => {
     userService.getMyTours()
       .then((data) => {
-        // data.map((tour, id) => {
-        //   return (
-        //     <Link to={`/tour/${tour._id}`}>
-        //       <Tour
-        //         key={id}
-        //         image={tour.image}
-        //         name={tour.name}
-        //       /></Link>
-        //   );
-        // })
+     
         this.setState({
           tours: data
         })
@@ -68,7 +59,7 @@ class Profile extends Component {
         <h1 className="userName">My tours</h1>
         {tours.map((tour, id) => {
         return (
-          <Link to={`/tour/${tour._id}`}>
+          <Link key={id} to={`/tour/${tour._id}`}>
             <Tour
               key={id}
               image={tour.image}

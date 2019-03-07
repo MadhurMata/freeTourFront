@@ -21,12 +21,6 @@ export default class ParentCreate extends Component {
     redirect: false,
   }
 
-  componentDidUpdate(){
-    //console.log('mi array de pois funcionando',this.state.POI)
-
-    console.log("dame el id", this.state_id)
-  }
-
   toggleForm = () => {
     const { _id, name, city, image, description, location, duration,POI, stage } = this.state;
     if(stage === 0 ){
@@ -91,8 +85,6 @@ export default class ParentCreate extends Component {
   };
 
   render() {
-    const {POI} = this.state
-    console.log("mama te quiero",POI)
 
       if(this.state.redirect){
       return <Redirect to={`/tour/${this.state._id}`} />;
@@ -100,12 +92,7 @@ export default class ParentCreate extends Component {
     else {
       return (
         <div className="container-POI">
-          {/* <h1>{this.state.name}</h1> */}
-          {/* {POI.map((poi, index) => {
-          return (
-            <h1 key={index}>{poi.title}</h1>
-            );
-            })} */}
+         
           {this.toggleForm()}
         </div>
       )

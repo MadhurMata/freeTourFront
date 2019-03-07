@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import tourService from '../lib/tour-service'
-import { element } from 'prop-types';
 
 
 export default class TourMarkers extends Component {

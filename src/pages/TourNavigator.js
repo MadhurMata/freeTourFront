@@ -19,7 +19,6 @@ export default class TourNavigation extends Component {
   getTour = () => {
     tourService.showTour(this.state.id)
       .then((tour) => {
-        console.log(tour)
         this.setState({
           tour,
           loading: false,
@@ -67,7 +66,7 @@ export default class TourNavigation extends Component {
                 <div key={id}>
                   <button className={"button-poi-detail"} onClick={() => { this.makeChange(id) }}>
                   <h3>{tour.title}</h3>
-                  <img src={tour.image}></img></button>
+                  <img src={tour.image} alt="Tour img"></img></button>
                 </div>
               );
             })}

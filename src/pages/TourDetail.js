@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import tourService from "../lib/tour-service";
-import { BrowserRouter as Router, Switch, Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { Redirect } from "react-router";
 import { withAuth } from "../components/AuthProvider";
 import TourMarkers from "../components/TourMarkers";
@@ -28,8 +28,7 @@ class TourDetail extends Component {
   };
   handleDelete = e => {
     e.preventDefault();
-    tourService
-      .delete(this.state.id)
+    tourService.delete(this.state.id)
       .then(data => {
         this.setState({ redirect: true });
         return data;
@@ -50,7 +49,6 @@ class TourDetail extends Component {
     };
 
     const newCommentsList = [newComment, ...this.state.comments]
-    console.log(newCommentsList)
     this.setState({
       comments: newCommentsList,
       comment: ""
@@ -77,7 +75,6 @@ class TourDetail extends Component {
     const { comments } = this.state;
     const { username } = this.props.user;
     let test = new Date();
-    console.log("Tour detail",this.state)
 
     if (redirect) {
       return <Redirect to="/user/profile" />;
