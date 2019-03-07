@@ -19,26 +19,23 @@ export default class TourMarkers extends Component {
       .then((data) => {
         const mapConfig = {
           container: 'map',
-          style: 'mapbox://styles/ismaeljaouhar/cjsu6nqjy4krf1fn7qmru3zrr',
-          center: [2.15, 41.39],
-          zoom: 13,
+          style: 'mapbox://styles/ismaeljaouhar/cjsxi2yln1ean1hmsrey6rsbx',
+          center: [data.POI[0].listOfPoi.lng, data.POI[0].listOfPoi.lat ],
+          zoom: 12,
         };
         mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_KEY}`;
-        this.map = new mapboxgl.Map(mapConfig);
-        this.setState({
-          map: this.map,
-        })
+        const map = new mapboxgl.Map(mapConfig);
         this.geolocate = new mapboxgl.GeolocateControl({
           positionOptions: {
             enableHighAccuracy: true
           },
           trackUserLocation: true
         });
-        this.map.addControl(this.geolocate);
+        map.addControl(this.geolocate);
         this.setState({
           tour: data,
           loading:false,
-          map: this.map,
+          map,
         })
       
       })
@@ -51,14 +48,13 @@ export default class TourMarkers extends Component {
     this.getTours()
   }
 
-  paintPoints = () =>{
+  paintPoints = () => {
     const { tour } = this.state;
     if(tour.POI){
       for (let i = 0; i < tour.POI.length; i++){
         if(tour.POI[i].listOfPoi.lng){
             new mapboxgl.Marker({
-              name: 'HOLA',
-              color:'red', 
+              color:'#26c75fcc', 
             })
             .setLngLat([ tour.POI[i].listOfPoi.lng, tour.POI[i].listOfPoi.lat ])
             .addTo(this.state.map);

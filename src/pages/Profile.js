@@ -6,6 +6,7 @@ import Tour from '../components/Tour';
 import BottomBar from '../components/BottomBar';
 import Navbar from '../components/Navbar';
 import authService from '../lib/auth-service';
+
 class Profile extends Component {
   state = {
     _id: this.props.user._id,

@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import CreateTour from '../components/CreateTour';
 import CreatePOI from '../components/CreatePOI';
 import tourService from '../lib/tour-service'
-import Map from '../components/Map';
+// import Map from '../components/Map';
 
 
 
@@ -25,7 +25,7 @@ export default class ParentCreate extends Component {
     //console.log('mi array de pois funcionando',this.state.POI)
   }
 
-  toggleForm = () =>{
+  toggleForm = () => {
     const { _id, name, city, image, description, location, duration,POI, stage } = this.state;
     if(stage === 0 ){
      return <CreateTour
@@ -88,23 +88,21 @@ export default class ParentCreate extends Component {
   };
 
   render() {
-
     const {POI} = this.state
-    //console.log(this.state)
-    
+    console.log("mama te quiero",POI)
+
       if(this.state.redirect){
       return <Redirect to={`/tour/${this.state._id}`} />;
     }
     else {
       return (
         <div className="container-POI">
-          <h1>{this.state.name}</h1>
-          {POI.map((poi, index) => {
-            //console.log(poi)
+          {/* <h1>{this.state.name}</h1> */}
+          {/* {POI.map((poi, index) => {
           return (
             <h1 key={index}>{poi.title}</h1>
             );
-            })}
+            })} */}
           {this.toggleForm()}
         </div>
       )

@@ -29,7 +29,8 @@ class TourService {
   }
 
   comment(id, comments){
-    return this.tour.put(`/comment/${id}`, comments) //comments es el objeto body que axios te permite crear
+    console.log('comments from service')
+    return this.tour.put(`tour/comment/${id}`, comments) //comments es el objeto body que axios te permite crear
       .then(({ data }) => data);
   }
 
