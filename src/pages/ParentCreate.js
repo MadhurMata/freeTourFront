@@ -25,7 +25,7 @@ export default class ParentCreate extends Component {
     //console.log('mi array de pois funcionando',this.state.POI)
   }
 
-  toggleForm = () =>{
+  toggleForm = () => {
     const { _id, name, city, image, description, location, duration,POI, stage } = this.state;
     if(stage === 0 ){
      return <CreateTour
@@ -89,7 +89,8 @@ export default class ParentCreate extends Component {
 
   render() {
     const {POI} = this.state
-    
+    console.log("mama te quiero",POI)
+
       if(this.state.redirect){
       return <Redirect to={`/tour/${this.state._id}`} />;
     }

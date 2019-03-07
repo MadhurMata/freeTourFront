@@ -24,22 +24,19 @@ export default class TourRoute extends Component {
           zoom: 12,
         };
         mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_KEY}`;
-        this.map = new mapboxgl.Map(mapConfig);
-        this.setState({
-          map: this.map,
-        })
-        this.getRoute(this.map, data);
+        const map = new mapboxgl.Map(mapConfig);
+        this.getRoute(map, data);
         this.geolocate = new mapboxgl.GeolocateControl({
           positionOptions: {
             enableHighAccuracy: true
           },
           trackUserLocation: true
         });
-        this.map.addControl(this.geolocate);
+        map.addControl(this.geolocate);
         this.setState({
           tour: data,
           loading:false,
-          map: this.map,
+          map,
         })
       
       })
@@ -101,7 +98,7 @@ export default class TourRoute extends Component {
   }
 
   paintPoints = () =>{
-    const { tour } = this.state;
+    const { tour, map } = this.state;
     if(tour.POI){
       for (let i = 0; i < tour.POI.length; i++){
         if(tour.POI[i].listOfPoi.lng){
@@ -109,13 +106,13 @@ export default class TourRoute extends Component {
               color:'#23d160', 
             })
             .setLngLat([ tour.POI[i].listOfPoi.lng, tour.POI[i].listOfPoi.lat ])
-            .addTo(this.state.map);
+            .addTo(map);
             new mapboxgl.Popup({
               closeOnClick: false,
             })
             .setLngLat([ tour.POI[i].listOfPoi.lng, tour.POI[i].listOfPoi.lat ])
             .setHTML(tour.POI[i].title)
-            .addTo(this.state.map);
+            .addTo(map);
         }
       }
     }

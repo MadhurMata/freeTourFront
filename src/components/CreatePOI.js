@@ -50,7 +50,7 @@ class CreatePOI extends Component {
   handleBoth = (e) => {
     e.preventDefault()
     const { title, image, description, listOfPoi } = this.state
-    console.log("mama te quiero",this.state)
+    console.log("mama te quiero",listOfPoi)
     if (title && image && description && listOfPoi) {
       this.handlePoi(e)
       this.handleParentSubmit(e)

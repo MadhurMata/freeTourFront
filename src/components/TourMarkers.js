@@ -24,21 +24,18 @@ export default class TourMarkers extends Component {
           zoom: 12,
         };
         mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_KEY}`;
-        this.map = new mapboxgl.Map(mapConfig);
-        this.setState({
-          map: this.map,
-        })
+        const map = new mapboxgl.Map(mapConfig);
         this.geolocate = new mapboxgl.GeolocateControl({
           positionOptions: {
             enableHighAccuracy: true
           },
           trackUserLocation: true
         });
-        this.map.addControl(this.geolocate);
+        map.addControl(this.geolocate);
         this.setState({
           tour: data,
           loading:false,
-          map: this.map,
+          map,
         })
       
       })
@@ -51,7 +48,7 @@ export default class TourMarkers extends Component {
     this.getTours()
   }
 
-  paintPoints = () =>{
+  paintPoints = () => {
     const { tour } = this.state;
     if(tour.POI){
       for (let i = 0; i < tour.POI.length; i++){

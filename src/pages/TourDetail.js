@@ -18,9 +18,11 @@ class TourDetail extends Component {
   }
   showTour = () => {
     tourService.showTour(this.state.id).then(tour => {
+      let comments = [];
+      if (tour.comments ) comments = tour.comments
       this.setState({
         tour: tour,
-        comments: tour.comments
+        comments: comments
       });
     });
   };
@@ -46,7 +48,9 @@ class TourDetail extends Component {
       comment: this.state.comment,
       owner: this.props.user.username
     };
-    const newCommentsList = [newComment, ...this.state.comments];
+
+    const newCommentsList = [newComment, ...this.state.comments]
+    console.log(newCommentsList)
     this.setState({
       comments: newCommentsList,
       comment: ""
@@ -73,6 +77,7 @@ class TourDetail extends Component {
     const { comments } = this.state;
     const { username } = this.props.user;
     let test = new Date();
+    console.log(this.state)
 
     if (redirect) {
       return <Redirect to="/user/profile" />;
@@ -109,14 +114,14 @@ class TourDetail extends Component {
                     <button type="submit">Comment</button>
                   </form>
                 </div>
-              {comments.map((comment, id) => {
+              {comments ? comments.map((comment, id) => {
                 return (
                   <div className="commentBox" key={id} username={username}>
                     <h2> {comment.owner}  on {test.toLocaleDateString()}</h2>
                     <p>{comment.comment}</p>
                   </div>
                 );
-              })}
+              }): null}
           </div>
           <BottomBar data="data" />
         </div>
