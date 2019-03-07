@@ -87,7 +87,7 @@ export default class TourRoute extends Component {
                   "line-cap": "round"
                 },
                 "paint": {
-                  "line-color": "#FF0080",
+                  "line-color": "#97667b",
                   "line-width": 5
                 }
               });

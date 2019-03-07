@@ -111,7 +111,7 @@ class TourDetail extends Component {
                       value={this.state.comment}
                       placeholder="Write a comment here..."
                     />
-                    <button type="submit">Comment</button>
+                    <button className="comments-btn" type="submit">Comment</button>
                   </form>
                 </div>
               {comments ? comments.map((comment, id) => {
