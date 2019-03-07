@@ -52,7 +52,7 @@ class Signup extends Component {
                 <label>Password:</label>
                 <input className="user-box-input" type="password" name="password" value={password} onChange={this.handleChange} required/>
               </div>  
-                <input className="button-log" type="submit" value="Signup"/>
+                <input className="button-log" type="submit" value="Sign Up"/>
             </div>
         </form>
         <p className="p-link" >Already have account? 

@@ -65,6 +65,7 @@ class Profile extends Component {
           <h1 className="userName">{username}'s profile</h1>
           <Link to={`/user/profile/${this.state._id}/edit`}>Edit</Link>
         </div>
+        <h1 className="userName">My tours</h1>
         {tours.map((tour, id) => {
         return (
           <Link to={`/tour/${tour._id}`}>
