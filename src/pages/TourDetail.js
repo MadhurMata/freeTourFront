@@ -59,7 +59,7 @@ class TourDetail extends Component {
     const { tour } = this.state;
     if (tour.creator === this.props.user._id) {
       return (
-        <div>
+        <div className={"delate-tour"}>
           <form onSubmit={this.handleDelete}>
             <button type="submit">Delete Tour</button>
           </form>
