@@ -66,7 +66,7 @@ class Login extends Component {
             <input className="button-log" type="submit" value="Login" />
           </div>
           <div className="sing-up">
-          <h3>No account yet??</h3>
+          <h3>No account yet?</h3>
           <Link className="link" to='/Signup'>Sign Up</Link>
           </div>
         </form>
