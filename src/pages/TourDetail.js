@@ -55,7 +55,7 @@ class TourDetail extends Component {
     });
     tourService
       .comment(this.state.id, newCommentsList)
-      .catch(error => console.log(newCommentsList,"errorsito", error.response));
+      .catch(error => console.log(newCommentsList, error.response));
   };
   isOwner = () => {
     const { tour } = this.state;
