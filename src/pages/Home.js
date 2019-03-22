@@ -15,26 +15,24 @@ class Home extends Component {
   };
 
   componentDidMount() {
-    this.getTours(); // get data the first time
+    this.getTours();
   }
 
   getTours = () => {
-    tourService
-      .getTours()
+    tourService.getTours()
       .then(data => {
         this.setState({
           tours: data,
           searchedTours: data
         })
-        }).catch(error => {
-          console.log("error", error);
-        });
+      }).catch(error => {
+        console.log("error", error);
+      });
   };
 
   filterItem = itemSearched => {
     const { tours } = this.state;
     const copyTours = [...tours];
-
     let toursFiltered = copyTours.filter(tour => {
       return tour.city.toLowerCase().search(itemSearched.toLowerCase()) !== -1;
     })

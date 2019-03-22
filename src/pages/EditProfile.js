@@ -17,6 +17,12 @@ class EditProfile extends Component {
     progress: 0,
     avatarURL: this.props.user.image
   };
+
+  handleChange = event => {
+    let { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
+
   handleFormSubmit = event => {
     event.preventDefault();
     const { _id, username, avatarURL } = this.state;
@@ -40,21 +46,25 @@ class EditProfile extends Component {
       })
       .catch(error => console.log(error));
   };
+
   handleUploadStart = () =>
     this.setState({
       isUploading: true,
       progress: 0
     });
+
   handleProgress = progress =>
     this.setState({
       progress
     });
+
   handleUploadError = error => {
     this.setState({
       isUploading: false
     });
     console.error(error);
   };
+
   handleUploadSuccess = filename => {
     this.setState({
       avatar: filename,
@@ -72,13 +82,11 @@ class EditProfile extends Component {
         })
       );
   };
-  handleChange = event => {
-    let { name, value } = event.target;
-    this.setState({ [name]: value });
-  };
+
+
   render() {
-    const { progress, isUploading } = this.state;
-    if (this.state.redirect) {
+    const { progress, isUploading, redirect, username } = this.state;
+    if (redirect) {
       return <Redirect to={`/user/profile/`} />;
     } else {
       return (
@@ -92,14 +100,14 @@ class EditProfile extends Component {
                   type="text"
                   name="username"
                   placeholder="&nbsp;"
-                  value={this.state.username}
+                  value={username}
                   onChange={this.handleChange}
                 />
                 <span className="label">Username</span>
                 <span className="border" />
               </label>
             </div>
-            <CustomUploadButton 
+            <CustomUploadButton
               className="uploadButton"
               accept="image/*"
               storageRef={firebase.storage().ref("images")}

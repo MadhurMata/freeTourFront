@@ -3,7 +3,6 @@ import { Redirect } from "react-router-dom";
 import CreateTour from '../components/CreateTour';
 import CreatePOI from '../components/CreatePOI';
 import tourService from '../lib/tour-service'
-// import Map from '../components/Map';
 
 
 
@@ -22,22 +21,22 @@ export default class ParentCreate extends Component {
   }
 
   toggleForm = () => {
-    const { _id, name, city, image, description, location, duration,POI, stage } = this.state;
-    if(stage === 0 ){
+    const { _id, name, city, image, description, location, duration, POI, stage } = this.state;
+    if (stage === 0) {
       return <CreateTour
-      changeStage={this.changeStage} />
-    } else if (stage === 1 ){
-      return <CreatePOI 
-      id={_id}
-      name={name}
-      image={image}
-      city={city}
-      description={description}
-      location={location}
-      duration={duration}
-      POI={POI}
-      pushPoi = {this.pushPoi}
-      handleFormSubmit = {this.handleFormSubmit}
+        changeStage={this.changeStage} />
+    } else if (stage === 1) {
+      return <CreatePOI
+        id={_id}
+        name={name}
+        image={image}
+        city={city}
+        description={description}
+        location={location}
+        duration={duration}
+        POI={POI}
+        pushPoi={this.pushPoi}
+        handleFormSubmit={this.handleFormSubmit}
       />
     }
   }
@@ -53,7 +52,7 @@ export default class ParentCreate extends Component {
     })
   }
   
-  pushPoi = (poi) =>{
+  pushPoi = (poi) => {
     const newPoi = this.state.POI
     newPoi.push(poi)
     this.setState({
@@ -61,38 +60,35 @@ export default class ParentCreate extends Component {
     })
   }
   
-  handleFormSubmit = (event) => {
+  handleFormSubmit = () => {
     tourService.create(this.state)
-    .then((data) => {
-      return data  })
       .then((data) => {
-        const {_id, name, city, image, description, location, duration,POI } = data
-        console.log("bhcdhdhf", _id)
-      this.setState({
-        _id, 
-        name, 
-        city, 
-        image, 
-        description, 
-        location, 
-        duration,
-        POI,
-        redirect: true
-      })
+        const { _id, name, city, image, description, location, duration, POI } = data
+        this.setState({
+          _id,
+          name,
+          city,
+          image,
+          description,
+          location,
+          duration,
+          POI,
+          redirect: true
+        })
 
-    })
-    .catch(error => console.log(error.response));
+      })
+      .catch(error => console.log(error.response));
   };
 
   render() {
-
-      if(this.state.redirect){
-      return <Redirect to={`/tour/${this.state._id}`} />;
+    const { redirect, _id } = this.state
+    if (redirect) {
+      return <Redirect to={`/tour/${_id}`} />;
     }
     else {
       return (
         <div className="container-POI">
-         
+
           {this.toggleForm()}
         </div>
       )
