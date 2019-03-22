@@ -37,12 +37,7 @@ class TourService {
     return this.tour.delete(`/tour/${id}/delete`)
       .then(({ data }) => data);
   }
-
-
-
 }
-
-
 
 const tourService = new TourService();
 

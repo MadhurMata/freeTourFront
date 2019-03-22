@@ -8,7 +8,6 @@ class UserService {
     })
   }
 
-
   getMyTours(){
     return this.user.get('/user/profile')
     .then(({ data }) => data);
@@ -23,7 +22,6 @@ class UserService {
     return this.user.put(`/user/profile/${id}/edit`, {user})
     .then(({ data }) => data);
   }  
-
 }
 
 const userService = new UserService();

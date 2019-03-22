@@ -81,7 +81,6 @@ class Profile extends Component {
     )
   }
 }
-export default withAuth(Profile);
 
 const config = {
   apiKey: "AIzaSyAT4fqnXzcAI_su5wW4E-4r2bMqGzcWLwM",
@@ -89,3 +88,5 @@ const config = {
   storageBucket: "gs://tour-me-181bb.appspot.com"
 };
 firebase.initializeApp(config);
+
+export default withAuth(Profile);
