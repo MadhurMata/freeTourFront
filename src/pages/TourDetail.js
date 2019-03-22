@@ -5,6 +5,7 @@ import { Redirect } from "react-router";
 import { withAuth } from "../components/AuthProvider";
 import TourMarkers from "../components/TourMarkers";
 import BottomBar from "../components/BottomBar";
+
 class TourDetail extends Component {
   state = {
     id: this.props.match.params.id,
@@ -13,50 +14,61 @@ class TourDetail extends Component {
     comments: [],
     comment: ""
   };
+
   componentDidMount() {
     this.showTour();
   }
-  showTour = () => {
-    tourService.showTour(this.state.id).then(tour => {
-      let comments = [];
-      if (tour.comments ) comments = tour.comments
-      this.setState({
-        tour: tour,
-        comments: comments
-      });
-    });
-  };
-  handleDelete = e => {
-    e.preventDefault();
-    tourService.delete(this.state.id)
-      .then(data => {
-        this.setState({ redirect: true });
-        return data;
-      })
-      .catch(error => console.log(error.response));
-  };
+
   handleChange = event => {
     let { value } = event.target;
     this.setState({
       comment: value
     });
   };
+
+  showTour = () => {
+    const { id } = this.state
+    tourService.showTour(id)
+      .then(tour => {
+        let comments = [];
+        if (tour.comments) {
+          comments = tour.comments
+        }
+        this.setState({
+          tour,
+          comments,
+        });
+      });
+  };
+
+  handleDelete = e => {
+    const { id } = this.state
+    e.preventDefault();
+    tourService.delete(id)
+      .then(data => {
+        this.setState({ redirect: true });
+        return data;
+      })
+      .catch(error => console.log(error.response));
+  };
+
   handleFormSubmit = event => {
     event.preventDefault();
+    const { comment, comments, id } = this.state
+    const { username } = this.props.user
     const newComment = {
-      comment: this.state.comment,
-      owner: this.props.user.username
+      comment,
+      owner: username
     };
-
-    const newCommentsList = [newComment, ...this.state.comments]
+    const newCommentsList = [newComment, ...comments]
     this.setState({
       comments: newCommentsList,
       comment: ""
     });
-    tourService
-      .comment(this.state.id, newCommentsList)
+    tourService.comment(id, newCommentsList)
       .catch(error => console.log(newCommentsList, error.response));
   };
+
   isOwner = () => {
     const { tour } = this.state;
     if (tour.creator === this.props.user._id) {
@@ -69,13 +81,11 @@ class TourDetail extends Component {
       );
     }
   };
+
   render() {
-    const { redirect } = this.state;
-    const { tour, id } = this.state;
-    const { comments } = this.state;
+    const { redirect, tour, id, comments, comment } = this.state;
     const { username } = this.props.user;
     let test = new Date();
-
     if (redirect) {
       return <Redirect to="/user/profile" />;
     } else {
@@ -93,32 +103,32 @@ class TourDetail extends Component {
               <Link className="startTourBtn" to={`/tour/${id}/navigator`}>Start</Link>
             </div>
             <div>
-              <TourMarkers id={this.state.id} />
+              <TourMarkers id={id} />
             </div>
           </div>
           {this.isOwner()}
           <div className="commentSection">
             <h1 className="commentTitle">Comments</h1>
-                <div className="comments">
-                  <form onSubmit={this.handleFormSubmit}>
-                    <input
-                      type="text"
-                      name="comments"
-                      onChange={this.handleChange}
-                      value={this.state.comment}
-                      placeholder="Write a comment here..."
-                    />
-                    <button className="comments-btn" type="submit">Comment</button>
-                  </form>
+            <div className="comments">
+              <form onSubmit={this.handleFormSubmit}>
+                <input
+                  type="text"
+                  name="comments"
+                  onChange={this.handleChange}
+                  value={comment}
+                  placeholder="Write a comment here..."
+                />
+                <button className="comments-btn" type="submit">Comment</button>
+              </form>
+            </div>
+            {comments ? comments.map((comment, id) => {
+              return (
+                <div className="commentBox" key={id} username={username}>
+                  <h2> {comment.owner}  on {test.toLocaleDateString()}</h2>
+                  <p>{comment.comment}</p>
                 </div>
-              {comments ? comments.map((comment, id) => {
-                return (
-                  <div className="commentBox" key={id} username={username}>
-                    <h2> {comment.owner}  on {test.toLocaleDateString()}</h2>
-                    <p>{comment.comment}</p>
-                  </div>
-                );
-              }): null}
+              );
+            }) : null}
           </div>
           <BottomBar data="data" />
         </div>

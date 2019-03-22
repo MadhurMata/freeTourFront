@@ -11,7 +11,6 @@ import ParentCreate from './pages/ParentCreate';
 import TourNavigator from './pages/TourNavigator';
 import AuthProvider from './components/AuthProvider';
 import EditProfile from './pages/EditProfile';
-import Profile2 from './pages/Profile2';
 import './style.css';
 
 
@@ -26,7 +25,6 @@ class App extends Component {
             <AnonRoute exact path="/signup" component={Signup} />
             <AnonRoute exact path="/login" component={Login} />
             <PrivateRoute exact path="/" component={Home} />
-            <PrivateRoute exact path="/Profile2" component={Profile2} />
             <PrivateRoute exact path="/user/profile" component={Profile} />
             <PrivateRoute exact path="/tour/create" component={ParentCreate} />
             <PrivateRoute exact path="/tour/:id/navigator" component={TourNavigator} />

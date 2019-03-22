@@ -16,6 +16,10 @@ export default class TourNavigation extends Component {
     selectedPoi: null
   }
 
+  componentDidMount() {
+    this.getTour();
+  }
+
   getTour = () => {
     tourService.showTour(this.state.id)
       .then((tour) => {
@@ -28,56 +32,51 @@ export default class TourNavigation extends Component {
         console.log('error', error);
       })
   }
-  componentDidMount() {
-    this.getTour();
-  }
 
   makeChange(id) {
-    const { tour } = this.state;
+    const { tour, selectedPoi } = this.state;
     let poiSelected = tour.POI.filter((poi, index) => {
       if (index === id) {
         return poi;
       }
       return null;
     })
-    if(this.state.selectedPoi){
+    if (selectedPoi) {
       this.setState({
         selectedPoi: null
       })
     } else {
-    this.setState({
-      selectedPoi: poiSelected
-    
-    })
-  }
+      this.setState({
+        selectedPoi: poiSelected
+      })
+    }
   }
 
 
   render() {
-    const { tour } = this.state;
+    const { tour, loading, id, selectedPoi } = this.state;
+    const { path } = this.props.match
     return (
-      !this.state.loading ?
+      !loading ?
         <div className="container-tourNavigator">
           <Navbar data="data" />
-          <TourRoute id={this.state.id} />
+          <TourRoute id={id} />
           <h2 className="tours-poi-h2">Points of interest</h2>
           <div className="tours-poi">
             {tour.POI.map((tour, id) => {
               return (
                 <div key={id}>
                   <button className={"button-poi-detail"} onClick={() => { this.makeChange(id) }}>
-                  <h3>{tour.title}</h3>
-                  <img src={tour.image} alt="Tour img"></img></button>
+                    <h3>{tour.title}</h3>
+                    <img src={tour.image} alt="Tour img"></img></button>
                 </div>
               );
             })}
           </div>
-          {this.state.selectedPoi ? <PoiDetail poi={this.state.selectedPoi}></PoiDetail> : null}
-          <BottomBar path={this.props.match.path} data="data" />
+          {selectedPoi ? <PoiDetail poi={selectedPoi}></PoiDetail> : null}
+          <BottomBar path={path} data="data" />
         </div>
         : <div>loading...</div>
-
-
     )
   }
 }
