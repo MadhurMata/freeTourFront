@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import authService from '../lib/auth-service';
 
-export const AuthContext = React.createContext(
-  // authStore // default value
-);
-
+export const AuthContext = React.createContext();
 export const { Provider, Consumer }  = AuthContext.Consumer;
 
 export const withAuth = (Comp) => {

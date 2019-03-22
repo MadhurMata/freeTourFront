@@ -19,14 +19,17 @@ class CreatePOI extends Component {
     progress: 0,
   }
 
+  handleChange = event => {
+    let { name, value } = event.target;
+    this.setState({ [name]: value });
+  }
+
   validate = () => {
     let errorName = "";
-
     if (
       !this.state.title ||
       !this.state.image ||
       !this.state.description
-
     ) {
       errorName = "There are some missing fields";
     }
@@ -38,11 +41,6 @@ class CreatePOI extends Component {
     }
     return true;
   };
-
-  handleChange = event => {
-    let { name, value } = event.target;
-    this.setState({ [name]: value });
-  }
 
   handlePoi = (e) => {
     e.preventDefault();
@@ -61,6 +59,7 @@ class CreatePOI extends Component {
       })
     }
   }
+
   handleParentSubmit = (e) => {
     e.preventDefault();
     const { _id, name, city, image, description, location, duration, POI, handleFormSubmit } = this.props
@@ -84,22 +83,24 @@ class CreatePOI extends Component {
     })
   }
 
-
   handleUploadStart = () =>
     this.setState({
       isUploading: true,
       progress: 0
     });
+
   handleProgress = progress =>
     this.setState({
       progress
     });
+
   handleUploadError = error => {
     this.setState({
       isUploading: false
     });
     console.error(error);
   };
+
   handleUploadSuccess = filename => {
     this.setState({
       avatar: filename,
@@ -118,57 +119,55 @@ class CreatePOI extends Component {
       );
   };
 
-
-
   render() {
-    const { progress, isUploading } = this.state;
-      return (
-        <div>
-          <Navbar data='data' />
-          <div className="create-box">
-            <h1>Spot {this.state.spot}</h1>
-            <form className="flex-column-create" onSubmit={this.handleFormSubmit}>
-              <div className="flex-create">
-                <label className="inp" >
-                  <input id="inp" type="text" name="title" placeholder="&nbsp;" value={this.state.title} onChange={this.handleChange} />
+    const { progress, isUploading, spot, errorName, description, title } = this.state;
+    return (
+      <div>
+        <Navbar data='data' />
+        <div className="create-box">
+          <h1>Spot {spot}</h1>
+          <form className="flex-column-create" onSubmit={this.handleFormSubmit}>
+            <div className="flex-create">
+              <label className="inp" >
+                <input id="inp" type="text" name="title" placeholder="&nbsp;" value={title} onChange={this.handleChange} />
                   <span className="label">Title</span>
-                  <span className="border"></span>
-                </label>
-              </div>
-              <div className="flex-create">
-              
-                <CustomUploadButton
-                  className="uploadButton-poi"
-                  accept="image/*"
-                  storageRef={firebase.storage().ref("images")}
-                  onUploadStart={this.handleUploadStart}
-                  onUploadError={this.handleUploadError}
-                  onUploadSuccess={this.handleUploadSuccess}
-                  onProgress={this.handleProgress}
-                >
-                  Select a photo from the gallery
+                <span className="border"></span>
+              </label>
+            </div>
+            <div className="flex-create">
+
+              <CustomUploadButton
+                className="uploadButton-poi"
+                accept="image/*"
+                storageRef={firebase.storage().ref("images")}
+                onUploadStart={this.handleUploadStart}
+                onUploadError={this.handleUploadError}
+                onUploadSuccess={this.handleUploadSuccess}
+                onProgress={this.handleProgress}
+              >
+                Select a photo from the gallery
             </CustomUploadButton>
-                {isUploading && <p> Progress: {progress} </p>}
-              </div>
-              <div className="flex-create">
-                <label className="inp" >
-                  <input id="inp" type="text" name="description" placeholder="&nbsp;" value={this.state.description} onChange={this.handleChange} />
-                  <span className="label">Description</span>
-                  <span className="border"></span>
-                </label>
-              </div>
-              <div>
-                <button className="poi-button" onClick={this.handlePoi}>Next</button>
-                <button className="poi-button" onClick={this.handleBoth}>Save Tour</button>
-              </div>
-                <div style={{ color: "red" }}>{this.state.errorName}</div>
-            </form>
-            <Map sendCenter={this.receiveCenter} />
-          </div>
-          <BottomBar data='data' />
+              {isUploading && <p> Progress: {progress} </p>}
+            </div>
+            <div className="flex-create">
+              <label className="inp" >
+                <input id="inp" type="text" name="description" placeholder="&nbsp;" value={description} onChange={this.handleChange} />
+                <span className="label">Description</span>
+                <span className="border"></span>
+              </label>
+            </div>
+            <div>
+              <button className="poi-button" onClick={this.handlePoi}>Next</button>
+              <button className="poi-button" onClick={this.handleBoth}>Save Tour</button>
+            </div>
+            <div style={{ color: "red" }}>{errorName}</div>
+          </form>
+          <Map sendCenter={this.receiveCenter} />
         </div>
-      )
-    }
+        <BottomBar data='data' />
+      </div>
+    )
   }
+}
 
 export default withAuth(CreatePOI);

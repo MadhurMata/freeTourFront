@@ -9,7 +9,6 @@ class Bottombar extends Component {
 
   render() {
     const { isLogged } = this.props;
-
     if (isLogged) {
       return <div className="bottombar">
         <div>
@@ -23,8 +22,7 @@ class Bottombar extends Component {
         <Link to='/login'>Login</Link>
         <Link to='/signup'>Signup</Link>
       </div>
-    }
-  
+    } 
   }
 }
 
