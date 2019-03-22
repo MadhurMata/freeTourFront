@@ -12,6 +12,10 @@ export default class TourMarkers extends Component {
     loading: true,
     map: null,
   }
+  
+  componentDidMount() {
+    this.getTours()
+  }
 
   getTours = () => {
     tourService.showTour(this.state.id)
@@ -19,7 +23,7 @@ export default class TourMarkers extends Component {
         const mapConfig = {
           container: 'map',
           style: 'mapbox://styles/ismaeljaouhar/cjsxi2yln1ean1hmsrey6rsbx',
-          center: [data.POI[0].listOfPoi.lng, data.POI[0].listOfPoi.lat ],
+          center: [data.POI[0].listOfPoi.lng, data.POI[0].listOfPoi.lat],
           zoom: 12,
         };
         mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_KEY}`;
@@ -33,34 +37,31 @@ export default class TourMarkers extends Component {
         map.addControl(this.geolocate);
         this.setState({
           tour: data,
-          loading:false,
+          loading: false,
           map,
         })
-      
+
       })
       .catch((error) => {
         console.log('error', error);
       })
   }
 
-  componentDidMount() {
-    this.getTours()
-  }
 
   paintPoints = () => {
     const { tour } = this.state;
-    if(tour.POI){
-      for (let i = 0; i < tour.POI.length; i++){
-        if(tour.POI[i].listOfPoi.lng){
-            new mapboxgl.Marker({
-              color:'#e68572', 
-            })
-            .setLngLat([ tour.POI[i].listOfPoi.lng, tour.POI[i].listOfPoi.lat ])
+    if (tour.POI) {
+      for (let i = 0; i < tour.POI.length; i++) {
+        if (tour.POI[i].listOfPoi.lng) {
+          new mapboxgl.Marker({
+            color: '#e68572',
+          })
+            .setLngLat([tour.POI[i].listOfPoi.lng, tour.POI[i].listOfPoi.lat])
             .addTo(this.state.map);
-            new mapboxgl.Popup({
-              closeOnClick: false,
-            })
-            .setLngLat([ tour.POI[i].listOfPoi.lng, tour.POI[i].listOfPoi.lat ])
+          new mapboxgl.Popup({
+            closeOnClick: false,
+          })
+            .setLngLat([tour.POI[i].listOfPoi.lng, tour.POI[i].listOfPoi.lat])
             .setHTML(tour.POI[i].title)
             .addTo(this.state.map);
         }
@@ -73,7 +74,6 @@ export default class TourMarkers extends Component {
     if(this.state.map){
       this.paintPoints()
     }
-    
     return (
       <div>
         <div className='map' id='map' ></div>

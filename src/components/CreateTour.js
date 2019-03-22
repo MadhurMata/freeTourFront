@@ -20,9 +20,13 @@ export default class CreateTour extends Component {
     progress: 0
   };
 
+  handleChange = event => {
+    let { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
+
   validate = () => {
     let errorName = "";
-
     if (
       !this.state.name ||
       !this.state.image ||
@@ -40,20 +44,15 @@ export default class CreateTour extends Component {
     return true;
   };
 
-  handleFormSubmit = event => {
-    event.preventDefault();
-    tourService
-      .create(this.state)
+  handleFormSubmit = e => {
+    e.preventDefault();
+    tourService.create(this.state)
       .then(data => {
         return data;
       })
       .catch(error => console.log(error.response));
   };
 
-  handleChange = event => {
-    let { name, value } = event.target;
-    this.setState({ [name]: value });
-  };
 
   handleStage = e => {
     e.preventDefault();
@@ -71,16 +70,19 @@ export default class CreateTour extends Component {
       isUploading: true,
       progress: 0
     });
+
   handleProgress = progress =>
     this.setState({
       progress
     });
+
   handleUploadError = error => {
     this.setState({
       isUploading: false
     });
     console.error(error);
   };
+
   handleUploadSuccess = filename => {
     this.setState({
       avatar: filename,
@@ -100,7 +102,7 @@ export default class CreateTour extends Component {
   };
 
   render() {
-    const { progress, isUploading } = this.state;
+    const { progress, isUploading, name, city, description, errorName } = this.state;
     return (
       <div>
         <Navbar data="data" />
@@ -108,13 +110,13 @@ export default class CreateTour extends Component {
           <h1>New tour</h1>
           <form className="flex-column-create" onSubmit={this.handleFormSubmit}>
             <div className="flex-create">
-              <label  className="inp">
+              <label className="inp">
                 <input
                   id="inp"
                   type="text"
                   name="name"
                   placeholder="&nbsp;"
-                  value={this.state.name}
+                  value={name}
                   onChange={this.handleChange}
                 />
                 <span className="label">Name</span>
@@ -128,7 +130,7 @@ export default class CreateTour extends Component {
                   type="text"
                   name="city"
                   placeholder="&nbsp;"
-                  value={this.state.city}
+                  value={city}
                   onChange={this.handleChange}
                 />
                 <span className="label">City</span>
@@ -142,27 +144,27 @@ export default class CreateTour extends Component {
                   type="text"
                   name="description"
                   placeholder="&nbsp;"
-                  value={this.state.description}
+                  value={description}
                   onChange={this.handleChange}
                 />
                 <span className="label">Description</span>
                 <span className="border" />
               </label>
             </div>
-            
-              <CustomUploadButton
-                className="uploadButton"
-                accept="image/*"
-                storageRef={firebase.storage().ref("images")}
-                onUploadStart={this.handleUploadStart}
-                onUploadError={this.handleUploadError}
-                onUploadSuccess={this.handleUploadSuccess}
-                onProgress={this.handleProgress}
-              >
-                Select a photo from the gallery
+
+            <CustomUploadButton
+              className="uploadButton"
+              accept="image/*"
+              storageRef={firebase.storage().ref("images")}
+              onUploadStart={this.handleUploadStart}
+              onUploadError={this.handleUploadError}
+              onUploadSuccess={this.handleUploadSuccess}
+              onProgress={this.handleProgress}
+            >
+              Select a photo from the gallery
               </CustomUploadButton>
-              {isUploading && <p> Progress: {progress} </p>}
-            <div style={{ color: "red" }}>{this.state.errorName}</div>
+            {isUploading && <p> Progress: {progress} </p>}
+            <div style={{ color: "red" }}>{errorName}</div>
             <button className="create-btn" onClick={this.handleStage}>
               Next
             </button>

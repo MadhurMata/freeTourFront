@@ -12,91 +12,91 @@ export default class TourRoute extends Component {
     loading: true,
     map: null,
   }
+  
+  componentDidMount() {
+    this.getTours()
+  }
 
   getTours = () => {
-      tourService.showTour(this.state.id)
-        .then((data) => {
-          const mapConfig = {
-            container: 'map',
-            style: 'mapbox://styles/ismaeljaouhar/cjsxi2yln1ean1hmsrey6rsbx',
-            center: [data.POI[0].listOfPoi.lng, data.POI[0].listOfPoi.lat],
-            zoom: 12,
-          };
-          mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_KEY}`;
-          const map = new mapboxgl.Map(mapConfig);
-          this.getRoute(map, data);
-          this.geolocate = new mapboxgl.GeolocateControl({
-            positionOptions: {
-              enableHighAccuracy: true
-            },
-            trackUserLocation: true
-          });
-          map.addControl(this.geolocate);
-          this.setState({
-            tour: data,
-            loading: false,
-            map,
-          })
+    tourService.showTour(this.state.id)
+      .then((data) => {
+        const mapConfig = {
+          container: 'map',
+          style: 'mapbox://styles/ismaeljaouhar/cjsxi2yln1ean1hmsrey6rsbx',
+          center: [data.POI[0].listOfPoi.lng, data.POI[0].listOfPoi.lat],
+          zoom: 12,
+        };
+        mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOX_KEY}`;
+        const map = new mapboxgl.Map(mapConfig);
+        this.getRoute(map, data);
+        this.geolocate = new mapboxgl.GeolocateControl({
+          positionOptions: {
+            enableHighAccuracy: true
+          },
+          trackUserLocation: true
+        });
+        map.addControl(this.geolocate);
+        this.setState({
+          tour: data,
+          loading: false,
+          map,
+        })
 
-        })
-        .catch((error) => {
-          console.log('error', error);
-        })
-    
+      })
+      .catch((error) => {
+        console.log('error', error);
+      })
   }
 
   getRoute(map, data) {
     const POI = data.POI
-    if(POI.length > 1){
-    const listOfPoints = []
-    for (let i = 0; i <= POI.length; i++) {
-      if (i === 0) {
-        listOfPoints.push(POI[i].listOfPoi.lng)
-      } else if (i === POI.length) {
-        listOfPoints.push(POI[i - 1].listOfPoi.lat)
-      } else {
-        listOfPoints.push([POI[i - 1].listOfPoi.lat + ';' + POI[i].listOfPoi.lng])
+    if (POI.length > 1) {
+      const listOfPoints = []
+      for (let i = 0; i <= POI.length; i++) {
+        if (i === 0) {
+          listOfPoints.push(POI[i].listOfPoi.lng)
+        } else if (i === POI.length) {
+          listOfPoints.push(POI[i - 1].listOfPoi.lat)
+        } else {
+          listOfPoints.push([POI[i - 1].listOfPoi.lat + ';' + POI[i].listOfPoi.lng])
+        }
       }
-    }
-    var url =
-      `https://api.mapbox.com/directions/v5/mapbox/walking/${listOfPoints}.json?steps=true&geometries=geojson&access_token=` + mapboxgl.accessToken;
-    fetch(url)
-      .then((response) => {
-        response.json()
-          .then((info) => {
-            let data = info.routes[0];
-            let route = data.geometry;
-            map.on('load', () => {
-              map.addLayer({
-                "id": "route",
-                "type": "line",
-                "source": {
-                  "type": "geojson",
-                  "data": {
-                    "type": "Feature",
-                    "properties": {},
-                    "geometry": {
-                      "type": "LineString",
-                      "coordinates": route.coordinates
+      const url =
+        `https://api.mapbox.com/directions/v5/mapbox/walking/${listOfPoints}.json?steps=true&geometries=geojson&access_token=` + mapboxgl.accessToken;
+      fetch(url)
+        .then((response) => {
+          response.json()
+            .then((info) => {
+              let data = info.routes[0];
+              let route = data.geometry;
+              map.on('load', () => {
+                map.addLayer({
+                  "id": "route",
+                  "type": "line",
+                  "source": {
+                    "type": "geojson",
+                    "data": {
+                      "type": "Feature",
+                      "properties": {},
+                      "geometry": {
+                        "type": "LineString",
+                        "coordinates": route.coordinates
+                      }
                     }
+                  },
+                  "layout": {
+                    "line-join": "round",
+                    "line-cap": "round"
+                  },
+                  "paint": {
+                    "line-color": "#97667b",
+                    "line-width": 5
                   }
-                },
-                "layout": {
-                  "line-join": "round",
-                  "line-cap": "round"
-                },
-                "paint": {
-                  "line-color": "#97667b",
-                  "line-width": 5
-                }
+                });
               });
-            });
-          })
-      })
+            })
+        })
     }
-  }
-  componentDidMount() {
-    this.getTours()
   }
 
   paintPoints = () => {
@@ -133,8 +133,3 @@ export default class TourRoute extends Component {
     );
   }
 }
-
-
-
-
-
