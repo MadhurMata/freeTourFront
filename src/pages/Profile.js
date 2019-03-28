@@ -63,6 +63,7 @@ class Profile extends Component {
           <Link to={`/user/profile/${_id}/edit`}>Edit</Link>
         </div>
         <h1 className="userName">My tours</h1>
+        <div class="tours-list">
         {tours.map((tour, id) => {
           return (
             <Link key={id} to={`/tour/${tour._id}`}>
@@ -73,6 +74,7 @@ class Profile extends Component {
             </Link>
           );
         })}
+        </div>
         <form className={"logout"} onSubmit={this.handlelogOut}>
           <button>Log Out</button>
         </form>

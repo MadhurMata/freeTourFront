@@ -258,10 +258,13 @@ clear: both;
 }
 .tours-list{
   padding-top: 4.7rem;
+  text-align: center;
 }
 .tours-list a{
-  align-items: center;
+  padding-top: 4.7rem;
+  margin: 5px;
 }
+
 
 .create-box h1{
   padding: 0.7rem 0 0 0rem;
@@ -297,13 +300,13 @@ clear: both;
   align-items: flex-start;
   flex-direction: column;
   height: 80px;
-
+  width: 47vw;
+  justify-content: space-around;
 }
 .inp {
   position: relative;
   margin: auto;
-  width: 100%;
-  max-width: 280px;
+  width: 80%;
 }
 .inp .label {
   position: absolute;
@@ -442,12 +445,13 @@ clear: both;
   }
   /* Edit Profile */
   .saveEditProfile-btn {
-    background-color: rgb(17,208,207);
+    background-color: #e68572;
     padding: 8px 55px;
     font-size: 1rem;
     border: none;
     color:white;
     margin-top: 0.5rem;
+    font-weight: bolder;
   }
   .uploadButton{
     padding: 8px 20px;
@@ -455,7 +459,7 @@ clear: both;
     border: 2px solid #e68572;
     color: #e68572;
     margin-top: 1.2rem;
-    width: 80%;
+    width: 47vw;
   }
 
   .uploadButton-poi{
@@ -464,13 +468,18 @@ clear: both;
     border: 2px solid #e68572;
     color: #e68572;
     margin-top: 1.2rem;
-    width: 100%
+    width: 80%;
+    margin: 0 auto;
   }
 
   .editForm{
-    margin-top: 3rem;
     text-align: center;
-    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 16rem;
+    width: 37rem;
   }
   .userName{
     font-size: 2rem;
@@ -516,6 +525,7 @@ clear: both;
     border: 1px solid #e68572;
     background-color: #e68572;
     background-color: #fff2dd;
+    width: 80%;
   }
   .commentSection form{
     display: flex;
@@ -619,7 +629,15 @@ clear: both;
   }
 
   .tour-detail-container{
-
     margin-top: 1.9rem;
-
   }
+
+  .detailCardImg{
+    display: flex;
+    justify-content: center;
+  }
+
+  .detailCardImg img{
+    height: 400px;
+  }
+

@@ -92,37 +92,39 @@ class EditProfile extends Component {
       return (
         <div>
           <Navbar data="data" />
+          <div className="flex-column edit-form">
           <form className="editForm">
-            <div className="flex-create">
-              <label className="inp">
-                <input
-                  id="inp"
-                  type="text"
-                  name="username"
-                  placeholder="&nbsp;"
-                  value={username}
-                  onChange={this.handleChange}
-                />
-                <span className="label">Username</span>
-                <span className="border" />
-              </label>
-            </div>
-            <CustomUploadButton
-              className="uploadButton"
-              accept="image/*"
-              storageRef={firebase.storage().ref("images")}
-              onUploadStart={this.handleUploadStart}
-              onUploadError={this.handleUploadError}
-              onUploadSuccess={this.handleUploadSuccess}
-              onProgress={this.handleProgress}
-            >
-              Select a photo from the gallery
-            </CustomUploadButton>
-            {isUploading && <p> Progress: {progress} </p>}
-            <div>
-              <button className="saveEditProfile-btn" onClick={this.handleFormSubmit}>Save</button>
-            </div>
-          </form>
+              <div className="flex-create">
+                <label className="inp">
+                  <input
+                    id="inp"
+                    type="text"
+                    name="username"
+                    placeholder="&nbsp;"
+                    value={username}
+                    onChange={this.handleChange}
+                  />
+                  <span className="label">Username</span>
+                  <span className="border" />
+                </label>
+              </div>
+              <CustomUploadButton
+                className="uploadButton"
+                accept="image/*"
+                storageRef={firebase.storage().ref("images")}
+                onUploadStart={this.handleUploadStart}
+                onUploadError={this.handleUploadError}
+                onUploadSuccess={this.handleUploadSuccess}
+                onProgress={this.handleProgress}
+              >
+                Select a photo from the gallery
+              </CustomUploadButton>
+              {isUploading && <p> Progress: {progress} </p>}
+              <div>
+                <button className="saveEditProfile-btn" onClick={this.handleFormSubmit}>Save</button>
+              </div>
+            </form>
+          </div>
           <BottomBar data="data" />
         </div>
       );
