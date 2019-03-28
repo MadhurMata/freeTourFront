@@ -44,16 +44,19 @@ a{
     justify-content: center;
 }
 .flex-column h1{
+  width: 100vw;
   font-family: 'Pacifico', cursive;
   font-size: 4rem;
   color: #fff2dd;
   background-color: rgb(151, 102, 123, 0.9);
+  text-align: center;
 }
 .backfground{
   background-image: url(./img/Captura\ de\ pantalla\ -2019-03-07\ 15-14-28.png);
-  background-size:     cover;                      /* <------ */
+  background-size:     cover;
   background-repeat:   no-repeat;
   background-position: center center; 
+  width: 100vw;
 }
 .user-box {
   background-color: rgba(0, 0, 0, 0.40);
@@ -110,6 +113,9 @@ a{
 }
 .p-link {
   font-size: 1.3rem;
+  background-color: #fff2dd;
+  width: 100vw;
+  padding-top: 20px;
 }
 /* general content */
 .navbar{
