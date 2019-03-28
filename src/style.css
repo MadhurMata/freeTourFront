@@ -24,9 +24,10 @@ a{
 .container {
   margin: 0 auto;
   background-color: #fff2dd !important;
-  height: 100%;
+  min-height: 100vh;
   margin-top: -3rem;
   padding-top: 45px;
+  min-width: 100vw !important;
 }
 .container-tourNavigator {
   margin: 0 auto;
@@ -47,16 +48,17 @@ a{
   width: 100vw;
   font-family: 'Pacifico', cursive;
   font-size: 4rem;
-  color: #fff2dd;
-  background-color: rgb(151, 102, 123, 0.9);
+  color: black;
+  background-color: #fff2dd;
   text-align: center;
+  opacity: 0.9;
 }
 .backfground{
   background-image: url(./img/homeScreen.jpg);
   background-size:     cover;                      /* <------ */
   background-repeat:   no-repeat;
   background-position: center center;
-  width: 100vh;
+  width: 100vw;
 }
 .user-box {
   background-color: rgba(0, 0, 0, 0.40);
@@ -122,8 +124,6 @@ a{
   position: fixed;
   top: 0;
   left: 0;
-  max-width: 414px;
-  width: 100%;
   height: 50px;
   background-color: #97667b;
   text-align: center;
@@ -131,11 +131,13 @@ a{
   -webkit-box-shadow: 2px 4px 37px -13px rgba(0,0,0,0.75);
   -moz-box-shadow: 2px 4px 37px -13px rgba(0,0,0,0.75);
   box-shadow: 2px 4px 37px -13px rgba(0,0,0,0.75);
+  width: 100vw;
 }
 .navbar h1{
 font-family: 'Pacifico', cursive;
 margin: 0;
 font-size: 2rem;
+width: 100vw;
 }
 
 .sing-up{
@@ -144,6 +146,10 @@ font-size: 2rem;
   position: absolute;
   bottom: 0;
   align-items: center;
+  background-color: #fff2dd;
+  justify-content: center;
+  opacity: 0.9;
+  width: 100vw;
 }
 
 .sing-up h3{
@@ -156,12 +162,10 @@ font-size: 2rem;
   bottom: 0;
   left: 0;
   z-index: 9999;
-  width: 100%;
+  width: 100vw;
   background-color: #97667b;
   box-shadow: 0 2px 1px 5px rgba(0,0,0,.2);
   text-align: center;
-  max-width: 414px;
-  max-height: 736px;
 }
 .bottombar h1{
 margin: 0;
@@ -224,21 +228,20 @@ clear: both;
 }
 .card-img img{
   height: 250px;
-  width: 100%
+  width: 414px;
 }
 /* Home page */
 
 .home-container{
   margin-top: 2.7rem;
-  height: 100vh;
+  min-height: 100vh;
 }
 .box{
   background: transparent;
   box-shadow: none;
   padding: 1rem 1.25rem 0;
   position: fixed;
-  width: 100%;
-  max-width: 414px;
+  width: 100vw;
   max-height: 736px;
   margin-top: 10px;
   z-index: 9999;
@@ -254,8 +257,12 @@ clear: both;
   background-color: #fdf8ee;
 }
 .tours-list{
-  padding-top: 4.7rem;;
+  padding-top: 4.7rem;
 }
+.tours-list a{
+  align-items: center;
+}
+
 .create-box h1{
   padding: 0.7rem 0 0 0rem;
   text-align: center;
