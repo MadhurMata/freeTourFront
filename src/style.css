@@ -50,10 +50,11 @@ a{
   background-color: rgb(151, 102, 123, 0.9);
 }
 .backfground{
-  background-image: url(./img/Captura\ de\ pantalla\ -2019-03-07\ 15-14-28.png);
+  background-image: url(./img/homeScreen.jpg);
   background-size:     cover;                      /* <------ */
   background-repeat:   no-repeat;
-  background-position: center center; 
+  background-position: center center;
+  width: 100vh;
 }
 .user-box {
   background-color: rgba(0, 0, 0, 0.40);
