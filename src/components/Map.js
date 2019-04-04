@@ -13,6 +13,12 @@ export default class Map extends Component {
     this.printMap()
   }
 
+    // printMapRefactor = () => {
+  //   const configuration = createMapConfiguration()
+  //   const map = createMap(configuration)
+  //   addControlersToMap(map)
+  // }
+
   printMap = () => {
     const mapConfig = {
       container: 'map',

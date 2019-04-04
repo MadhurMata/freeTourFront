@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 
-
-
 export default class Search extends Component {
 
   searchTour = (e) => {
     const { search } = this.props;
-    search(e.target.value);
-    
+    search(e.target.value);   
   }
 
   render() {

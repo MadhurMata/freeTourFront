@@ -6,7 +6,6 @@ import Map from '../components/Map';
 import CustomUploadButton from "react-firebase-file-uploader/lib/CustomUploadButton";
 import firebase from "firebase";
 
-
 class CreatePOI extends Component {
   state = {
     spot: 1,
@@ -116,7 +115,9 @@ class CreatePOI extends Component {
         this.setState({
           image: url
         })
-      );
+      )
+      .catch(error => console.log(error.response));
+
   };
 
   render() {

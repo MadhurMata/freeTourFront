@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class Tour extends Component {
+export default function Tour (props) { //Functional component 
+  const { name, image, city } = props;
 
-  render() {
-    const { name, image, city } = this.props;
     return (
       <div className="card-container">
         <div className="card-img">
@@ -15,5 +14,4 @@ export default class Tour extends Component {
         </div>
       </div>
     )
-  }
 }

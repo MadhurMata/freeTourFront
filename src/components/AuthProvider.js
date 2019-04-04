@@ -32,6 +32,24 @@ export default class AuthProvider extends Component {
     status: 'loading'
   }
 
+  componentDidMount() {
+    authService.me()
+      .then((user) => {
+        this.setState({
+          isLogged: true,
+          user,
+          status: 'loaded'
+        })
+      })
+      .catch((error) => {
+        this.setState({ 
+          isLogged: false,
+          user: {},
+          status: 'loaded'
+        });
+      })
+  }
+
   setUser = (user) => {
     this.setState({
       isLogged: true,
@@ -64,24 +82,6 @@ export default class AuthProvider extends Component {
         this.setUser(user);
       })
       .catch(error => console.log(error))
-  }
-
-  componentDidMount() {
-    authService.me()
-      .then((user) => {
-        this.setState({
-          isLogged: true,
-          user,
-          status: 'loaded'
-        })
-      })
-      .catch((error) => {
-        this.setState({ 
-          isLogged: false,
-          user: {},
-          status: 'loaded'
-        });
-      })
   }
 
   render() {

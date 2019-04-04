@@ -38,7 +38,8 @@ class TourDetail extends Component {
           tour,
           comments,
         });
-      });
+      })
+      .catch(error => console.log(error.response));
   };
 
   handleDelete = e => {

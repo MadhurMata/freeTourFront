@@ -5,9 +5,6 @@ import BottomBar from "../components/BottomBar";
 import PoiDetail from "../components/PoiDetail";
 import tourService from '../lib/tour-service';
 
-
-
-
 export default class TourNavigation extends Component {
   state = {
     id: this.props.match.params.id,
@@ -51,7 +48,6 @@ export default class TourNavigation extends Component {
       })
     }
   }
-
 
   render() {
     const { tour, loading, id, selectedPoi } = this.state;

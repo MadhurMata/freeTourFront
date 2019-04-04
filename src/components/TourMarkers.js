@@ -40,7 +40,6 @@ export default class TourMarkers extends Component {
           loading: false,
           map,
         })
-
       })
       .catch((error) => {
         console.log('error', error);

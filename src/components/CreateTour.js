@@ -98,7 +98,8 @@ export default class CreateTour extends Component {
         this.setState({
           image: url
         })
-      );
+      )
+      .catch(error => console.log(error.response));
   };
 
   render() {

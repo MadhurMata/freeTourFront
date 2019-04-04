@@ -8,7 +8,6 @@ import Navbar from '../components/Navbar';
 import authService from '../lib/auth-service';
 import firebase from "firebase";
 
-
 class Profile extends Component {
   state = {
     _id: this.props.user._id,
@@ -49,7 +48,6 @@ class Profile extends Component {
       </div>)
     }
   }
-  
   
   render() {
     const { username } = this.props.user;

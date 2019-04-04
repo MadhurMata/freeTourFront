@@ -13,9 +13,6 @@ import AuthProvider from './components/AuthProvider';
 import EditProfile from './pages/EditProfile';
 import './style.css';
 
-
-
-
 class App extends Component {
   render() {
     return (

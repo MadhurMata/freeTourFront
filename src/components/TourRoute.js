@@ -95,6 +95,7 @@ export default class TourRoute extends Component {
                 });
               });
             })
+            .catch(error => console.log(error.response));
         })
     }
   }
